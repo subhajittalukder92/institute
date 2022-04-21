@@ -1,42 +1,50 @@
 <?php include "header-link.php"; ?>
 <?php include "header.php"; ?>
-
-  <section id="featured"> 
-    <!-- start slider -->
-    <div class="container custom-w">
-      <div class="">
-        <div class=""> 
-          <!-- Slider -->
-          <div class="theme-default">
-            <div id="slider" class="nivoSlider">
-			              <img src="files/1581770222-1528371750-juu copy.jpg" alt="" style="display: none;">
-			              <img src="files/1581770609-1526185310slide2 copy.jpg" alt="" style="width: 1349px; visibility: hidden; display: inline;">
-			              <img src="files/1526185323slide3.jpg" alt="" style="width: 1349px; visibility: hidden; display: inline;">
-			              <img src="files/1527505798Enter-Page-copy__.jpg" alt="" style="width: 1349px; visibility: hidden; display: inline;">
-			              <img src="files/1527943667-jybce.jpg" alt="" style="display: none;">
-			            <img class="nivo-main-image" src="files/1526185323slide3.jpg" style="display: inline; overflow: hidden; height: 564.122px;"><div class="nivo-caption"></div><div class="nivo-directionNav"><a class="nivo-prevNav">Prev</a><a class="nivo-nextNav">Next</a></div><div class="nivo-box" name="0" rel="0" style="opacity: 0.1403; left: 0px; top: 0px; width: 169px; height: 678px; overflow: hidden;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-0px; left:-0px;"></div><div class="nivo-box" name="1" rel="0" style="opacity: 0; left: 169px; top: 0px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-0px; left:-169px;"></div><div class="nivo-box" name="2" rel="0" style="opacity: 0; left: 338px; top: 0px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-0px; left:-338px;"></div><div class="nivo-box" name="3" rel="0" style="opacity: 0; left: 507px; top: 0px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-0px; left:-507px;"></div><div class="nivo-box" name="4" rel="0" style="opacity: 0; left: 676px; top: 0px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-0px; left:-676px;"></div><div class="nivo-box" name="5" rel="0" style="opacity: 0; left: 845px; top: 0px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-0px; left:-845px;"></div><div class="nivo-box" name="6" rel="0" style="opacity: 0; left: 1014px; top: 0px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-0px; left:-1014px;"></div><div class="nivo-box" name="7" rel="0" style="opacity: 0; left: 1183px; top: 0px; width: 166px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-0px; left:-1183px;"></div><div class="nivo-box" name="0" rel="1" style="opacity: 0; left: 0px; top: 170px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-170px; left:-0px;"></div><div class="nivo-box" name="1" rel="1" style="opacity: 0; left: 169px; top: 170px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-170px; left:-169px;"></div><div class="nivo-box" name="2" rel="1" style="opacity: 0; left: 338px; top: 170px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-170px; left:-338px;"></div><div class="nivo-box" name="3" rel="1" style="opacity: 0; left: 507px; top: 170px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-170px; left:-507px;"></div><div class="nivo-box" name="4" rel="1" style="opacity: 0; left: 676px; top: 170px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-170px; left:-676px;"></div><div class="nivo-box" name="5" rel="1" style="opacity: 0; left: 845px; top: 170px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-170px; left:-845px;"></div><div class="nivo-box" name="6" rel="1" style="opacity: 0; left: 1014px; top: 170px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-170px; left:-1014px;"></div><div class="nivo-box" name="7" rel="1" style="opacity: 0; left: 1183px; top: 170px; width: 166px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-170px; left:-1183px;"></div><div class="nivo-box" name="0" rel="2" style="opacity: 0; left: 0px; top: 340px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-340px; left:-0px;"></div><div class="nivo-box" name="1" rel="2" style="opacity: 0; left: 169px; top: 340px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-340px; left:-169px;"></div><div class="nivo-box" name="2" rel="2" style="opacity: 0; left: 338px; top: 340px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-340px; left:-338px;"></div><div class="nivo-box" name="3" rel="2" style="opacity: 0; left: 507px; top: 340px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-340px; left:-507px;"></div><div class="nivo-box" name="4" rel="2" style="opacity: 0; left: 676px; top: 340px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-340px; left:-676px;"></div><div class="nivo-box" name="5" rel="2" style="opacity: 0; left: 845px; top: 340px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-340px; left:-845px;"></div><div class="nivo-box" name="6" rel="2" style="opacity: 0; left: 1014px; top: 340px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-340px; left:-1014px;"></div><div class="nivo-box" name="7" rel="2" style="opacity: 0; left: 1183px; top: 340px; width: 166px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-340px; left:-1183px;"></div><div class="nivo-box" name="0" rel="3" style="opacity: 0; left: 0px; top: 510px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-510px; left:-0px;"></div><div class="nivo-box" name="1" rel="3" style="opacity: 0; left: 169px; top: 510px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-510px; left:-169px;"></div><div class="nivo-box" name="2" rel="3" style="opacity: 0; left: 338px; top: 510px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-510px; left:-338px;"></div><div class="nivo-box" name="3" rel="3" style="opacity: 0; left: 507px; top: 510px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-510px; left:-507px;"></div><div class="nivo-box" name="4" rel="3" style="opacity: 0; left: 676px; top: 510px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-510px; left:-676px;"></div><div class="nivo-box" name="5" rel="3" style="opacity: 0; left: 845px; top: 510px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-510px; left:-845px;"></div><div class="nivo-box" name="6" rel="3" style="opacity: 0; left: 1014px; top: 510px; width: 169px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-510px; left:-1014px;"></div><div class="nivo-box" name="7" rel="3" style="opacity: 0; left: 1183px; top: 510px; width: 166px; height: 678px;"><img src="files/1527505798Enter-Page-copy__.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-510px; left:-1183px;"></div></div><div class="nivo-controlNav"><a class="nivo-control" rel="0">1</a><a class="nivo-control" rel="1">2</a><a class="nivo-control" rel="2">3</a><a class="nivo-control active" rel="3">4</a><a class="nivo-control" rel="4">5</a></div>
-          </div>
-          <!-- end slider --> 
+<section id="featured">
+  <div class="container custom-w">
+    <div class="">
+      <div class=""> 
+        <div class="theme-default">
+          <div id="slider" class="nivoSlider">
+			      <img class="nivo-main-image" src="files/slider1.jpg" style="display: inline; overflow: hidden; height: 564.122px;">
+            <div class="nivo-caption"></div>
+            <div class="nivo-directionNav">
+              <a class="nivo-prevNav">Prev</a>
+              <a class="nivo-nextNav">Next</a>
+            </div>
+            <div class="nivo-box" name="0" rel="0" style="opacity: 0.1403; left: 0px; top: 0px; width: 169px; height: 678px; overflow: hidden;">
+              <img src="files/slider2.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-0px; left:-0px;">
+            </div>
+            <div class="nivo-box" name="1" rel="0" style="opacity: 0; left: 169px; top: 0px; width: 169px; height: 678px;">
+              <img src="files/slider3.jpg" style="position:absolute; width:1349px; height:auto; display:block; top:-0px; left:-169px;">
+            </div>
+            <div class="nivo-controlNav">
+              <a class="nivo-control" rel="0">1</a><a class="nivo-control" rel="1">2</a>
+              <a class="nivo-control" rel="2">3</a><a class="nivo-control active" rel="3">4</a>
+              <a class="nivo-control" rel="4">5</a>
+            </div>
+          </div> 
         </div>
       </div>
-      <marquee><p class="MsoNormal">An Autonomous Organization Regd. Under the Indian Public
-Act., N.C.T. New Delhi Govt. of India. An ISO 9001:2015 Certified Organization Affiliated member of Planning Commission Govt. of India Course Registered under C.R., Ministry of Human Resource Development&nbsp; Govt. of INDIA. N.A.R.C.I Govt. of India .</p></marquee>
+      <marquee>
+        <p class="MsoNormal">An Autonomous Organization Regd. Under the Indian Public Act., N.C.T. New Delhi Govt. of India. An ISO 9001:2015 Certified Organization Affiliated member of Planning Commission Govt. of India Course Registered under C.R., Ministry of Human Resource Development&nbsp; Govt. of INDIA. N.A.R.C.I Govt. of India .
+        </p>
+      </marquee>
     </div>
-</section><section class="welcome">
-<div class="container">
-	<div class="col-lg-12">
-        <div class="big-cta">
-          <div class="cta-text">
-            <h1>Jatiya Yuva Board of Computer Education</h1>
-            <br> </div>
+</section>
+<section class="welcome">
+  <div class="container">
+	  <div class="col-lg-12">
+      <div class="big-cta">
+        <div class="cta-text">
+          <h1>Jatiya Yuva Board of Computer Education</h1><br>
         </div>
       </div>
-</div>
+    </div>
+  </div>
 </section>
 <section class="callaction">
-  
   	<div class="form-edu">
-  	
         <div class="container">
         <div class="col-md-12">
         	<div class="col-md-8">
