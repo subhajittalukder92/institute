@@ -1,0 +1,19 @@
+[26-Dec-2018 11:39:45 UTC] PHP Warning:  include(icesbagula/include/dbconfig.php): failed to open stream: No such file or directory in /home/bankipur/public_html/nsmsonline.in/lmiit/index.php on line 452
+[26-Dec-2018 11:39:45 UTC] PHP Warning:  include(): Failed opening 'icesbagula/include/dbconfig.php' for inclusion (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/bankipur/public_html/nsmsonline.in/lmiit/index.php on line 452
+[26-Dec-2018 11:39:45 UTC] PHP Warning:  mysqli_query($conn,  ): Access denied for user ''@'localhost' (using password: NO) in /home/bankipur/public_html/nsmsonline.in/lmiit/index.php on line 454
+[26-Dec-2018 11:39:45 UTC] PHP Warning:  mysqli_query($conn,  ): A link to the server could not be established in /home/bankipur/public_html/nsmsonline.in/lmiit/index.php on line 454
+[26-Dec-2018 11:39:45 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be resource, boolean given in /home/bankipur/public_html/nsmsonline.in/lmiit/index.php on line 455
+[31-Dec-2018 06:45:25 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/bankipur/public_html/nsmsonline.in/lmiit/messaging.php:1) in /home/bankipur/public_html/nsmsonline.in/lmiit/messaging.php on line 2
+[31-Dec-2018 06:45:35 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/bankipur/public_html/nsmsonline.in/lmiit/messaging.php:1) in /home/bankipur/public_html/nsmsonline.in/lmiit/messaging.php on line 2
+[31-Dec-2018 06:50:56 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/bankipur/public_html/nsmsonline.in/lmiit/messaging.php:1) in /home/bankipur/public_html/nsmsonline.in/lmiit/messaging.php on line 2
+[05-Jan-2019 10:11:31 UTC] PHP Parse error:  syntax error, unexpected 'include' (T_INCLUDE), expecting ',' or ';' in /home/bankipur/public_html/nsmsonline.in/lmiit/generateicard.php on line 59
+[05-Jan-2019 10:11:49 UTC] PHP Parse error:  syntax error, unexpected 'include' (T_INCLUDE), expecting ',' or ';' in /home/bankipur/public_html/nsmsonline.in/lmiit/generateicard.php on line 59
+[05-Jan-2019 10:28:26 UTC] PHP Parse error:  syntax error, unexpected 'include' (T_INCLUDE), expecting ',' or ';' in /home/bankipur/public_html/nsmsonline.in/lmiit/generateicard.php on line 59
+[07-Jan-2019 06:05:20 UTC] PHP Fatal error:  Call to undefined function add_to_database() in /home/bankipur/public_html/nsmsonline.in/lmiit/generateicard.php on line 3
+[07-Jan-2019 06:07:07 UTC] PHP Fatal error:  Call to undefined function add_to_database() in /home/bankipur/public_html/nsmsonline.in/lmiit/generateicard.php on line 3
+[07-Jan-2019 07:05:40 UTC] PHP Parse error:  syntax error, unexpected 'S' (T_STRING), expecting ',' or ';' in /home/bankipur/public_html/nsmsonline.in/lmiit/generateicard.php on line 53
+[07-Jan-2019 07:36:31 UTC] PHP Parse error:  syntax error, unexpected 'S' (T_STRING), expecting ',' or ';' in /home/bankipur/public_html/nsmsonline.in/lmiit/generateicard.php on line 53
+[07-Jan-2019 08:56:28 UTC] PHP Parse error:  syntax error, unexpected 'image_name' (T_STRING), expecting ',' or ';' in /home/bankipur/public_html/nsmsonline.in/lmiit/generateicard.php on line 62
+[07-Jan-2019 08:57:13 UTC] PHP Parse error:  syntax error, unexpected 'image_name' (T_STRING), expecting ',' or ';' in /home/bankipur/public_html/nsmsonline.in/lmiit/generateicard.php on line 62
+[25-Jan-2019 06:03:48 UTC] PHP Warning:  include(dbconfig.php): failed to open stream: No such file or directory in /home/bankipur/public_html/nsmsonline.in/lmiit/expensedelete.php on line 2
+[25-Jan-2019 06:03:48 UTC] PHP Warning:  include(): Failed opening 'dbconfig.php' for inclusion (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home/bankipur/public_html/nsmsonline.in/lmiit/expensedelete.php on line 2
