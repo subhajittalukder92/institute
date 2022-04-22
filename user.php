@@ -93,7 +93,7 @@ function fetchRecords()
 					</div>
 					
 				</div>
-			<div class="form-group">
+		<!-- 	<div class="form-group">
 					 <label class="col-sm-4 control-label">User Type</label>
 					 <div class="col-sm-6">
 						<select name="type" id="type" class="form-control">
@@ -103,7 +103,7 @@ function fetchRecords()
 						</select>
 					</div>
 					
-				</div>
+				</div> -->
             </div>
           </div>
           <div class="modal-footer">
@@ -139,7 +139,7 @@ function fetchRecords()
 						<input type="text" name="editUserId" id="editUserId" class="form-control" required>
 					</div>
 				</div>
-				<div class="form-group">
+			<!-- 	<div class="form-group">
 					 <label class="col-sm-4 control-label">User Type</label>
 					 <div class="col-sm-6">
 						<select name="editType" id="editType" class="form-control">
@@ -150,7 +150,7 @@ function fetchRecords()
 						<input type="hidden" id="memberId" name="memberId">
 					</div>
 					
-				</div>
+				</div> -->
             </div>
           </div>
           <div class="modal-footer">

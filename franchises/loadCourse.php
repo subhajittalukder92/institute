@@ -14,7 +14,7 @@ $option='<option value="">--Select--</option>';
 
 while($row=mysqli_fetch_assoc($res))
 {
-	$option.='<option value="'.$row['id'].'">'.$row['course_name'].'</option>';
+	$option.='<option value="'.$row['id'].'" admission_id="'.$row['pusuing_id'].'" >'.$row['course_name'].'</option>';
 }
 echo $option;
 

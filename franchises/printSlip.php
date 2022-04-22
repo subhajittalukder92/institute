@@ -2,10 +2,15 @@
 session_start();
 include('include/no-cache.php');
 include "include/dbconfig.php";
-include "../instituteinfo.php";
+include "../functions.php";
 include('include/check-login.php');
 
+
 $id = isset($_GET['id']) ? $_GET['id'] : "";
+$data = getFeesRecord();
+$franchise = json_decode(getFranchises($_SESSION['franchise_id']), true);
+$franchise = $franchise['records'][0];
+ //print_r($franchise);
 if ($id != "") {
 	$sql   = "SELECT student_info.*,payment.* , courses.*  FROM `student_info`
 			INNER JOIN 	payment
@@ -44,11 +49,15 @@ function getSlipRemarks()
 function getFeesRecord()
 {
 	include "include/dbconfig.php";
-
 	$id = htmlspecialchars($_GET['id']);
-	$sql1 = "SELECT * FROM receipts WHERE receipt_no='{$id}' group by receipt_no";
+	$sql1 = "SELECT * FROM receipts WHERE `id`='{$id}' group by receipt_no";
 	$res1 = mysqli_query($conn, $sql1);
 	$row1 = mysqli_fetch_assoc($res1);
+	return $row1;
+}
+function getFeesDetails($row1)
+{
+	include "include/dbconfig.php";
 
 	$sql = "SELECT  *,payment.payment_amt as paymentamt,pursuing_course.regno as registration,receipts.* FROM `payment` INNER JOIN receipts ON receipts.id=payment.receipt_id INNER JOIN `student_info` ON student_info.slno=receipts.student_id INNER JOIN courses ON courses.id = receipts.course_id INNER JOIN pursuing_course ON pursuing_course.student_id=student_info.slno WHERE payment.`receipt_id`='{$row1['id']}'";
 	/* echo $sql; */
@@ -140,18 +149,18 @@ function getIndianCurrency($amount)
 		<div class="row">
 			<div class="col-sm-2 col-md-2 col-xs-2">
 				<div class="img">
-					<img src="../images/logo.png" height="150" width="280"></img>
+					<img src="../images/<?php echo $franchise['logo']; ?>" height="150" width="280"></img>
 				</div>
 			</div>
 			<div class="col-sm-10 col-md-10 col-xs-10" style="text-align:center;padding-left:0px;padding-right:0px;">
-				<font size="6" face="revel" align="center"><?php echo $instituteName; ?><br /></font>
+				<font size="6" face="revel" align="center"><?php echo $franchise['franchise_name']; ?><br /></font>
 				<font size="5"><b>Computer Education</b></font><br>
-				<font size="3"><b><?php echo $description; ?> <sup></sup></b></font><br>
-				<font size="4"><?php echo $address; ?> </font> <br />
-				<font size="4">Ph : <?php echo $contact; ?> </font> <br />
+			<!-- 	<font size="3"><b><?php echo $description; ?> <sup></sup></b></font><br> -->
+				<font size="4"><?php echo $franchise['address']; ?> </font> <br />
+				<font size="4">Ph : <?php echo $franchise['contact']; ?> </font> <br />
 				<font size="4"><b>MONEY RECEIPT <?PHP slipType(); ?></b></font><br />
 				<div class="col-sm-6 col-md-6 col-xs-6" style="font-size: 16px;text-align:left;">
-					<B>Bill No : <?php echo $_GET['id']; ?></B>
+					<B>Receipt No : <?php echo $data['receipt_no']; ?></B>
 				</div>
 				<div class="col-sm-6 col-md-6 col-xs-6" style="font-size: 16px;">
 
@@ -162,7 +171,7 @@ function getIndianCurrency($amount)
 			</div>
 			<table class="table table-bordered table-condensed">
 
-				<?php getFeesRecord(); ?>
+				<?php getFeesDetails($data); ?>
 			</table>
 			<div class="col-sm-6 col-md-6 col-xs-6" style="font-size: 18px;padding-top:5%;padding-left:0px;">
 

@@ -17,7 +17,7 @@
 		
         $_SESSION['franchise_id']=$row['member_id'];
 		$_SESSION['franchise_name']=$row2['franchise_name'];
-		$_SESSION['franchise_userid'] = $userid;
+		$_SESSION['franchise_userid'] = $row['user_id'];
 		$_SESSION['franchise_password'] = $password;
 		$_SESSION['franchise_session_id'] = session_id(); 
 		$_SESSION['login_type'] = $row['type'];

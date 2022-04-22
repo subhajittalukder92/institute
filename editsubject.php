@@ -64,9 +64,16 @@ include('include/menu.php'); ?>
 
 
                     <div class="form-group">
-                        <label for="dob" class="col-sm-4 control-label">Full Marks: </label>
+                        <label for="dob" class="col-sm-4 control-label">Theory Full Marks: </label>
                         <div class="col-sm-8">
                             <input type="number" required class="form-control" id="fullmarks" name="fullmarks" placeholder="Full Marks" autocomplete="off" value="<?php echo $row['full_marks'];?>" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob" class="col-sm-4 control-label">Practical Full Marks: </label>
+                        <div class="col-sm-8">
+                            <input type="number" required class="form-control" id="practicalFullmarks" name="practicalFullmarks" placeholder="Full Marks" autocomplete="off" value="<?php echo $row['practical_marks'];?>" />
                         </div>
                     </div>
 

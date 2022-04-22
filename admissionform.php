@@ -1,8 +1,10 @@
 <?php
 session_start();
 include "include/dbconfig.php";
-include "instituteinfo.php";
+include "functions.php";
 $id = isset($_GET['studentid']) ? $_GET['studentid'] : "";
+$franchise = json_decode(getFranchises($_GET['franchise']), true);
+$franchise = $franchise['records'][0];
 if ($id != "") {
 	$sql   = "SELECT student_info.*,pursuing_course.*,pursuing_course.regno as reg_no , courses.*  FROM `student_info`
 			INNER JOIN 	pursuing_course
@@ -67,16 +69,16 @@ function getIndianCurrency($amount)
 		<div class="row">
 			<div class="col-sm-2 col-md-2 col-xs-2">
 				<div class="img">
-					<img src="images/logo.png" height="150" width="280"></img>
+					<img src="images/<?php echo $franchise['logo']; ?>" height="150" width="280"></img>
 				</div>
 			</div>
 			<div class="col-sm-10 col-md-10 col-xs-10" style="text-align:center;padding-left:0px;padding-right:0px;">
-				<font size="6" face="revel" align="center"><?php echo $subtitle; ?><br /></font>
-				<font size="5"><b>Computer Education</font><br>
+				<font size="6" face="revel" align="center"><?php echo $franchise['franchise_name']; ?><br /></font>
+				<!-- <font size="5"><b>Computer Education</font><br>
 				<font size="3"><b><?php echo $affiliation; ?> (Reg. No. <?php echo $registration; ?>)<br> AN
-						ISO <?php echo $iso.'-'.$code; ?> Certified Institute.<sup></sup></b></font><br>
-				<font size="4"><?php echo $address; ?> </font> <br />
-				<font size="4">Mobile : <?php echo $contact; ?></font>
+						ISO <?php echo $iso.'-'.$code; ?> Certified Institute.<sup></sup></b></font><br> -->
+				<font size="4"><?php echo  $franchise['address']; ?> </font> <br />
+				<font size="4">Mobile : <?php echo $franchise['contact']; ?></font>
 			</div>
 
 			<div class="col-sm-12 col-md-12 col-xs-12" style="padding-top:2%;text-align:center;">
@@ -157,7 +159,7 @@ function getIndianCurrency($amount)
 				&nbsp;<p>&nbsp;</p>
 				<p>
 					<label>Declaration :</label><br />
-					<b> I do here by declare that all information stated in this application form are true to the best of my knowledge.I shall always abide by the rules and regulation of the Lmiit Computer Education.</b>
+					<b> I do here by declare that all information stated in this application form are true to the best of my knowledge.I shall always abide by the rules and regulation of the <?php echo $franchise['franchise_name']; ?>.</b>
 
 			</div>
 

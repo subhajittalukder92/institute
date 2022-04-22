@@ -98,8 +98,23 @@ function getObtainedMarks($marksId)
                    <div class="x_content"> -->
             <h3 class="page-header">Marks Entry</h3>
 
-         
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <div class="form-group">
+
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <label>Session</label>
+                        <select name="session" id="session" class="form-control">
+                            <option value="">Select Session</option>
+                            <?php
+                            if (count($sessions['records']) > 0) {
+                                foreach ($sessions['records'] as $key => $sessions) {
+                                    echo '<option value="' . $sessions . '">' . $sessions . '</option>';
+                                }
+                            }
+
+                            ?>
+                        </select>
+                    </div>
                     <!-- <div class="col-md-3 col-sm-3 col-xs-12">
 
                         <label>Franchise</label>
@@ -115,10 +130,25 @@ function getObtainedMarks($marksId)
                             ?>
                         </select>
                     </div> -->
-              
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <label>Course</label>
+                        <select name="course" id="course" class="form-control">
+                            <option value="">Select Course</option>
+                            <?php
+                            if (count($courses['records']) > 0) {
+                                foreach ($courses['records'] as $key => $course) {
+                                    echo '<option value="' . $course['id'] . '">' . $course['course_name'] . '</option>';
+                                }
+                            }
+
+                            ?>
+                        </select>
+                    </div>
                     <div class="col-md-3 col-sm-3 col-xs-12">
-                        <label>Registration No</label>
-                        <input type="text" name="regNo" id="regNo" class="form-control">
+                        <label>Subject</label>
+                        <select name="subject" id="subject" class="form-control">
+                            <option value="">Select Subject</option>
+                        </select>
                     </div>
                     <div class="col-md-2 col-sm-2 col-xs-12">
                         <label>&nbsp;</label>
@@ -137,8 +167,7 @@ function getObtainedMarks($marksId)
                 <div class="clearfix"></div>
 
                 <div>&nbsp;</div>
-            <form id="marksForm" method="post" enctype="multipart/form-data" autocomplete="off" >
-                <div class="table-responsive" id="insertDiv" style="display:">
+                <div class="table-responsive">
                     <?php if (!empty($successMsg)) { ?>
                         <div class="alert alert-success alert-dismissible">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -146,8 +175,17 @@ function getObtainedMarks($marksId)
                         </div>
                     <?php } ?>
                     <input type="hidden" name="formid" id="formid" value="<?php echo htmlspecialchars($_SESSION['formid']); ?>">
-                    <table class="table table-bordered table-condensed" id="marksTable">
-                           
+                    <table id="example" class="table table-stripped">
+                        <thead>
+                            <th style="text-align:left;"># </th>
+                            <th style="text-align:center;">Name</th>
+                            <th style="text-align:center;">Registration No </th>
+                            <th style="text-align:center;">Full Marks</th>
+                            <th style="text-align:center;">Obtained Marks</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
                     </table>
                 </div>
                 <button type="submit" name="submit" id="submit" class="btn btn-success form-control">Save</button>
@@ -264,173 +302,94 @@ function getObtainedMarks($marksId)
                 type: "POST",
                 data: {
                     "franchise": $('#franchise').val(),
-                    "regno": $('#regNo').val(),
+                    "course": $('#course').val(),
+                    "session": $('#session').val(),
+                    "subject": $('#subject').val(),
+                    "type": "insert"
                 },
                 dataType: 'json',
                 success: function(response) {
-                    let option ='';
-                    let thead  ='<thead>';
-                    let tbody  ='<tbody>';
-                    let tr     ='';
+                    let option = '';
                     if (response.success) {
-
-                    for(let key in response.heads){
-                        thead += '<th style="text-align:center;">'+response.heads[key]+'</th>';
-                    }
-
-                    thead += '</thead>';
-                    if(response.records.length  > 0){
-                    
-                
-                    for(i=0; i< response.records.length ; i++){
-                        // console.log(response.records[i]);
-                        let   jsonRows    = response.records[i].rows;
-                        let   admissionId = response.records[i].admission_id;
-                        let   studentId   = response.records[i].student_id;
-                        let   marksId     = response.records[i].marks_id;
-                        let   tempTr      = '<tr id="row'+(i+1)+'" class="marksRow">';
-                        let   subjectCount= 1 ;
-                        Object.entries(jsonRows).forEach(([key, value]) => {
-                            let tempVal = value ;
-                            
-                            if (typeof(tempVal)=="object") {
-                                let subjectDetails = '';
-                                
-                                Object.keys(tempVal).forEach(function (key) {
-                                    if(key == "subject_id"){
-                                        subjectDetails += '<input type="hidden" id="subject_id'+(i+1)+subjectCount+'" value="'+tempVal[key]+'">' ;
-                                    }
-                                    else if(key == "id"){
-                                        subjectDetails += '<input type="hidden" id="marks_detail_id'+(i+1)+subjectCount+'" value="'+tempVal[key]+'">' ;
-                                    }
-                                    else if(key == "subject_name"){
-                                        subjectDetails += '<input type="hidden" id="subject_name'+(i+1)+subjectCount+'" value="'+tempVal[key]+'">' ;
-                                    }
-                                    else if(key == "full_marks"){
-                                        subjectDetails += '<input type="hidden" id="full_marks'+(i+1)+subjectCount+'" value="'+tempVal[key]+'">' ;
-                                    }
-                                    else if(key == "full_marks_theory"){
-                                        subjectDetails += '<input type="hidden" id="subject_fm_theory'+(i+1)+subjectCount+'" value="'+tempVal[key]+'">' ;
-                                    }
-                                    else if(key == "marks_obtained_theory"){
-                                        subjectDetails += '<table><tr><td><input type="text" placeholder="Theory Marks"  value="'+tempVal[key]+'" onkeyup="calculateTotalMarks('+(i+1)+')" class="form-control input-sm" id="subject'+(i+1)+subjectCount+'_theory"></td>' ;
-                                        //  subjectDetails += '<input type="text" placeholder="Theory Marks" class="form-control input-sm" id="marks_obtained'+(i+1)+'">' ;
-                                    }
-                                    else if(key == "full_marks_practical"){
-                                        subjectDetails += '<input type="hidden" id="subject_fm_practical'+(i+1)+subjectCount+'" value="'+tempVal[key]+'">' ;
-                                    }
-                                    else if(key == "marks_obtained_practical"){
-                                        subjectDetails += '<td><input type="text" placeholder="Practical Marks" value="'+tempVal[key]+'"  onkeyup="calculateTotalMarks('+(i+1)+')" class="form-control input-sm" id="subject'+(i+1)+subjectCount+'_practical"></td></tr></table>';
-                                    }
-                                });
-                                tempTr += '<td style="text-align:center;" id="td'+(i+1)+key+'">'+subjectDetails+'</td>';
-                                subjectCount ++ ;
-                            } 
-                            else{
-                                if(key == "head_0"){
-                                    tempTr += '<td style="text-align:center;" id="td'+(i+1)+key+'">'+tempVal+
-                                                    '<input type="hidden" id="admissionId'+(i+1)+'" value="'+admissionId+'">'+
-                                                    '<input type="hidden" id="studentId'+(i+1)+'" value="'+studentId+'">'+
-                                                    '<input type="hidden" id="marksId'+(i+1)+'" value="'+marksId+'">'+
-                                                '</td>';
-                                }
-                                else{
-                                    tempTr += '<td style="text-align:center;" id="td'+(i+1)+key+'">'+tempVal+'</td>';
-                                }
-                                
-                            }
-                            
-                        });
-                        tempTr  += '</tr>';
-                        tr += tempTr ;
-                        
-                    }
-                }
-               // console.log(tr);
-                     tbody +=  tr + '</tbody>';
-                     $('#marksTable').html(thead + tbody);
+                        for (i = 0; i < response.records.length; i++) {
+                            option += '<tr>' +
+                                '<td style="text-align:center;"><input type="hidden" value="' + response.records[i].pusuing_id + '"  name="admissionId[]" id="admissionId' + i + '">' + (i + 1) + '</td>' +
+                                '<td style="text-align:center;"><input type="hidden" name="studentId[]" id="studentId' + response.records[i].student_id + '" value="' + response.records[i].student_id + '">' + response.records[i].St_Name + '</td>' +
+                                '<td style="text-align:center;">' + response.records[i].regno + '</td>' +
+                                '<td style="text-align:center;"><input type="hidden"  name="fullMarks[]" id="fullMarks' + i + '" value="' + response.records[i].full_marks + '">' + response.records[i].full_marks + '</td>' +
+                                '<td style="text-align:center;"><input type="number" class="form-control" name="obtainedMarks[]" id="obtainedMarks' + i + '"></td>' +
+                                '</tr>';
+                        }
+                        $('#example tbody').html(option);
                     }
                 }
             });
             return false;
         });
+    });
 
-        $('#marksForm').on('submit', function(e){
-                e.preventDefault();
-              
-                let trLength = $('#marksTable tbody tr.marksRow').length;
-                if(trLength > 0){
-                    let arr = [];
-                for(var i = 0; i < trLength ; i++){
-                    let tr   = $("#marksTable tbody tr.marksRow")[i];
-                    let trId = $(tr).attr('id');
-                    count     = trId.substring(3);
-                    let subject = [];
-                    for(j =1 ; j< $("#"+trId).children('td').length -2 ; j++){
-                        subject.push({"id":$('#marks_detail_id'+count+j).val(), "subject_id":$('#subject_id'+count+j).val(), "subject_name":$('#subject_name'+count+j).val(), "full_marks":$('#full_marks'+count+j).val(), "marks_obtained_theory":$('#subject'+count+j+'_theory').val(), "marks_obtained_practical":$('#subject'+count+j+'_practical').val()})
-                    }
-                    arr.push({"id": $('#marksId'+count).val(), "student_id":$('#studentId'+count).val(), "admission_id": $('#admissionId'+count).val(), "subjects":subject});
+    function editMember(id = null) {
+        $('.messages').html("");
+        $('#updateMemberForm')[0].reset();
+        /* alert(id); */
+        if (id) {
+
+            $.ajax({
+                url: 'getSelectedRecord.php',
+                type: 'post',
+                data: {
+                    member_id: id
+                },
+                dataType: 'json',
+                success: function(response) {
+                    /* alert(response.id); */
+                    $("#password").val(response.password);
+                    $("#q_id").val(response.id);
                 }
-                let jsonObj = JSON.stringify(arr);
-                console.log(jsonObj);
+            });
 
-                formData = new FormData();
-                formData.append("params", jsonObj);
-            
-                
+
+        } else {
+            alert("Error : Refresh the page again");
+        }
+    }
+
+    function removeMember(id = null) {
+        if (id) {
+            $('#removeBtn').unbind('click').bind('click', function() {
+
                 $.ajax({
-                    url: 'save-marks.php',
-                    data: formData,
-                    dataType: "json",
-                    type: "POST",
-                    cache: false,
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    enctype: "multipart/form-data",
-                    success: function(response) 
-                    {
-                        console.log(response);
-                        if(response.success){
-                            alert(response.message) ;
-                            $('#marksTable tbody').html("")     
-                        }else{
-                            alert("Here") ;  
+                    url: 'removeRecord.php',
+                    type: 'post',
+                    data: {
+                        member_id: id
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success == true) {
+                            $(".removeMessages").html('<div class="alert alert-success alert-dismissible" role="alert">' +
+                                '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                '<strong> <span class="glyphicon glyphicon-ok-sign"></span> </strong>' + response.messages +
+                                '</div>');
+
+                            // refresh the table
+                            reload($('#examid').val(), $('#course').val(), $('#year').val(), $('#month').val());
+
+                            // close the modal
+                            $("#removeMemberModal").modal('hide');
+
+                        } else {
+                            $(".removeMessages").html('<div class="alert alert-warning alert-dismissible" role="alert">' +
+                                '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+                                '<strong> <span class="glyphicon glyphicon-exclamation-sign"></span> </strong>' + response.messages +
+                                '</div>');
                         }
                     }
                 });
-                }
-            
-        });
 
-    });
-
-
-    function calculateTotalMarks(row)
-    {
-        let total = practical = theory =  0 ; 
-        //alert($("#row"+row).children('td').length);
-        for(j =1 ; j< $("#row"+row).children('td').length -2 ; j++){
-        
-            theory = parseInt($('#subject'+row+j+'_theory').val()) || 0;
-            if($('#subject_fm_theory' + row + j).val() < theory)
-            {
-                alert("Obtained marks can not be greater than Full Marks at row - "+ (row));
-                $('#subject'+row+j+'_theory').val("");
-                break;
-            }
-            practical = parseInt($('#subject'+row+j+'_practical').val()) || 0;
-            if($('#subject_fm_practical' + row + j).val() < practical)
-            {
-                alert("Obtained marks can not be greater than Full Marks at row - "+ (row));
-                $('#subject'+row+j+'_practical').val("");
-                break;
-            }
-            total += ( theory + practical) ;
-        // alert(total);
+            });
         }
-    let lastCellIndex = $("#row"+row).children('td').length-1 ;
-    $('#td'+row+'head_'+lastCellIndex).html(total);
+
     }
 </script>
 

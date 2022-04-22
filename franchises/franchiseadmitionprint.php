@@ -2,8 +2,10 @@
 session_start();
 include('include/menu.php');
 include "include/dbconfig.php";
-include "instituteinfo.php";
+include "../functions.php";
 $id = isset($_GET['studentid']) ? $_GET['studentid'] : "";
+$franchise = json_decode(getFranchises($_SESSION['franchise_id']), true);
+$franchise = $franchise['records'][0];
 if ($id != "") {
 	$sql   = "SELECT student_info.*,pursuing_course.*,pursuing_course.regno as reg_no , courses.*  FROM `student_info`
 			INNER JOIN 	pursuing_course
@@ -68,16 +70,16 @@ function getIndianCurrency($amount)
 		<div class="row">
 			<div class="col-sm-2 col-md-2 col-xs-2">
 				<div class="img">
-					<img src="../images/logo.png" height="150" width="280"></img>
+					<img src="../images/<?php echo $franchise['logo']; ?>" height="150" width="280"></img>
 				</div>
 			</div>
 			<div class="col-sm-10 col-md-10 col-xs-10" style="text-align:center;padding-left:0px;padding-right:0px;">
-				<font size="6" face="revel" align="center"><?php echo $subtitle; ?><br /></font>
-				<font size="5"><b>Computer Education</font><br>
+				<font size="6" face="revel" align="center"><?php echo $franchise['franchise_name']; ?><br /></font>
+				<!-- <font size="5"><b>Computer Education</font><br>
 				<font size="3"><b><?php echo $affiliation; ?> (Reg. No. <?php echo $registration; ?>)<br> AN
-						ISO <?php echo $iso.'-'.$code; ?> Certified Institute.<sup></sup></b></font><br>
-				<font size="4"><?php echo $address; ?> </font> <br />
-				<font size="4">Mobile : <?php echo $contact; ?></font>
+						ISO <?php echo $iso.'-'.$code; ?> Certified Institute.<sup></sup></b></font><br>-->
+				<font size="4"><?php echo $franchise['address']; ?> </font> <br /> 
+				<font size="4">Mobile : <?php echo $franchise['contact']; ?></font>
 			</div>
 
 			<div class="col-sm-12 col-md-12 col-xs-12" style="padding-top:2%;text-align:center;">
@@ -158,7 +160,7 @@ function getIndianCurrency($amount)
 				&nbsp;<p>&nbsp;</p>
 				<p>
 					<label>Declaration :</label><br />
-					<b> I do here by declare that all information stated in this application form are true to the best of my knowledge.I shall always abide by the rules and regulation of the Lmiit Computer Education.</b>
+					<b> I do here by declare that all information stated in this application form are true to the best of my knowledge.I shall always abide by the rules and regulation of the <?php echo $franchise['franchise_name']; ?>.</b>
 
 			</div>
 
@@ -189,30 +191,30 @@ function getIndianCurrency($amount)
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
-<script src="js/file-validator.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/app.js"></script>
+<script src="../js/file-validator.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/app.js"></script>
 
 <!-- Syntax Highlighting Support -->
-<script src="highlighting/sh_main.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="highlighting/sh_javascript_dom.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="highlighting/sh_html.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../highlighting/sh_main.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../highlighting/sh_javascript_dom.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../highlighting/sh_html.min.js" type="text/javascript" charset="utf-8"></script>
 <!-- End -->
-<script type="text/javascript" src="docs/js/bootstrap-3.3.2.min.js"></script>
+<script type="text/javascript" src="../docs/js/bootstrap-3.3.2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
-<script src="vendor/metisMenu/metisMenu.min.js"></script>
+<script src="../vendor/metisMenu/metisMenu.min.js"></script>
 <!-- DataTables JavaScript -->
-<script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
+<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
 <!-- Datepick -->
-<script type="text/javascript" src="datepick_api/bootstrap_date/js/bootstrap.min_date.js"></script>
-<script type="text/javascript" src="datepick_api/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="datepick_api/js/locales/bootstrap-datetimepicker.en.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../datepick_api/bootstrap_date/js/bootstrap.min_date.js"></script>
+<script type="text/javascript" src="../datepick_api/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../datepick_api/js/locales/bootstrap-datetimepicker.en.js" charset="UTF-8"></script>
 <!-- Custom Theme JavaScript -->
-<script src="dist/js/sb-admin-2.js"></script>
+<script src="../dist/js/sb-admin-2.js"></script>
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
 </script>
@@ -235,14 +237,14 @@ function getIndianCurrency($amount)
 <script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js">
 </script>
 <!--MultiSelect -->
-<script type="text/javascript" src="docs/js/prettify.js"></script>
-<script type="text/javascript" src="dist/js/bootstrap-multiselect.js"></script>
+<script type="text/javascript" src="../docs/js/prettify.js"></script>
+<script type="text/javascript" src="../dist/js/bootstrap-multiselect.js"></script>
 <!-- CK Editor -->
-<script src="ckeditor/ckeditor.js"></script>
+<script src="../ckeditor/ckeditor.js"></script>
 <!--End-->
-<script src="dist/js/sb-admin-2.js"></script>
+<script src="../dist/js/sb-admin-2.js"></script>
 <!-- Tables Edit-->
-<script src="jquery-tabledit/jquery.tabledit.min.js"></script>
+<script src="../jquery-tabledit/jquery.tabledit.min.js"></script>
 
 
 

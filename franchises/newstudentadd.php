@@ -73,7 +73,7 @@ $toyear			=trim($_POST['toyear']); */
 	$particulars	= "ADMISSION TO " . findCourseName($course);
 	$sourcePath 	= $_FILES['fileToUpload']['tmp_name'];
 	$imagename		= $_FILES['fileToUpload']['name'];
-	$targetPath 	= "Student_images/" . $_FILES['fileToUpload']['name'];
+	$targetPath 	= "../Student_images/" . $_FILES['fileToUpload']['name'];
 	move_uploaded_file($sourcePath, $targetPath);
 	$sql    		= "INSERT INTO `student_info`(franchise_id,`Student_Id`, `St_Name`, `Fathers_Name`, `DOB`, `Gender`, `Cust`, `Religion`, 
 				 `Mother_Trong`, `Session1`,`session_month`,`session_code`, `Roll`, `DOA`, `Mothers_Name`, `adminslno`, `Vill`, `Post`, `PS`, `Dist`, `Pin`, 
@@ -282,10 +282,8 @@ function findQuesryListStudents()
 					<label class="control-label col-md-1 col-sm-1 col-xs-12" for="customer">Address: <span class=""></span>
 					</label>
 					<div class="col-md-3 col-sm-3 col-xs-12 ">
-						<select id="address" name="address" class="form-control col-md-7 col-xs-12" required style="border-color:red">
-							<option value="">--Select--</option>
-							<?php getAddress(); ?>
-						</select>
+						<input type="text" id="address" name="address" class="form-control col-md-7 col-xs-12" required style="border-color:red">
+					
 					</div>
 					<label class="control-label col-md-1 col-sm-1 col-xs-12" for="po">P.O:<span class=""></span>
 					</label>
@@ -624,28 +622,28 @@ function findQuesryListStudents()
 
 			});
 		});
-		$('#address').on('change', function(e) {
-			var address = $('#address').val();
+		// $('#address').on('change', function(e) {
+		// 	var address = $('#address').val();
 
-			$.ajax({
-				url: '../findAddress.php',
-				type: 'post',
-				data: {
-					'address': address
-				},
-				dataType: "json",
-				success: function(data) {
-					if (data) {
-						$('#po').val(data.po);
-						$('#pin').val(data.pin);
-						$('#ps').val(data.ps);
-						$('#district').val(data.dist);
+		// 	$.ajax({
+		// 		url: '../findAddress.php',
+		// 		type: 'post',
+		// 		data: {
+		// 			'address': address
+		// 		},
+		// 		dataType: "json",
+		// 		success: function(data) {
+		// 			if (data) {
+		// 				$('#po').val(data.po);
+		// 				$('#pin').val(data.pin);
+		// 				$('#ps').val(data.ps);
+		// 				$('#district').val(data.dist);
 
-					}
-				},
+		// 			}
+		// 		},
 
-			});
-		});
+		// 	});
+		// });
 		$('#course').on('change', function(e) {
 			var id = $('#course').val();
 			$.ajax({

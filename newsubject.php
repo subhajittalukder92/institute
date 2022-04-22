@@ -48,15 +48,17 @@ include('include/menu.php'); ?>
 
 
                     <div class="form-group">
-                        <label for="dob" class="col-sm-4 control-label">Full Marks: </label>
+                        <label for="dob" class="col-sm-4 control-label">Theory Full Marks: </label>
                         <div class="col-sm-8">
-                            <input type="number" required class="form-control" id="fullmarks" name="fullmarks" placeholder="Full Marks" autocomplete="off" />
+                            <input type="number" required class="form-control" id="fullmarks" name="fullmarks" placeholder="Theory Full Marks" autocomplete="off" />
                         </div>
                     </div>
-
-
-
-
+                    <div class="form-group">
+                        <label for="dob" class="col-sm-4 control-label">Practical Full Marks: </label>
+                        <div class="col-sm-8">
+                            <input type="number" required class="form-control" id="practicalFullmarks" name="practicalFullmarks" placeholder="Practical Full Marks" autocomplete="off" />
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <button type="submit" name="submit" id="submit" class="btn btn-primary btn-md btn-block">Submit</button>

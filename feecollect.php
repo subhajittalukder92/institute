@@ -13,8 +13,9 @@ if(isset($_POST['formid']) && isset($_SESSION['formid']) && $_POST['formid'] == 
 	$receiptNo = maxReceiptNo();
 	$createdAt = date('Y-m-d H:i:s');
 	$studentId = htmlspecialchars($_GET['studentid'], ENT_QUOTES);
-	$sqlQuery  = "INSERT INTO `receipts`(`franchise_id`, `receipt_no`, `receipt_date`, `course_id`, `student_id`, `payment_amt`, `collected_by`, `created_at`) 
-			      VALUES ('$_SESSION[franchise_id]', '$receiptNo', '$date', '$_GET[pursuingcourse]', '$studentId', '$total', '$_SESSION[userid]', '$createdAt')";
+	$admissionId = htmlspecialchars($_POST['admissionId'], ENT_QUOTES);
+	$sqlQuery  = "INSERT INTO `receipts`(`franchise_id`, `receipt_no`, `receipt_date`, `course_id`, `admission_id`, `student_id`, `payment_amt`, `collected_by`, `created_at`) 
+			      VALUES ('$_SESSION[franchise_id]', '$receiptNo', '$date', '$_GET[pursuingcourse]', '$admissionId', '$studentId', '$total', '$_SESSION[userid]', '$createdAt')";
 	
 	$result    = mysqli_query($conn, $sqlQuery);
 	$receiptId = mysqli_insert_id($conn);
@@ -105,6 +106,7 @@ function fechPreviousFeeeRecords()
 	$courseid	    = trim(htmlspecialchars($_GET['pursuingcourse'], ENT_QUOTES));
 	$studentid	    = trim(htmlspecialchars($_GET['studentid'], ENT_QUOTES));
 	$franchiseId	= trim(htmlspecialchars($_GET['franchise'], ENT_QUOTES));
+	$admissionId	= trim(htmlspecialchars($_GET['admissionId'], ENT_QUOTES));
 
 	$sql 	  = "SELECT `receipts`.* ,`student_info`.`St_Name`, `pursuing_course`.`regno` ,`courses`.`course_name`
 				FROM `receipts`
@@ -114,7 +116,7 @@ function fechPreviousFeeeRecords()
 				ON `pursuing_course`.`student_id` = `receipts`.`student_id` AND `pursuing_course`.`course_id` =`receipts`.`course_id`
 				INNER JOIN `courses`
 				ON `pursuing_course`.`course_id` = `courses`.`id`
-				WHERE `receipts`.`course_id`='{$courseid}' AND `receipts`.`student_id`='{$studentid}' AND `receipts`.`franchise_id`='{$franchiseId}'";
+				WHERE `receipts`.`course_id`='{$courseid}' AND `receipts`.`student_id`='{$studentid}' AND `receipts`.`admission_id`='{$admissionId}' AND `receipts`.`franchise_id`='{$franchiseId}'";
 	
 	$res	   = mysqli_query($conn,  $sql);
 	$no        = 0;

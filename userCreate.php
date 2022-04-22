@@ -6,11 +6,12 @@
 	 $userName    = trim($_POST['userName']);
 	 $userId 	  = trim($_POST['userId']);
 	 $password 	  = trim($_POST['pass']);
-	 $type 	  	  = trim($_POST['type']);
+	// $type 	  	  = ;
 	 if(checkDuplicate($userId))
 	 {
-		 $sql="INSERT INTO `user_info`(`name`, `user_name`, `password`, `type`)
-		 VALUES ('$userName','$userId','$password','$type')" ;
+		 // Role Id 1 For Admin.
+		 $sql="INSERT INTO `user_info`(`role_id`, `name`, `user_name`, `password`)
+		 VALUES ('1', '$userName','$userId','$password','$type')" ;
 		/*  echo $sql; */
 		 $res=mysqli_query($conn,  $sql);
 

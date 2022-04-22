@@ -33,6 +33,7 @@ function  getFranchise()
                 <h3 class="page-header">Fees Collection <?php getFranchise(); ?> </h3>
                 <form method="GET" id="createTeacherForm" action="feecollect.php" enctype="multipart/form-data">
                     <input type="hidden" id="franchise" name="franchise" value="<?php getFranchise(); ?>">
+                    <input type="hidden" id="admissionId" name="admissionId">
 
                     <div class="form-group">
                         <label for="product" class="control-label">Candidate Name<span class="required"></span></label>
@@ -89,6 +90,12 @@ function  getFranchise()
 
             });
 
+        });
+
+        $('#pursuingcourse').on('change', function(e) {
+            var studentid = $(this).val();
+           $('#admissionId').val($('#pursuingcourse option:selected').attr('admission_id'));
+           // alert($('#pursuingcourse option:selected').attr('admission_id'));
         });
         
 

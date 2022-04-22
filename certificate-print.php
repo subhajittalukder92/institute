@@ -1,3 +1,23 @@
+<?php 
+include('include/dbconfig.php');
+
+$regNo = htmlspecialchars($_GET['id'], ENT_QUOTES);
+$sql   = "SELECT `pursuing_course`.*,`student_info`.*, `marks`.`course_info`, `franchises`.`franchise_name` FROM `pursuing_course`
+        LEFT JOIN `student_info` ON `student_info`.`slno` = `pursuing_course`.`student_id`
+        LEFT JOIN `marks` ON `marks`.`admission_id` = `pursuing_course`.`pusuing_id`
+        LEFT JOIN `franchises` ON `franchises`.`id` = `pursuing_course`.`franchise_id`
+        WHERE `pursuing_course`.`regno` ='{$regNo}' LIMIT 1" ;
+$ress  = mysqli_query($conn, $sql) ;
+if(mysqli_num_rows($ress) > 0){
+    $data = mysqli_fetch_array($ress);
+    $course = json_decode($data['course_info'], true);
+}else{
+    echo '<h2 align="center">No Records Found</h2>';
+    exit;
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -197,32 +217,31 @@
 </style>
 </head>
 <body>
-
-    <div class="certificate-bg">         
+<div class="certificate-bg">         
         <div class="content">
-            <h6 class="reg-no">123456789</h6>
-            <h6 class="name">Some Demo Text</h6>
-            <h6 class="father-name">Some Demo Text</h6>
+			<h6 class="reg-no"><?php echo $data[7];?></h6>
+            <h6 class="name"><?php echo $data['St_Name'];?></h6>
+            <h6 class="father-name"><?php echo $data['Fathers_Name'];?></h6>
             <div class="container-fluid from-div">
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-5">
-                        <h6>Some Demo Text text text</h6>
+                        <h6><?php echo $data['starting_month'].'-'.$data['starting_year']; ?></h6>
                     </div>
                     <div class="col-4">
-                        <h6>Some Demo Text tex</h6>
+                        <h6><?php echo $data['complete_month'].'-'.$data['complete_year']; ?></h6>
                     </div>
                     <div class="col-2"></div>
                 </div>
             </div>
-            <div class="div1"><h6>10 Months</h6></div>
+            <div class="div1"><h6><?php echo $course['duration'].' '.$course['unit']; ?></h6></div>
             <div class="div2"></div>
-            <div class="div3"><h6>Some Demo Text </h6></div>
+            <div class="div3"><h6><?php echo $course['course_name']; ?> </h6></div>
             <div class="container-fluid ins-div" style="clear: both;">
                 <div class="row">
                     <div class="col-3"></div>
                     <div class="col-9">
-                        <h6 class="ins-name">Some Demo Text text text Text text text Text text te</h6>
+                        <h6 class="ins-name"><?php echo $data['franchise_name']; ?></h6>
                     </div>
                 </div>
             </div>
@@ -233,7 +252,7 @@
                         <h6>A+</h6>
                     </div>
                     <div class="col-6">
-                        <h6 class="at">Some Demo Text text text Text te</h6>
+                        <h6 class="at"></h6>
                     </div>
                 </div>
             </div>

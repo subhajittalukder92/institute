@@ -300,6 +300,49 @@ function getCourses($id = Null)
 	return json_encode($arr) ;
 
 }
+function getAllCourses($id = Null)
+{
+	include "include/dbconfig.php" ;
+	if(!empty($id)){
+		$sql = "SELECT * FROM `courses` WHERE `id`='$id'";
+	}else{
+		$sql = "SELECT * FROM `courses`";
+	}
+	$result = mysqli_query($conn, $sql);
+	$arr= [];
+	if(mysqli_num_rows($result) > 0){
+		
+		while($row = mysqli_fetch_assoc($result)){
+			$arr[] = $row;
+		}
+		return count($arr) > 1 ? $arr : $arr[0] ;
+	}
+
+
+
+}
+
+function getStudents($id = Null)
+{
+	include "include/dbconfig.php" ;
+	if(!empty($id)){
+		$sql = "SELECT * FROM `student_info` WHERE `slno`='$id'";
+	}else{
+		$sql = "SELECT * FROM `student_info`";
+	}
+	$result = mysqli_query($conn, $sql);
+	$arr = [];
+	if(mysqli_num_rows($result) > 0){
+		
+		while($row = mysqli_fetch_assoc($result)){
+			$arr[] = $row;
+		}
+		return count($arr) > 1 ? $arr : $arr[0] ;
+	}
+
+	
+
+}
 function getFranchises($id = Null)
 {
 	include "include/dbconfig.php" ;
@@ -318,6 +361,17 @@ function getFranchises($id = Null)
 	}
 
 	return json_encode($arr) ;
+
+}
+function getFranchisesById($id = Null)
+{
+	include "include/dbconfig.php" ;
+	$sql = "SELECT * FROM `franchises` WHERE `id`='$id'";
+	$result = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_assoc($result);
+
+
+	return $row ;
 
 }
 function getSubjects($id = Null)
@@ -339,6 +393,65 @@ function getSubjects($id = Null)
 
 	return json_encode($arr) ;
 
+}
+function getSubjectsById($id = Null)
+{
+	include "include/dbconfig.php" ;
+	if(!empty($id)){
+		$sql = "SELECT * FROM `subjects` WHERE `id`='$id'";
+	}else{
+		$sql = "SELECT * FROM `subjects`";
+	}
+	$result = mysqli_query($conn, $sql);
+	$arr = [];
+	if(mysqli_num_rows($result) > 0){
+	
+		while($row = mysqli_fetch_assoc($result)){
+			$arr[] = $row;
+		}
+		return count($arr) > 1 ? $arr : $arr[0] ;
+	}
+
+
+
+}
+function getAdmissionByRegno($regno)
+{
+	include "include/dbconfig.php" ;
+	$sql = "SELECT * FROM `pursuing_course` WHERE `regno`='$regno'";
+	$result = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_assoc($result);
+
+	return $row ;
+
+}
+function getAdmissionById($id)
+{
+	include "include/dbconfig.php" ;
+	$sql = "SELECT * FROM `pursuing_course` WHERE `pusuing_id`='$id'";
+	
+	$result = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_assoc($result);
+	return $row ;
+
+}
+
+function getSubjectsByCourse($id = Null)
+{
+	include "include/dbconfig.php" ;
+	if(!empty($id)){
+		$sql = "SELECT * FROM `subjects` WHERE `course_id`='$id'";
+	}else{
+		$sql = "SELECT * FROM `subjects`";
+	}
+	$result = mysqli_query($conn, $sql);
+	$arr = [];
+	if(mysqli_num_rows($result) > 0){
+		while($row = mysqli_fetch_assoc($result)){
+			$arr[] = $row;
+		}
+	}
+	return $arr;
 }
 function getSessions($id = Null)
 {

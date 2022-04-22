@@ -202,23 +202,23 @@ include('include/check-login.php');
 
 						<li>
 
-							<a href="#"><i class="fa fa-plus-circle"></i> Registration Section<span class="fa arrow"></span></a>
+							<a href="#"><i class="fa fa-plus-circle"></i> Admission Form<span class="fa arrow"></span></a>
 
 							<ul class="nav nav-second-level">
 
-								<li>
+								<!-- <li>
 
 									<a href="newadmission.php">New Registration</a>
 
 								</li>
-
+ -->
 								<li>
 
 									<a href="admissionformprint.php">Print Admission-Form</a>
 
 								</li>
 
-								<li>
+								<!-- <li>
 
 									<a href="cancelAdmission.php">Cancel Registration</a>
 
@@ -228,7 +228,7 @@ include('include/check-login.php');
 
 									<a href="courseconvert.php">Course Convert</a>
 
-								</li>
+								</li> -->
 
 
 
@@ -307,7 +307,7 @@ include('include/check-login.php');
 							</ul>
 
 						</li>
-						<li>
+						<!-- <li>
 							<a href="#"><i class="fa fa-th-list"></i> Marks Section <span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li>
@@ -317,7 +317,7 @@ include('include/check-login.php');
 								</li>
 
 							</ul>
-						</li>
+						</li> -->
 						<li>
 							<a href="#"><i class="fa fa-rupee "></i> Franchise<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
@@ -332,11 +332,11 @@ include('include/check-login.php');
 
 							<ul class="nav nav-second-level">
 
-								<li>
+								<!-- <li>
 
 									<a href="collectform.php">Collect Fee</a>
 
-								</li>
+								</li> -->
 
 								<li>
 
@@ -355,7 +355,7 @@ include('include/check-login.php');
 
 						</li>
 
-						<li>
+						<!-- <li>
 
 							<a href="#"><i class="fa fa-barcode"></i> Address Book<span class="fa arrow"></span></a>
 
@@ -375,9 +375,9 @@ include('include/check-login.php');
 
 							</ul>
 
-						</li>
+						</li> -->
 
-						<li>
+						<!-- <li>
 
 							<a href="#"><i class="fa fa-book   "></i> Day Book<span class="fa arrow"></span></a>
 
@@ -416,7 +416,7 @@ include('include/check-login.php');
 							</ul>
 
 						</li>
-
+ -->
 						<li>
 
 							<a href="#"><i class="fa fa-navicon"></i> Reports<span class="fa arrow"></span></a>
@@ -476,7 +476,7 @@ include('include/check-login.php');
 
 						</li>
 
-						<li>
+						<!-- <li>
 
 							<a href="#"><i class="fa fa-graduation-cap"></i> I-Card<span class="fa arrow"></span></a>
 
@@ -492,7 +492,7 @@ include('include/check-login.php');
 
 							</ul>
 
-						</li>
+						</li> -->
 
 						<!--<<li>
 

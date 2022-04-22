@@ -14,9 +14,9 @@ function insertReceipt($franchise_id, $date, $course_id, $student_id, $payment_a
 
 	$receipt_no = maxReceiptNo();
 	$createdAt = date('Y-m-d H:i:s');
-
-	 $sql  = "INSERT INTO `receipts`(`franchise_id`, `receipt_no`, `receipt_date`, `course_id`, `student_id`, `payment_amt`, `collected_by`, `created_at`) 
-			      VALUES ('$franchise_id', '$receipt_no', '$date', '$course_id', '$student_id', '$payment_amt', '$collected_by', '$createdAt')";
+	$admissionId = mysqli_real_escape_string($conn, $_POST['admissionId']);
+	$sql  = "INSERT INTO `receipts`(`franchise_id`, `receipt_no`, `receipt_date`, `course_id`, `admission_id`, `student_id`, `payment_amt`, `collected_by`, `created_at`) 
+			      VALUES ('$franchise_id', '$receipt_no', '$date', '$course_id', '$admissionId', '$student_id', '$payment_amt', '$collected_by', '$createdAt')";
 
 	mysqli_query($conn,$sql);
 
@@ -121,6 +121,7 @@ function fechPreviousFeeeRecords()
 	$courseid	    = trim(htmlspecialchars($_GET['pursuingcourse'], ENT_QUOTES));
 	$studentid	    = trim(htmlspecialchars($_GET['studentid'], ENT_QUOTES));
 	$franchiseId	= trim(htmlspecialchars($_GET['franchise'], ENT_QUOTES));
+	$admissionId	= trim(htmlspecialchars($_GET['admissionId'], ENT_QUOTES));
 
 	$sql 	  = "SELECT `receipts`.* ,`student_info`.`St_Name`, `pursuing_course`.`regno` ,`courses`.`course_name`
 				FROM `receipts`
@@ -130,7 +131,7 @@ function fechPreviousFeeeRecords()
 				ON `pursuing_course`.`student_id` = `receipts`.`student_id` AND `pursuing_course`.`course_id` =`receipts`.`course_id`
 				INNER JOIN `courses`
 				ON `pursuing_course`.`course_id` = `courses`.`id`
-				WHERE `receipts`.`course_id`='{$courseid}' AND `receipts`.`student_id`='{$studentid}' AND `receipts`.`franchise_id`='{$franchiseId}'";
+				WHERE `receipts`.`course_id`='{$courseid}' AND `receipts`.`student_id`='{$studentid}' AND `receipts`.`admission_id`='{$admissionId}' AND `receipts`.`franchise_id`='{$franchiseId}'";
 	
 	$res	   = mysqli_query($conn,  $sql);
 	$no        = 0;
@@ -355,6 +356,7 @@ function fineCalculate()
 					</div>
 					<input type="hidden" class="form-control" name="studentid" id="studentid" value="<?php echo  $_GET['studentid']; ?>">
 					<input type="hidden" class="form-control" name="courseid" id="courseid" value="<?php echo  $_GET['pursuingcourse']; ?>">
+					<input type="hidden" class="form-control" name="admissionId" id="admissionId" value="<?php echo  $_GET['admissionId']; ?>">
 				</div>
 				<input type="hidden" name="formid" id="formid" value="<?php echo htmlspecialchars($_SESSION['formid']); ?>">
 			</form>

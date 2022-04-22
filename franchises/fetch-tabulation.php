@@ -51,7 +51,8 @@ if($_POST){
              $marksDetailRes = mysqli_query($conn,  $query);
              if(mysqli_num_rows($marksDetailRes) > 0){
                 $marksData         = mysqli_fetch_assoc($marksDetailRes);
-                $temp['head_'.$sl++] = $marksData['obtained_marks'];
+               // $temp['head_'.$sl++] = $marksData['obtained_marks'];
+                $temp['head_'.$sl++] = "<b>Theory: </b> " . $marksData['marks_obtained_theory']. "    <b>Practical: </b>". $marksData['marks_obtained_practical'];
                
              }else{
                 $temp['head_'.$sl++] = "";

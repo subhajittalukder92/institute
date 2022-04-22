@@ -265,13 +265,8 @@ function findQuesryListStudents()
 					<label class="control-label col-md-1 col-sm-1 col-xs-12" for="customer">Address: <span class=""></span>
 					</label>
 					<div class="col-md-3 col-sm-3 col-xs-12 ">
-						<select id="address" name="address" class="form-control col-md-7 col-xs-12" required style="border-color:red">
-							<option value="">--Select--</option>
-							<?php $option = '<option selected value="' . $std_row['Vill'] . '">' . $std_row['Vill'] . '</option>';
-							echo $option;
-							?>
-							<?php getAddress(); ?>
-						</select>
+						<input type="text" id="address" name="address" class="form-control col-md-7 col-xs-12" required style="border-color:red" value="<?php echo $std_row['Vill']; ?>">
+						
 					</div>
 					<label class="control-label col-md-1 col-sm-1 col-xs-12" for="po">P.O:<span class=""></span>
 					</label>
@@ -680,7 +675,7 @@ function findQuesryListStudents()
 
 			});
 		});
-		$('#address').on('change', function(e) {
+		/* $('#address').on('change', function(e) {
 			var address = $('#address').val();
 
 			$.ajax({
@@ -701,7 +696,7 @@ function findQuesryListStudents()
 				},
 
 			});
-		});
+		}); */
 		$('#course').on('change', function(e) {
 			var id = $('#course').val();
 			$.ajax({
