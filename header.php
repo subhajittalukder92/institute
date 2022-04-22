@@ -44,10 +44,10 @@
               Course <span class="caret"></span>
             </a>
             <ul class="dropdown-menu dropdown-menu1" role="menu">
-              <li><a href="#">All COURSES</a></li>
-              <li><a href="#">PMKVY</a></li>
+              <li><a href="courses.php">All COURSES</a></li>
+<!--               <li><a href="#">PMKVY</a></li>
               <li><a href="#">PVSSD</a></li>
-              <li><a href="#">SACHYA BHARAT</a></li>
+              <li><a href="#">SACHYA BHARAT</a></li> -->
             </ul>
           </li>
           <li class="dropdown">
