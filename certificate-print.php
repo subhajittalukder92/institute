@@ -33,12 +33,17 @@
     .content{
     width:420px;
     margin:auto;
-    padding-top:290px;
+    padding-top:48px;
     }
     h6{
         font-size: 12px;
     }
+    .reg-no{
+        margin-left: 70px;
+        font-size: 10px;
+    }
     .name{
+        margin-top:231px;
         padding-left: 9px;
     }
     .father-name{
@@ -109,13 +114,18 @@
     .content{
         width:91%;
         margin:auto;
-        padding-top:456px;
+        padding-top:75px;
     }
     h6{
         font-size: 18px;
     }
+    .reg-no{
+        margin-left: 110px;
+        font-size: 15px;
+    }
     .name{
         padding-left: 10px;
+        margin-top: 365px;
     }
     .father-name{
         margin-top: 12px;
@@ -190,6 +200,7 @@
 
     <div class="certificate-bg">         
         <div class="content">
+            <h6 class="reg-no">123456789</h6>
             <h6 class="name">Some Demo Text</h6>
             <h6 class="father-name">Some Demo Text</h6>
             <div class="container-fluid from-div">
