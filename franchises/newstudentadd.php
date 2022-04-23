@@ -3,7 +3,7 @@ session_start();
 include('include/no-cache.php');
 include('include/dbconfig.php');
 include('include/check-login.php');
-include "functions.php";
+include "../functions.php";
 $success_msg = null;
 $error_msg = null;
 if (isset($_POST['formid']) && isset($_SESSION['formid']) && $_POST['formid'] == $_SESSION['formid']) {
@@ -46,34 +46,24 @@ if (isset($_POST['formid']) && isset($_SESSION['formid']) && $_POST['formid'] ==
 
 	$stid			= findMaxID($session);
 	$value = '';
-	$courseday = array();
-	if (isset($_POST['courseday'])) {
-
-		foreach ($_POST["courseday"] as $row) {
-			$value .= $row. ',';
-			//$value .= $row. ',';
-		}
-	$value = rtrim($value, ',');
-	// $value = rtrim($value, ',');
-	}
-
-	if ($value != "") {
-		 $courseday = explode(',', $value);
-	}
-
+	$courseday = isset($_POST['courseday']) ? json_encode($_POST['courseday']) : null;
+	
 	//$payby			= strtoupper(trim($_POST['payby']));
 	/* $frommonth		=trim($_POST['frommonth']);
-$tomonth		=trim($_POST['tomonth']);
-$toyear			=trim($_POST['toyear']); */
+		$tomonth		=trim($_POST['tomonth']);
+		$toyear			=trim($_POST['toyear']); 
+	*/
 	$sessioncode	= trim($_POST['sessionCode']);
 	$sessionId		=findSessionId($sessioncode);
 	$coursecode		= $course;
 	$serialno		= findSerialNo($sessioncode, $coursecode);
 	$regno			= findStudentRegistraionNo($sessionId, $coursecode);
 	$particulars	= "ADMISSION TO " . findCourseName($course);
+	
+	$extension      = strtolower(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION));
 	$sourcePath 	= $_FILES['fileToUpload']['tmp_name'];
-	$imagename		= $_FILES['fileToUpload']['name'];
-	$targetPath 	= "../Student_images/" . $_FILES['fileToUpload']['name'];
+	$imagename      = md5(uniqid(rand(), true)) . "." . $extension;
+	$targetPath 	= "../Student_images/" . $imagename ;
 	move_uploaded_file($sourcePath, $targetPath);
 	$sql    		= "INSERT INTO `student_info`(franchise_id,`Student_Id`, `St_Name`, `Fathers_Name`, `DOB`, `Gender`, `Cust`, `Religion`, 
 				 `Mother_Trong`, `Session1`,`session_month`,`session_code`, `Roll`, `DOA`, `Mothers_Name`, `adminslno`, `Vill`, `Post`, `PS`, `Dist`, `Pin`, 
@@ -149,7 +139,7 @@ function getAddress()
 		echo $option;
 	}
 }
-function getCourses()
+function showCourses()
 {
 	include('include/dbconfig.php');
 	$sql = "SELECT * FROM `courses` ORDER BY `course_name`";
@@ -166,17 +156,15 @@ function addStudentToPursuingTable($course, $studentID, $session, $fees, $date, 
 {
 	include "include/dbconfig.php";
 
-	/* 	$frommonth		= trim($_POST['frommonth']);
-	$tomonth		= trim($_POST['tomonth']);
-	$toyear			= trim($_POST['toyear']); */
+	$frommonth		= trim($_POST['startingMonth']);
+	$tomonth		= trim($_POST['completionMonth']);
+	$fromyear		= trim($_POST['startingYear']); 
+	$toyear			= trim($_POST['completionYear']); 
 
-
-
-	$courseday		= implode(',', $courseday);
-	$course_day=json_encode($courseday);
 	$sql = "INSERT INTO `pursuing_course`(`session`,`date`,`student_id`, `course_id`,`course_code`, `session_code`, `serial_no`, `course_fee`, `course_days` ,`time`
-		 ,`starting_year`, `starting_month`, `complete_year`, `complete_month`,regno,franchise_id,`session_id` )
-		  VALUES ('$session','$date','$studentID','$course','$coursecode','$sessioncode','$serialno','$fees','{$course_day}','$time','$session','','','','$regno','{$_SESSION['franchise_id']}','$sessionId')";
+		 ,`starting_year`, `starting_month`, `complete_year`, `complete_month`,`mode_of_insertion`,`regno`,`franchise_id`,`session_id` )
+		  VALUES ('$session','$date','$studentID','$course','$coursecode','$sessioncode','$serialno','$fees','{$courseday}',
+		  '$time','$fromyear','$frommonth','$toyear','$tomonth','manual','$regno','{$_SESSION['franchise_id']}','$sessionId')";
 	$res = mysqli_query($conn,  $sql);
 	$pursuing_id = mysqli_insert_id($conn);
 	if ($res) {
@@ -196,7 +184,7 @@ function updateQuesryListStudents($id)
 		return false;
 	}
 }
-function getSession()
+function showSession()
 {
 	include "include/dbconfig.php";
 	$sql = "SELECT * FROM `session` WHERE `status`='ACTIVE'";
@@ -416,7 +404,7 @@ function findQuesryListStudents()
 					<div class="col-md-3 col-sm-3 col-xs-12">
 						<select id="sessionCode" name="sessionCode" class="form-control col-md-7 col-xs-12" required style="border-color:red">
 							<option value="">Select</option>
-							<?php getSession(); ?>
+							<?php showSession(); ?>
 						</select>
 					</div>
 					<label class="control-label col-md-1 col-sm-1 col-xs-12" for="caddress">Course:<span class=""></span>
@@ -424,7 +412,7 @@ function findQuesryListStudents()
 					<div class="col-md-3 col-sm-3 col-xs-12">
 						<select id="course" name="course" class="form-control col-md-7 col-xs-12" required style="border-color:red">
 							<option value="">--Select--</option>
-							<?php getCourses(); ?>
+							<?php showCourses(); ?>
 						</select>
 					</div>
 					<label class="control-label col-md-2 col-sm-2 col-xs-12" for="caddress">Registration No<span class=""></span>
@@ -466,6 +454,71 @@ function findQuesryListStudents()
 					</label>
 					<div class="col-md-4 col-sm-4 col-xs-12 required">
 						<input type="text" id="yoa" name="yoa" required="required" class="form-control col-md-7 col-xs-12 required" value="<?php echo date('Y'); ?>" readonly>
+					</div>
+
+				</div>
+
+			</div>
+			<p></p>
+			<div class="row">
+				<div class="form-group">
+					<label class="control-label col-md-2 col-sm-2 col-xs-12" for="customer">Starting From <span class="required"></span>
+					</label>
+					<div class="col-md-2 col-sm-2 col-xs-12 required">
+						<select name="startingYear" id="startingYear" class="form-control" required>
+							<option value="">Starting Year</option>
+							<option value="2021">2021</option>
+							<option value="2022">2022</option>
+							<option value="2023">2023</option>
+							<option value="2024">2024</option>
+							<option value="2025">2025</option>
+						</select>
+					</div>
+					<div class="col-md-2 col-sm-2 col-xs-12 required">
+						<select name="startingMonth" id="startingMonth" class="form-control" required>
+							<option value="">Starting Month</option>
+							<option value="01">January</option>
+							<option value="02">February</option>
+							<option value="03">March</option>
+							<option value="04">April</option>
+							<option value="05">May</option>
+							<option value="06">June</option>
+							<option value="07">July</option>
+							<option value="08">August</option>
+							<option value="09">September</option>
+							<option value="10">October</option>
+							<option value="11">November</option>
+							<option value="12">December</option>
+						</select>
+					</div>
+					<label class="control-label col-md-2 col-sm-2 col-xs-12" for="customer">Completed To <span class="required"></span>
+					</label>
+					<div class="col-md-2 col-sm-2 col-xs-12">
+						<select name="completionYear" id="completionYear" class="form-control border-danger" required>
+							<option value="">Completion Year</option>
+							<option value="2021">2021</option>
+							<option value="2022">2022</option>
+							<option value="2023">2023</option>
+							<option value="2024">2024</option>
+							<option value="2025">2025</option>
+						</select>
+					</div>
+					<div class="col-md-2 col-sm-2 col-xs-12">
+						<select name="completionMonth" id="completionMonth" class="form-control border border-danger" required>
+							<option value="">Completion Month</option>
+							<option value="01">January</option>
+							<option value="02">February</option>
+							<option value="03">March</option>
+							<option value="04">April</option>
+							<option value="05">May</option>
+							<option value="06">June</option>
+							<option value="07">July</option>
+							<option value="08">August</option>
+							<option value="09">September</option>
+							<option value="10">October</option>
+							<option value="11">November</option>
+							<option value="12">December</option>
+						</select>
 					</div>
 
 				</div>

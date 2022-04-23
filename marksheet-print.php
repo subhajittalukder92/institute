@@ -1,3 +1,33 @@
+<?php 
+include('include/dbconfig.php');
+include('include/settings.php');
+include 'functions.php';
+$month = ["01" => "JAN", "02" => "FEB", "03" => "MAR",  "04" => "APR", "06" => "JUN",   "07" => "JUL", "08" => "AUG", "09" => "SEP", "10" => "OCT" ,"11" => "NOV" ,"12" => "DEC"];
+    
+$regNo = htmlspecialchars($_GET['id'], ENT_QUOTES);
+$sql   = "SELECT `pursuing_course`.*,`student_info`.*, `marks`.`course_info`,`marks`.`marksheet_issue_date`,`marks`.`grades`,`marks`.`marksheet_qrcode`,`marks`.`id` AS `marks_id`,
+        `marks`.`qrcode`,`marks`.`obtained_marks`,`marks`.`total_marks`, `franchises`.* FROM `pursuing_course`
+        LEFT JOIN `student_info` ON `student_info`.`slno` = `pursuing_course`.`student_id`
+        LEFT JOIN `marks` ON `marks`.`admission_id` = `pursuing_course`.`pusuing_id`
+        LEFT JOIN `franchises` ON `franchises`.`id` = `pursuing_course`.`franchise_id`
+        WHERE `pursuing_course`.`regno` ='{$regNo}' LIMIT 1" ;
+$ress  = mysqli_query($conn, $sql) ;
+if(mysqli_num_rows($ress) > 0){
+    $data = mysqli_fetch_array($ress);
+    $data['qrcode']     = getBaseAddress()."qrcode/". $data['qrcode'];
+    $data['marksheet_qrcode']     = getBaseAddress()."qrcode/". $data['marksheet_qrcode'];
+    $data['image_name'] = getBaseAddress()."Student_images/".$data['image_name'];
+    $data['starting_month'] = !empty($data['starting_month']) ?  $month[$data['starting_month']] : "";
+    $data['complete_month'] = !empty($data['complete_month']) ?  $month[$data['complete_month']] : "";
+    $course = json_decode($data['course_info'], true);
+    $marksDetail = getMarkDetails($data['marks_id']);
+    
+}else{
+    echo '<h2 align="center">No Records Found</h2>';
+    exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -219,60 +249,60 @@
 
     <div class="marksheet-bg">         
         <div class="content">
-            <div align="right"><img src="images/ms.png" class="student-pic"></div>
-            <h6 class="info">JYBCE-0039-00573</h6>
-            <h6 class="info s-name">Subhajit Talukdar</h6>
-            <h6 class="info s-name">Arun Talukdar</h6>
-            <h6 class="info course-name">DIPLOMA IN OFFICE ACCOUNTING EXPERT & PUBLISHING (DOAEP)</h6>
-            <h6 class="info duration">4 Months</h6>
-            <h6 class="info course-code">ABCD12345</h6>
+            <div align="right"><img src="<?php echo $data['image_name'];?>" class="student-pic"></div>
+            <h6 class="info"><?php echo $data[7];?></h6>
+            <h6 class="info s-name"><?php echo $data['St_Name'];?></h6>
+            <h6 class="info s-name"><?php echo $data['Fathers_Name'];?></h6>
+            <h6 class="info course-name"><?php echo $course['course_name']; ?></h6>
+            <h6 class="info duration"><?php echo $course['duration']." ".$course['unit']; ?></h6>
+            <h6 class="info course-code"><?php echo $course['course_id']; ?></h6>
             <div class="sem1">
                 <div class="practical" align="center">
-                    <h6 class="practical-marks">100</h6>
+                    <h6 class="practical-marks"><?php echo $marksDetail[0]['marks_obtained_practical']; ?></h6>
                 </div>
                 <div class="theory" align="center">
-                    <h6 class="practical-marks">99</h6>
+                    <h6 class="practical-marks"><?php echo $marksDetail[0]['marks_obtained_theory']; ?></h6>
                 </div>
                 <div class="theory" align="center">
-                    <h6 class="practical-marks">&nbsp;</h6>
+                    <h6 class="practical-marks"><?php echo $marksDetail[0]['full_marks_practical']; ?></h6>
                 </div>
                 <div class="theory" align="center">
-                    <h6 class="practical-marks">&nbsp;</h6>
+                    <h6 class="practical-marks"><?php echo $marksDetail[0]['full_marks_theory']; ?></h6>
                 </div>
                 <div class="sem1-subjects-div">
-                    <h6 class="sem1-subjects">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without document or a typeface in.</h6>
+                    <h6 class="sem1-subjects"><?php echo $marksDetail[0]['semester_subjects']; ?></h6>
                 </div>
             </div>
             <div class="sem2">
                 <div class="practical" align="center">
-                    <h6 class="practical-marks2">100</h6>
+                    <h6 class="practical-marks2"><?php echo $marksDetail[1]['marks_obtained_practical']; ?></h6>
                 </div>
                 <div class="theory" align="center">
-                    <h6 class="practical-marks2">99</h6>
+                    <h6 class="practical-marks2"><?php echo $marksDetail[1]['marks_obtained_theory']; ?></h6>
                 </div>
                 <div class="theory" align="center">
-                    <h6 class="practical-marks2">&nbsp;</h6>
+                    <h6 class="practical-marks2"><?php echo $marksDetail[1]['full_marks_practical']; ?></h6>
                 </div>
                 <div class="theory" align="center">
-                    <h6 class="practical-marks2">&nbsp;</h6>
+                    <h6 class="practical-marks2"><?php echo $marksDetail[1]['full_marks_theory']; ?></h6>
                 </div>
                 <div class="sem1-subjects-div">
-                    <h6 class="sem1-subjects">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without document or a typeface in.</h6>
+                    <h6 class="sem1-subjects"><?php echo $marksDetail[1]['semester_subjects']; ?></h6>
                 </div>
             </div>
             <div class="row grand-total-div">
-                <div class="col-6" align="center"><h6 class="font-11">345</h6></div>
-                <div class="col-6" align="right"><h6 class="font-11 percentage">83%</h6></div>
+                <div class="col-6" align="center"><h6 class="font-11"><?php echo $data['obtained_marks']; ?></h6></div>
+                <div class="col-6" align="right"><h6 class="font-11 percentage"><?php echo ($data['obtained_marks'] * 100 / $data['total_marks']) ;?>%</h6></div>
             </div>
             <div class="row last-div">
                 <div class="col-1"></div>
                 <div class="col-4">
-                    <h6 class="font-11 grade">A+</h6>
+                    <h6 class="font-11 grade"><?php echo $data['grades']; ?></h6>
                     <h6 class="font-11 pass">PASS</h6>
-                    <h6 class="result-date" align="right">30/12/2021</h6>
+                    <h6 class="result-date" align="right">&nbsp;&nbsp;<?php echo date("d/m/Y", strtotime($data['marksheet_issue_date'])); ?></h6>
                 </div>
                 <div class="col-7">
-                    <img src="images/qrcode.png" class="qrcode">
+                    <img src="<?php echo $data['marksheet_qrcode'];?>" class="qrcode">
                 </div>
             </div>
         </div>

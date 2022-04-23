@@ -1,5 +1,7 @@
 Student_images
 Notice
 images
+qrcode
 include/dbconfig.php
+include/settings.php
 franchises/include/dbconfig.php

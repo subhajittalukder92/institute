@@ -71,10 +71,10 @@ function addIncomeToDayBook($studentID,$fees,$course,$particulars,$date,$payby)
 function findStudentRegistraionNo($sessioncode,$coursecode)
 {
 	include "include/dbconfig.php" ;
-	$sql2="SELECT * FROM courses WHERE id='$coursecode'  ";
-	$res2=mysqli_query($conn,$sql2);
-	$row2=mysqli_fetch_assoc($res2);
-	$course_code=$row2['course_id'];
+	// $sql2="SELECT * FROM courses WHERE id='$coursecode'  ";
+	// $res2=mysqli_query($conn,$sql2);
+	// $row2=mysqli_fetch_assoc($res2);
+	// $course_code=$row2['course_id'];
 
 
 	$sql3="SELECT * FROM franchises WHERE id='{$_SESSION['franchise_id']}'  ";
@@ -82,20 +82,37 @@ function findStudentRegistraionNo($sessioncode,$coursecode)
 	$row3=mysqli_fetch_assoc($res3);
 	$institutecode =$row3['code'];
 		
-	$sql 		="SELECT MAX(`serial_no`) AS `slno` FROM `pursuing_course` WHERE `course_code`='$course_code' AND `session_code`='$sessioncode' AND franchise_id='{$_SESSION['franchise_id']}'";
-	$res 		=mysqli_query($conn,  $sql);
-	// echo mysqli_error($conn);
-	$row 		=mysqli_fetch_assoc($res);
-	if($row['slno']!=null)
+	// $sql 		="SELECT MAX(`serial_no`) AS `slno` FROM `pursuing_course` WHERE `course_code`='$course_code' AND `session_code`='$sessioncode' AND franchise_id='{$_SESSION['franchise_id']}'";
+	$sql 		= "SELECT COUNT(*) AS `slno` FROM `pursuing_course` WHERE `mode_of_insertion` = 'manual'";
+	$res 		= mysqli_query($conn,  $sql);
+	$row 		= mysqli_fetch_assoc($res);
+	if($row['slno']!= null)
 	{
-		$regno=$institutecode.$sessioncode.$course_code.sprintf('%0' . 4 . 's',($row['slno']+1));
+		// $regno=$institutecode.$sessioncode.$course_code.sprintf('%0' . 4 . 's',($row['slno']+1));
+		 $settings = getSettings();
+		 $regno = "JYBCE-" . $institutecode . "-" . str_pad(($settings['base_regno'] + $row['slno'] + 1), 5, "0", STR_PAD_LEFT);
+		 
+		 
 		return $regno;
 	}
 	else{
-		$regno=$institutecode.$sessioncode.$course_code."0001";
+		// $regno=$institutecode.$sessioncode.$course_code."0001";
+
+		$regno = "JYBCE-" . $institutecode . "-" . str_pad(($settings['base_regno'] + 1), 5, "0", STR_PAD_LEFT);
 		return $regno;
 	}
 	
+}
+function getSettings()
+{
+	include "include/dbconfig.php" ;
+	$sql 		= "SELECT * FROM `settings`";
+	$res 		= mysqli_query($conn,  $sql);
+	$arr=[];
+	while($row = mysqli_fetch_assoc($res)){
+		$arr[$row['setting_name']] = $row['value'] ;
+	}
+	return $arr;
 }
 function findSerialNo($sessioncode,$coursecode)
 {
@@ -343,6 +360,21 @@ function getStudents($id = Null)
 	
 
 }
+
+function getMarkDetails($marksId)
+{
+	include "include/dbconfig.php" ;
+	$sql = "SELECT * FROM `marks_details` WHERE `marks_id`='$marksId'";
+	$ress = mysqli_query($conn, $sql);
+	$arr= [] ;
+	if(mysqli_num_rows($ress) > 0){
+		while($row = mysqli_fetch_assoc($ress)){
+			$arr[] = $row;
+		}
+		return $arr ;
+	}
+
+}
 function getFranchises($id = Null)
 {
 	include "include/dbconfig.php" ;
@@ -361,6 +393,43 @@ function getFranchises($id = Null)
 	}
 
 	return json_encode($arr) ;
+
+}
+function calculateGrade($marks){
+	include "include/dbconfig.php" ;
+	$readCommand = "SELECT * FROM `grades`";
+			   
+	   $readStmt = mysqli_query($conn, $readCommand);
+	   
+	   $grade = null;
+	   while ($row = mysqli_fetch_assoc($readStmt)) {
+		if($marks <= $row['marks_upto']){
+			$grade = $row['grade_name'];
+			break;
+		}
+		   
+	   } 			
+
+	   return $grade;
+}
+function showFranchises($id = Null)
+{
+	include "include/dbconfig.php" ;
+	if(!empty($id)){
+		$sql = "SELECT * FROM `franchises` WHERE `id`='$id'";
+	}else{
+		$sql = "SELECT * FROM `franchises`";
+	}
+	$result = mysqli_query($conn, $sql);
+	$arr= [];
+	if(mysqli_num_rows($result) > 0){
+	
+		while($row = mysqli_fetch_assoc($result)){
+			$arr[] = $row;
+		}
+	}
+
+	return ($arr) ;
 
 }
 function getFranchisesById($id = Null)

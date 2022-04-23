@@ -1,8 +1,12 @@
 <?php 
 include('include/dbconfig.php');
-
+include('include/settings.php');
+include 'functions.php';
+$month = ["01" => "JAN", "02" => "FEB", "03" => "MAR",  "04" => "APR", "06" => "JUN",   "07" => "JUL", "08" => "AUG", "09" => "SEP", "10" => "OCT" ,"11" => "NOV" ,"12" => "DEC"];
+    
 $regNo = htmlspecialchars($_GET['id'], ENT_QUOTES);
-$sql   = "SELECT `pursuing_course`.*,`student_info`.*, `marks`.`course_info`, `franchises`.`franchise_name`,`franchises`.`address` FROM `pursuing_course`
+$sql   = "SELECT `pursuing_course`.*,`student_info`.*, `marks`.`course_info`,`marks`.`certificate_issue_date`,`marks`.`grades`,
+        `marks`.`qrcode`, `franchises`.`franchise_name`,`franchises`.`address` FROM `pursuing_course`
         LEFT JOIN `student_info` ON `student_info`.`slno` = `pursuing_course`.`student_id`
         LEFT JOIN `marks` ON `marks`.`admission_id` = `pursuing_course`.`pusuing_id`
         LEFT JOIN `franchises` ON `franchises`.`id` = `pursuing_course`.`franchise_id`
@@ -10,6 +14,10 @@ $sql   = "SELECT `pursuing_course`.*,`student_info`.*, `marks`.`course_info`, `f
 $ress  = mysqli_query($conn, $sql) ;
 if(mysqli_num_rows($ress) > 0){
     $data = mysqli_fetch_array($ress);
+    $data['qrcode']     = getBaseAddress()."qrcode/". $data['qrcode'];
+    $data['image_name'] = getBaseAddress()."Student_images/".$data['image_name'];
+    $data['starting_month'] = !empty($data['starting_month']) ?  $month[$data['starting_month']] : "";
+    $data['complete_month'] = !empty($data['complete_month']) ?  $month[$data['complete_month']] : "";
     $course = json_decode($data['course_info'], true);
 }else{
     echo '<h2 align="center">No Records Found</h2>';
@@ -254,7 +262,7 @@ if(mysqli_num_rows($ress) > 0){
                 <div class="row">
                     <div class="col-4"></div>
                     <div class="col-2">
-                        <h6>A+</h6>
+                        <h6><?php echo $data['grades']; ?></h6>
                     </div>
                     <div class="col-6">
                         <h6 class="at"><?php echo $data['address']; ?></h6>
@@ -263,15 +271,15 @@ if(mysqli_num_rows($ress) > 0){
             </div>
             <div class="pic-div-container">
                 <div class="pic-div-2">
-                    <img src="images/ms.png" class="pic-2">
+                    <img src="<?php echo $data['image_name']; ?>" class="pic-2">
                 </div>
                 <div class="pic-div-1">
-                    <img src="images/ms.png" class="pic-1">
+                    <img src="<?php echo $data['qrcode']; ?>" class="pic-1">
                 </div>
             </div>
             <div class="container bottom-div">
                 <div class="clearfix mt-4">
-                  <p class="float-start issue-date">19-04-2022</p>
+                  <p class="float-start issue-date"><?php echo date('d/m/Y', strtotime($data['certificate_issue_date'])); ?></p>
                   <p class="float-end chairman">Sri Biman Ghosh</p>
                 </div>
             </div>

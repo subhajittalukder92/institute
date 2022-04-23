@@ -26,8 +26,10 @@
             $obtainedMarks += (int) $subject['marks_obtained_practical'];
         }
         $percentage = (($obtainedMarks * 100) / $totalMarks) ;
+       
         $marksDetails[$key1]['total_marks']    = $totalMarks;
         $marksDetails[$key1]['obtained_marks'] = $obtainedMarks;
+        $marksDetails[$key1]['grades']         = calculateGrade($percentage) ;
         $marksDetails[$key1]['status']         = "completed";
     }
     
@@ -83,7 +85,7 @@
             $date        = date('Y-m-d H:i:s');
             $updateQuery = "UPDATE `marks` SET `franchise_id`='{$franchiseId}', `admission_id`='{$value['admission_id']}'
                         ,`course_id`='{$admissionData['course_id']}', `student_id`='{$value['student_id']}',
-                        `total_marks`='{$value['total_marks']}', `obtained_marks`='{$value['obtained_marks']}',
+                        `total_marks`='{$value['total_marks']}', `obtained_marks`='{$value['obtained_marks']}',`grades`='{$value['grades']}',
                         `modified_at`='{$date}' WHERE `id` ='{$value['id']}'";
         
             $updateQueryRes  = mysqli_query($conn, $updateQuery);
