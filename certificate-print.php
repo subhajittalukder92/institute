@@ -2,7 +2,7 @@
 include('include/dbconfig.php');
 
 $regNo = htmlspecialchars($_GET['id'], ENT_QUOTES);
-$sql   = "SELECT `pursuing_course`.*,`student_info`.*, `marks`.`course_info`, `franchises`.`franchise_name` FROM `pursuing_course`
+$sql   = "SELECT `pursuing_course`.*,`student_info`.*, `marks`.`course_info`, `franchises`.`franchise_name`,`franchises`.`address` FROM `pursuing_course`
         LEFT JOIN `student_info` ON `student_info`.`slno` = `pursuing_course`.`student_id`
         LEFT JOIN `marks` ON `marks`.`admission_id` = `pursuing_course`.`pusuing_id`
         LEFT JOIN `franchises` ON `franchises`.`id` = `pursuing_course`.`franchise_id`
@@ -56,7 +56,7 @@ if(mysqli_num_rows($ress) > 0){
     padding-top:48px;
     }
     h6{
-        font-size: 12px;
+        font-size: 11px;
     }
     .reg-no{
         margin-left: 70px;
@@ -64,18 +64,28 @@ if(mysqli_num_rows($ress) > 0){
     }
     .name{
         margin-top:231px;
-        padding-left: 9px;
+        font-weight: 700;
+        font-size: 12px;
     }
     .father-name{
-        margin-top: 7px;
-        margin-left: 97px;
+        margin-top: 10px;
+        /*margin-left: 99px;*/
+        font-weight: 700;
+        font-size: 12px;
+    }
+    .from-div{
+        margin-top: 9px;
+    }
+    .from{
+        font-weight: 700;
     }
     .div1{
         width: 67px; 
         float: right;
     }
     .div2{
-        width: 55px; 
+        min-width: 55px; 
+        max-width: 55px; 
         float: right;
     }
     .div3{
@@ -145,14 +155,15 @@ if(mysqli_num_rows($ress) > 0){
     }
     .name{
         padding-left: 10px;
-        margin-top: 365px;
+        margin-top: 362px;
+        font-size: 19px;
     }
     .father-name{
         margin-top: 12px;
-        margin-left: 150px;
+        font-size: 19px;
     }
     .from-div{
-        margin-top: 17px;
+        margin-top: 15px;
         margin-bottom: 6px;
     }
     .div1{
@@ -160,7 +171,8 @@ if(mysqli_num_rows($ress) > 0){
         float: right;
     }
     .div2{
-        width: 88px; 
+        min-width: 88px;
+        max-width: 88px; 
         float: right;
     }
     .div3{
@@ -182,7 +194,7 @@ if(mysqli_num_rows($ress) > 0){
     .pic-div-container{
         width:589px; 
         margin:auto; 
-        margin-top: 32px;
+        margin-top: 33px;
     }
     .pic-div-2{
         width: 119px; 
@@ -220,28 +232,28 @@ if(mysqli_num_rows($ress) > 0){
 <div class="certificate-bg">         
         <div class="content">
 			<h6 class="reg-no"><?php echo $data[7];?></h6>
-            <h6 class="name"><?php echo $data['St_Name'];?></h6>
-            <h6 class="father-name"><?php echo $data['Fathers_Name'];?></h6>
+            <h6 class="name" align="center">SUVENDU SEKHAR JANA<?php //echo $data['St_Name'];?></h6>
+            <h6 class="father-name" align="center">SUVENDU SEKHAR JANA<?php //echo $data['Fathers_Name'];?></h6>
             <div class="container-fluid from-div">
                 <div class="row">
                     <div class="col-1"></div>
-                    <div class="col-5">
-                        <h6><?php echo $data['starting_month'].'-'.$data['starting_year']; ?></h6>
+                    <div class="col-5" align="center">
+                        <h6 class="from">JAN 2021<?php //echo $data['starting_month'].'-'.$data['starting_year']; ?></h6>
                     </div>
-                    <div class="col-4">
-                        <h6><?php echo $data['complete_month'].'-'.$data['complete_year']; ?></h6>
+                    <div class="col-4" align="center">
+                        <h6 class="from">DEC 2021<?php //echo $data['complete_month'].'-'.$data['complete_year']; ?></h6>
                     </div>
                     <div class="col-2"></div>
                 </div>
             </div>
-            <div class="div1"><h6><?php echo $course['duration'].' '.$course['unit']; ?></h6></div>
-            <div class="div2"></div>
-            <div class="div3"><h6><?php echo $course['course_name']; ?> </h6></div>
+            <div class="div1"><h6 align="center"><?php echo $course['duration']; ?></h6></div>
+            <div class="div2">&nbsp;</div>
+            <div class="div3"><h6><?php echo $course['course_name']; ?></h6></div>
             <div class="container-fluid ins-div" style="clear: both;">
                 <div class="row">
                     <div class="col-3"></div>
                     <div class="col-9">
-                        <h6 class="ins-name"><?php echo $data['franchise_name']; ?></h6>
+                        <h6 class="ins-name">JYBCE JATIYA YUVA COMPUTER TRAINING CENTRE <?php //echo $data['franchise_name']; ?></h6>
                     </div>
                 </div>
             </div>
@@ -252,7 +264,7 @@ if(mysqli_num_rows($ress) > 0){
                         <h6>A+</h6>
                     </div>
                     <div class="col-6">
-                        <h6 class="at"></h6>
+                        <h6 class="at"><?php echo $data['address']; ?></h6>
                     </div>
                 </div>
             </div>
