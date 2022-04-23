@@ -15,8 +15,6 @@ if(mysqli_num_rows($ress) > 0){
     echo '<h2 align="center">No Records Found</h2>';
     exit;
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,14 +24,6 @@ if(mysqli_num_rows($ress) > 0){
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- google fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap" rel="stylesheet">
-<!-- google fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
   <style>
     body, html {
     height: 100%;
@@ -144,82 +134,85 @@ if(mysqli_num_rows($ress) > 0){
     .content{
         width:91%;
         margin:auto;
-        padding-top:75px;
+        padding-top:72px;
     }
     h6{
         font-size: 18px;
     }
     .reg-no{
-        margin-left: 110px;
+        margin-left: 127px;
         font-size: 15px;
     }
     .name{
         padding-left: 10px;
-        margin-top: 362px;
+        margin-top: 400px;
         font-size: 19px;
     }
     .father-name{
-        margin-top: 12px;
+        margin-top: 15px;
         font-size: 19px;
     }
     .from-div{
         margin-top: 15px;
-        margin-bottom: 6px;
+        margin-bottom: 12px;
     }
     .div1{
-        width: 101px; 
+        width: 115px; 
         float: right;
     }
     .div2{
-        min-width: 88px;
-        max-width: 88px; 
+        min-width: 90px;
+        max-width: 90px; 
         float: right;
     }
     .div3{
-        width: 342px; 
+        width: 379px; 
         float: right;
     }
     .ins-div{
-        margin-top: 42px;
+        margin-top: 53px;
     }
     .ins-name{
-        padding-left: 19px;
+        padding-left: 24px;
     }
     .grade-div{
-        margin-top: 6px;
+        margin-top: 10px;
     }
     .at{
         padding-left: 5px;
     }
     .pic-div-container{
-        width:589px; 
+        width:644px; 
         margin:auto; 
         margin-top: 33px;
     }
     .pic-div-2{
-        width: 119px; 
-        height: 123px; 
+        width: 132px; 
+        height: 140px; 
         float: right;
     }
     .pic-div-1{
-        width: 118px; 
-        height: 123px;
+        width: 130px; 
+        height: 140px;
     }
     .pic-2{
-        width: 119px; 
-        height: 123px;
+        width: 132px; 
+        height: 140px;
     }
     .pic-1{
-        width: 118px; 
-        height: 123px;
+        width: 130px; 
+        height: 140px;
     }
     .bottom-div{
         margin-top: 45px;
     }
+    .container{
+        max-width: 97%;
+    }
     .issue-date{
         font-size: 15px; 
         font-weight: 500; 
-        padding-left: 15px;
+        padding-left: 20px;
     }
     .chairman{
         font-size: 15px; 
