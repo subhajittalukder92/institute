@@ -232,16 +232,16 @@ if(mysqli_num_rows($ress) > 0){
 <div class="certificate-bg">         
         <div class="content">
 			<h6 class="reg-no"><?php echo $data[7];?></h6>
-            <h6 class="name" align="center">SUVENDU SEKHAR JANA<?php //echo $data['St_Name'];?></h6>
-            <h6 class="father-name" align="center">SUVENDU SEKHAR JANA<?php //echo $data['Fathers_Name'];?></h6>
+            <h6 class="name" align="center"><?php echo $data['St_Name'];?></h6>
+            <h6 class="father-name" align="center"><?php echo $data['Fathers_Name'];?></h6>
             <div class="container-fluid from-div">
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-5" align="center">
-                        <h6 class="from">JAN 2021<?php //echo $data['starting_month'].'-'.$data['starting_year']; ?></h6>
+                        <h6 class="from"><?php echo $data['starting_month'].'-'.$data['starting_year']; ?></h6>
                     </div>
                     <div class="col-4" align="center">
-                        <h6 class="from">DEC 2021<?php //echo $data['complete_month'].'-'.$data['complete_year']; ?></h6>
+                        <h6 class="from"><?php echo $data['complete_month'].'-'.$data['complete_year']; ?></h6>
                     </div>
                     <div class="col-2"></div>
                 </div>
@@ -253,7 +253,7 @@ if(mysqli_num_rows($ress) > 0){
                 <div class="row">
                     <div class="col-3"></div>
                     <div class="col-9">
-                        <h6 class="ins-name">JYBCE JATIYA YUVA COMPUTER TRAINING CENTRE <?php //echo $data['franchise_name']; ?></h6>
+                        <h6 class="ins-name"><?php echo $data['franchise_name']; ?></h6>
                     </div>
                 </div>
             </div>
