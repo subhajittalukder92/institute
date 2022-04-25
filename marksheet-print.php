@@ -47,7 +47,7 @@ if(mysqli_num_rows($ress) > 0){
     margin: 0;
     }
     .marksheet-bg {
-    background-image: url("images/marksheet.jpg");
+    background-image: url("images/marksheet.png");
     height: 655px; 
     width:500px;
     background-position: center;
@@ -57,17 +57,18 @@ if(mysqli_num_rows($ress) > 0){
     overflow:auto;
     }
     .content{
-    width:408px;
+    width:410px;
     margin:auto;
     padding-top:122px;
     }
     .student-pic{
-        width: 74px;
+        width: 72px;
         height: 80px;
         margin-bottom: 15px;
+        margin-right: 4px;
     }
     .info{
-        margin-left: 148px;
+        margin-left: 152px;
         font-size: 12px;
         font-family: 'Oswald', sans-serif;
     }
@@ -86,45 +87,43 @@ if(mysqli_num_rows($ress) > 0){
         padding-top: 3px;
     }
     .sem1{
-        margin-top: 50px; 
-        min-height: 43px; 
-        max-height: 43px;
+        margin-top: 40px;
     }
     .practical{
-        width: 55px; 
+        width: 57px; 
         float: right;
+        min-height: 52px; 
+        max-height: 52px;
     }
     .practical-marks{
         font-size: 10px; 
-        margin-top: 6px;
+        margin-top: 15px;
     }
     .theory{
         width: 60px; 
         float: right;
+        min-height: 52px; 
+        max-height: 52px;
     }
     .sem1-subjects-div{
-        width: 172px;
+        width: 174px;
+        min-height: 52px; 
+        max-height: 52px;
+    }
+    .exam-name{
+        font-size: 9px; 
+        font-weight: 700; 
+        color: #1a2477;
     }
     .sem1-subjects{
         font-size: 8px;
-    }
-    .sem2{
-        margin-top: 10px; 
-        min-height: 43px; 
-        max-height: 43px;
-    }
-    .practical-marks2{
-        font-size: 10px; 
-        margin-top: 4px;
-    }
-    .grand-total-div{
-        margin-top: 1px;
+        margin-top: -9px;
     }
     .font-11{
         font-size: 11px;
     }
-    .percentage{
-        margin-right: 10px;
+    .grand-total-div{
+        margin-top: 3px;
     }
     .last-div{
         margin-top: 4px;
@@ -136,8 +135,8 @@ if(mysqli_num_rows($ress) > 0){
         margin-left: 10px;
     }
     .result-date{
-        font-size: 10px; 
-        margin-top: 21px;
+        font-size: 9px; 
+        margin-top: 22px;
     }
     .qrcode{
         width: 60px; 
@@ -150,7 +149,7 @@ if(mysqli_num_rows($ress) > 0){
         height: 99%;    
     }
     .marksheet-bg {
-    background-image: url("images/marksheet.jpg");
+    background-image: url("images/marksheet.png");
     height: 100%; 
     width:100%;
     margin-top:10px;
@@ -190,39 +189,35 @@ if(mysqli_num_rows($ress) > 0){
         padding-top: 11px;
     }
     .sem1{
-        margin-top: 87px; 
-        min-height: 43px; 
-        max-height: 43px;
+        margin-top: 67px; 
     }
     .practical{
         width: 90px; 
-        float: right;
+        min-height: 90px; 
+        max-height: 90px;
     }
     .practical-marks{
         font-size: 16px; 
-        margin-top: 6px;
+        margin-top: 26px;
     }
     .theory{
         width: 105px; 
-        float: right;
+        min-height: 90px; 
+        max-height: 90px;
     }
     .sem1-subjects-div{
         width: 295px;
+        min-height: 90px; 
+        max-height: 90px;
+    }
+    .exam-name{
+        font-size: 15px;
     }
     .sem1-subjects{
         font-size: 13px;
     }
-    .sem2{
-        margin-top: 47px; 
-        min-height: 43px; 
-        max-height: 43px;
-    }
-    .practical-marks2{
-        font-size: 16px; 
-        margin-top: 4px;
-    }
     .grand-total-div{
-        margin-top: 33px;
+        margin-top: 16px;
     }
     .font-11{
         font-size: 17px;
@@ -270,29 +265,35 @@ if(mysqli_num_rows($ress) > 0){
                     <h6 class="practical-marks"><?php echo $marksDetail[0]['full_marks_theory']; ?></h6>
                 </div>
                 <div class="sem1-subjects-div">
+                    <h6 class="exam-name">Semester-I</h6>
                     <h6 class="sem1-subjects"><?php echo $marksDetail[0]['semester_subjects']; ?></h6>
                 </div>
             </div>
-            <div class="sem2">
+            <div class="sem2" style="clear: both;">
                 <div class="practical" align="center">
-                    <h6 class="practical-marks2"><?php echo $marksDetail[1]['marks_obtained_practical']; ?></h6>
+                    <h6 class="practical-marks"><?php echo $marksDetail[1]['marks_obtained_practical']; ?></h6>
                 </div>
                 <div class="theory" align="center">
-                    <h6 class="practical-marks2"><?php echo $marksDetail[1]['marks_obtained_theory']; ?></h6>
+                    <h6 class="practical-marks"><?php echo $marksDetail[1]['marks_obtained_theory']; ?></h6>
                 </div>
                 <div class="theory" align="center">
-                    <h6 class="practical-marks2"><?php echo $marksDetail[1]['full_marks_practical']; ?></h6>
+                    <h6 class="practical-marks"><?php echo $marksDetail[1]['full_marks_practical']; ?></h6>
                 </div>
                 <div class="theory" align="center">
-                    <h6 class="practical-marks2"><?php echo $marksDetail[1]['full_marks_theory']; ?></h6>
+                    <h6 class="practical-marks"><?php echo $marksDetail[1]['full_marks_theory']; ?></h6>
                 </div>
                 <div class="sem1-subjects-div">
+                    <h6 class="exam-name">Semester-II</h6>
                     <h6 class="sem1-subjects"><?php echo $marksDetail[1]['semester_subjects']; ?></h6>
                 </div>
             </div>
-            <div class="row grand-total-div">
-                <div class="col-6" align="center"><h6 class="font-11"><?php echo $data['obtained_marks']; ?></h6></div>
-                <div class="col-6" align="right"><h6 class="font-11 percentage"><?php echo ($data['obtained_marks'] * 100 / $data['total_marks']) ;?>%</h6></div>
+            <div class="row grand-total-div" style="clear: both;">
+                <div class="col-6" align="center">
+                    <h6 class="font-11"><?php echo $data['obtained_marks']; ?></h6>
+                </div>
+                <div class="col-6" align="right">
+                    <h6 class="font-11 percentage"><?php echo ($data['obtained_marks'] * 100 / $data['total_marks']) ;?>%</h6>
+                </div>
             </div>
             <div class="row last-div">
                 <div class="col-1"></div>

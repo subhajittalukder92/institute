@@ -21,11 +21,10 @@
         <div class="col-md-4">
           <div class="home-veri">
             <div class="marginbot30">
-              <form action="certificate-print.php" method="post" id="contactform">
-                <input name="action" value="submit" type="hidden">
+              <form action="certificate-print.php" method="get" id="contactform">
                 <div class="result">
                   <label>Enter Your Enrollment No:</label>
-                  <input class="wp-form-control wpcf7-text" name="result_no" id="result_no" required type="text" placeholder="Student Enrollment No*">
+                  <input class="wp-form-control wpcf7-text" name="id" required type="text" placeholder="Student Enrollment No*">
                   <p class="click"></p>
                   <button class="btn btn-theme margintop10 pull-left" style="float:left" type="submit">Submit</button>
                 </div>
