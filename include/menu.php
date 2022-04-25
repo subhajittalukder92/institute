@@ -166,6 +166,12 @@
 								<li><a href="view-certificate.php">View Certificates</a></li>
 							</ul>
 						</li>
+						<li>
+							<a href="#"><i class="fa fa-th-list"></i> Website <span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="about-us.php">About Us</a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 			</div>

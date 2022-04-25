@@ -36,7 +36,7 @@
             <ul class="dropdown-menu dropdown-menu1" role="menu">
               <li><a href="about.php">About JYBCE</a></li>
               <li><a href="chairman-message.php">Chairman Massage</a></li>
-              <li><a href="#">Linkage</a></li>
+              <!-- <li><a href="#">Linkage</a></li> -->
             </ul>
           </li>
           <li class="dropdown">
