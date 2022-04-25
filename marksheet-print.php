@@ -250,7 +250,7 @@ if(mysqli_num_rows($ress) > 0){
             <h6 class="info s-name"><?php echo $data['Fathers_Name'];?></h6>
             <h6 class="info course-name"><?php echo $course['course_name']; ?></h6>
             <h6 class="info duration"><?php echo $course['duration']." ".$course['unit']; ?></h6>
-            <h6 class="info course-code"><?php echo $course['course_id']; ?></h6>
+            <h6 class="info course-code"><?php echo $data['code']; ?></h6>
             <div class="sem1">
                 <div class="practical" align="center">
                     <h6 class="practical-marks"><?php echo $marksDetail[0]['marks_obtained_practical']; ?></h6>
