@@ -1,4 +1,6 @@
-
+<div class="panel-footer">
+	<p style="text-align:center;margin-top:6px;">&copy; Copyright Reserved By Niharika Software</p>
+</div>
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
@@ -56,7 +58,3 @@
 <script src="dist/js/sb-admin-2.js"></script>
 <!-- Tables Edit-->
 <script src="jquery-tabledit/jquery.tabledit.min.js"></script>
-<div class="panel-footer">
-			<p style="text-align:center;margin-top:6px;">&copy; Copyright Reserved By Niharika Software</p>
-</div>
-	

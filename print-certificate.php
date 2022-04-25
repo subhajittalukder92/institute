@@ -2,96 +2,58 @@
 session_start();
 include "include/dbconfig.php";
 include "functions.php";
+include "include/menu.php"; 
 ?>
-
-<?php include "include/menu.php"; ?>
 <div id="page-wrapper">
     <div class="container-fluid">
-        <div class="row">
-
-            <!--    <div class="x_panel">
-                   <div class="x_content"> -->
-            <h3 class="page-header">Print Certificate</h3>
-
-         
-                <div class="form-group">
-                
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                        <label>Franchise</label>
-                       <select name="franchise" id="franchise" class="form-control">
-                           <option value="">Select Franchise</option>
-                            <?php 
-                                $franchises = showFranchises();
-                                if(count($franchises) > 0)
-                                {
-                                    foreach ($franchises as $key => $franchise) {
-                                        echo '<option value="'.$franchise['id'].'">'.$franchise['franchise_name'].'</option>';
-                                    }
+        <h3 class="page-header">Print Certificate</h3>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <label>Franchise</label>
+                    <select name="franchise" id="franchise" class="form-control">
+                       <option value="">Select Franchise</option>
+                        <?php 
+                            $franchises = showFranchises();
+                            if(count($franchises) > 0)
+                            {
+                                foreach ($franchises as $key => $franchise) {
+                                    echo '<option value="'.$franchise['id'].'">'.$franchise['franchise_name'].'</option>';
                                 }
-                            ?>
-                       </select>
-                      
-                    </div>
-                    
-                    <div class="col-md-2 col-sm-2 col-xs-12">
-                        <label>&nbsp;</label>
-                        <button type="button" id="search" class="btn btn-info form-control">Search</button>
-                    </div>
-                 
-
-                    <div class="clearfix"></div>
+                            }
+                        ?>
+                   </select>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-sm-2 col-md-2 col-sm-offset-5 col-md-offset-5">
-
-                    </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <label>&nbsp;</label>
+                    <button type="button" id="search" class="btn btn-info form-control">Search</button>
                 </div>
-                <div class="clearfix"></div>
-
-                <div>&nbsp;</div>
-            <form id="certificateForm" method="post" enctype="multipart/form-data" autocomplete="off" >
-                <div class="table-responsive" id="insertDiv" style="display:">
-                    
-                    <input type="hidden" name="formid" id="formid" value="<?php echo htmlspecialchars($_SESSION['formid']); ?>">
-                    <table class="table table-stripped table-condensed" id="certificateTable">
-                           <thead>
-                               <th>Name</th>
-                               <th>Reg No</th>
-                               <th>Course</th>
-                               <th>Certificate </th>
-                               <th>Marksheet </th>
-                               <th><input type="checkbox" id="checkAll" checked> &nbsp;Status </th>
-                            
-                           </thead>
-                           <tbody></tbody>
-                    </table>
-                </div>
-                <button type="submit" name="submit" id="submit" class="btn btn-success form-control">Save Printed Marksheet & Certificates</button>
-            </form>
-
-            <!-- /panel -->
+                <div class="col-md-3 col-sm-3 col-xs-12"></div>
+            </div>
         </div>
-
-        <!--</div>
-                </div>-->
-
+        <form id="certificateForm" method="post" enctype="multipart/form-data" autocomplete="off">
+            <div class="table-responsive" id="insertDiv" style="display:">
+                <input type="hidden" name="formid" id="formid" value="<?php echo htmlspecialchars($_SESSION['formid']); ?>">
+                <table class="table table-stripped table-condensed" id="certificateTable">
+                    <thead>
+                       <th>Name</th>
+                       <th>Reg No</th>
+                       <th>Course</th>
+                       <th>Certificate </th>
+                       <th>Marksheet </th>
+                       <th><input type="checkbox" id="checkAll" checked> &nbsp;Status </th>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <button type="submit" name="submit" id="submit" class="btn btn-success form-control">Save Printed Marksheet & Certificates</button>
+        </form>
     </div>
 </div>
 </div>
-
-
 <?php include('include/footer.php'); ?>
 </body>
-
 </html>
-
-
-<!-- /#page-wrapper -->
-
-
-
-
 <!-- Page-Level Demo Scripts - Notifications - Use for reference -->
 <script type="text/javascript">
     $(document).ready(function() {
@@ -205,10 +167,6 @@ include "functions.php";
 
     });
 
-
-   
 </script>
-
 </body>
-
 </html>
