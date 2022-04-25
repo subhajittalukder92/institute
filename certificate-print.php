@@ -2,7 +2,7 @@
 include('include/dbconfig.php');
 include('include/settings.php');
 include 'functions.php';
-$month = ["01" => "JAN", "02" => "FEB", "03" => "MAR",  "04" => "APR", "06" => "JUN",   "07" => "JUL", "08" => "AUG", "09" => "SEP", "10" => "OCT" ,"11" => "NOV" ,"12" => "DEC"];
+$month = ["01" => "JAN", "02" => "FEB", "03" => "MAR",  "04" => "APR", "05" => "MAY", "06" => "JUN",   "07" => "JUL", "08" => "AUG", "09" => "SEP", "10" => "OCT" ,"11" => "NOV" ,"12" => "DEC"];
     
 $regNo = htmlspecialchars($_GET['id'], ENT_QUOTES);
 $sql   = "SELECT `pursuing_course`.*,`student_info`.*, `marks`.`course_info`,`marks`.`certificate_issue_date`,`marks`.`grades`,
@@ -10,7 +10,7 @@ $sql   = "SELECT `pursuing_course`.*,`student_info`.*, `marks`.`course_info`,`ma
         LEFT JOIN `student_info` ON `student_info`.`slno` = `pursuing_course`.`student_id`
         LEFT JOIN `marks` ON `marks`.`admission_id` = `pursuing_course`.`pusuing_id`
         LEFT JOIN `franchises` ON `franchises`.`id` = `pursuing_course`.`franchise_id`
-        WHERE `pursuing_course`.`regno` ='{$regNo}' LIMIT 1" ;
+        WHERE `pursuing_course`.`regno` ='{$regNo}' AND `marks`.`certificate_status` = 'issued' LIMIT 1" ;
 $ress  = mysqli_query($conn, $sql) ;
 if(mysqli_num_rows($ress) > 0){
     $data = mysqli_fetch_array($ress);

@@ -61,8 +61,18 @@ include('include/menu.php'); ?>
                             <input type="text" required class="form-control" id="subjectname" name="subjectname" placeholder="Subject Name" value="<?php echo $row['subject'];?>" />
                         </div>
                     </div>
-
-
+                    <div class="form-group">
+                        <label for="fname" class="col-sm-4 control-label">Semester Subjects : </label>
+                        <div class="col-sm-8">
+                            <textarea name="semSubjects" id="semSubjects"  class="form-control" required><?php echo $row['semester_subjects'];?></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fname" class="col-sm-4 control-label">Semester Order : </label>
+                        <div class="col-sm-8">
+                            <input type="number"  class="form-control" id="order" name="order" value="<?php echo $row['sem_order'];?>" placeholder="Example: 1" required>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="dob" class="col-sm-4 control-label">Theory Full Marks: </label>
                         <div class="col-sm-8">

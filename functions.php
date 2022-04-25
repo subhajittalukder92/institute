@@ -364,7 +364,12 @@ function getStudents($id = Null)
 function getMarkDetails($marksId)
 {
 	include "include/dbconfig.php" ;
-	$sql = "SELECT * FROM `marks_details` WHERE `marks_id`='$marksId'";
+	$sql = "SELECT *,`subjects`.`sem_order` 
+			FROM `marks_details` 
+			LEFT JOIN `subjects` ON `subjects`.`id` = `marks_details`.`subject_id`
+			WHERE `marks_details`.`marks_id`='$marksId' 
+			ORDER BY `subjects`.`sem_order`
+			";
 	$ress = mysqli_query($conn, $sql);
 	$arr= [] ;
 	if(mysqli_num_rows($ress) > 0){

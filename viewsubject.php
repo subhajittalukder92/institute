@@ -10,10 +10,12 @@ include "include/menu.php";
             <table id="editable_table" class="table table-bordered-less table-hover">
                 <thead>
                     <th style="text-align:center;font-size:12px;"># </th>
-                    <th style="text-align:center;font-size:12px;">COURSE NAME </th>
-                    <th style="text-align:center;font-size:12px;">SUBJECT NAME </th>
-                    <th style="text-align:center;font-size:12px;">FULL MARKS </th>
-                    <th style="text-align:center;font-size:12px;" colspan="2">ACTION </th>
+                    <th style="text-align:center;font-size:12px;">COURSE Name </th>
+                    <th style="text-align:center;font-size:12px;">Semester Name </th>
+                    <th style="text-align:center;font-size:12px;">Order </th>
+                    <th style="text-align:center;font-size:12px;">Theory Marks </th>
+                    <th style="text-align:center;font-size:12px;">Practical Marks </th>
+                    <th style="text-align:center;font-size:12px;" colspan="2">Action </th>
                 </thead>
                 <tbody id="tbody">
 
@@ -144,10 +146,14 @@ include "include/menu.php";
                         "</td><td style='text-align:center;'>" +
                         x[i].subject +
                         "</td><td style='text-align:center;'>" +
+                        x[i].sem_order +
+                        "</td><td style='text-align:center;'>" +
                         x[i].full_marks +
-                        "</td><td style='text-align:center;'> <button  class='btn btn-success btn-sm btn-edit' data-toggle='modal' data-target='#myModal'  data-sid=" + x[i].sid + "><span class='glyphicon glyphicon-edit'></span></button> <button class='btn btn-danger btn-sm btn-del' data-sid=" +
+                        "</td><td style='text-align:center;'>" +
+                        x[i].practical_marks +
+                        "</td><td style='text-align:center;'> <button  class='btn btn-success btn-sm btn-edit' data-toggle='modal' data-target='#myModal'  data-sid=" + x[i].sid + "><span class='glyphicon glyphicon-edit'></span></button><!--  <button class='btn btn-danger btn-sm btn-del' data-sid=" +
                         x[i].sid +
-                        "><span class='glyphicon glyphicon-trash'></span></button></td></tr>";
+                        "><span class='glyphicon glyphicon-trash'></span></button>--></td></tr>";
                 }
                 $("#tbody").html(output);
             },

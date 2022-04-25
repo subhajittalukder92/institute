@@ -26,7 +26,7 @@ if($_POST){
             LEFT JOIN `student_info`  ON  `student_info`.`slno` =  `marks`.`student_id`
             LEFT JOIN `pursuing_course`  ON  `pursuing_course`.`pusuing_id` =  `marks`.`admission_id`
             WHERE `marks`.`admission_id` IN (SELECT `pusuing_id` FROM `pursuing_course` WHERE `course_id`='$course' 
-            AND `current_status`='PURSUING' AND `session`='$session' AND `franchise_id`='{$_SESSION['franchise_id']}')";
+            AND `session`='$session' AND `franchise_id`='{$_SESSION['franchise_id']}')  ORDER BY `pusuing_id` DESC";
 
     $res = mysqli_query($conn, $sql);
     

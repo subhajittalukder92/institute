@@ -128,10 +128,10 @@
 							</ul>
 						</li>
 						<li>
-							<a href="#"><i class="fa fa-th-list"></i> Subjects <span class="fa arrow"></span></a>
+							<a href="#"><i class="fa fa-th-list"></i> Semeters <span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="newsubject.php">Add New Subject</a></li>
-								<li><a href="viewsubject.php">View Subject</a></li>
+								<li><a href="newsubject.php">Add New Semeter</a></li>
+								<li><a href="viewsubject.php">View Semeters</a></li>
 							</ul>
 						</li>
 						<li>

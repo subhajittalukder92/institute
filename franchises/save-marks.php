@@ -61,7 +61,8 @@
             foreach ($value['subjects'] as $j => $subject) {
                 unset($subject['id']);  
                 $subjectData = getSubjectsById($subject['subject_id']);
-                $subject['marks_id'] = $marksId;
+                $subject['marks_id']             = $marksId;
+                $subject['semester_subjects']    = $subjectData['semester_subjects'];
                 $subject['full_marks_practical'] = $subjectData['practical_marks'];
                 $subject['full_marks_theory']    = $subjectData['full_marks'];
                 $subjectColumns  = implode(',', array_keys($subject));
@@ -77,7 +78,7 @@
                 }else{
                 
                     $result['success']  = false;
-                    $result['message']  = mysqli_error($this->conn);
+                    $result['message']  = mysqli_error($conn);
                    mysqli_rollback($conn);
                 } 
             }

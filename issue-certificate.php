@@ -102,31 +102,13 @@ include "functions.php";
             $(".checkBoxClass").prop('checked', $(this).prop('checked'));
         });
 
-        $('#course').on('change', function(e) {
-            var form = $('#myForm');
-            $.ajax({
-                url: "fetch-subjects.php",
-                type: 'POST',
-                data: {
-                    "course": $('#course').val()
-                },
-                dataType: 'json',
-                success: function(response) {
-                    let option = '<option value="">Select Subject</option>';
-                    if (response.success) {
-                        for (i = 0; i < response.records.length; i++) {
-                            option += '<option value="' + response.records[i].id + '">' + response.records[i].subject + '</option>';
-                        }
-                        $('#subject').html(option);
-                    }
-                }
-            });
-
-            return false;
-
-
+        $(document).ajaxSend(function() {
+            $("#overlay").fadeIn(300);
         });
-
+        $(document).ajaxComplete(function() {
+            $("#overlay").fadeOut(300);
+        });
+        
         $('#search').on('click', function(e) {
             // e.preventDefault();
             var form = $('#myForm');
@@ -150,8 +132,8 @@ include "functions.php";
                             { 
                                 tr += '<tr id="'+response.records[i].id+'">'+ 
                                           '<td><input type="checkbox" class="checkBoxClass" id="check'+response.records[i].id+'"><input type="hidden" value="'+response.records[i].id+'" id="marksId'+response.records[i].id+'"</td>'+
-                                          '<td><input type="hidden" value="'+response.records[i].admission_id+'" id="admissionId'+response.records[i].id+'"</td>'+response.records[i].St_Name+'</td>'+
-                                          '<td>'+response.records[i].regno+'</td>'+
+                                          '<td><input type="hidden" value="'+response.records[i].admission_id+'" id="admissionId'+response.records[i].id+'">'+response.records[i].St_Name+'</td>'+
+                                          '<td><input type="hidden" value="'+response.records[i].regno+'" id="regNo'+response.records[i].id+'">'+response.records[i].regno+'</td>'+
                                           '<td>'+response.records[i].course_info.course_name+'</td>'+
                                           '<td><input type="date" class="form-control" id="certificateDt'+response.records[i].id+'" value="'+dt+'" required></td>'+
                                           '<td><input type="date" class="form-control" id="marksheetDt'+response.records[i].id+'" value="'+dt+'" required></td>'+
@@ -182,7 +164,7 @@ include "functions.php";
                         count     = trId;
                         if($("#check"+count).prop('checked'))
                         {
-                            arr.push({"id": $('#marksId'+count).val(), "admission_id": $('#admissionId'+count).val(), "certificate_date":$('#certificateDt'+count).val(), "marksheet_date": $('#marksheetDt'+count).val()});
+                            arr.push({"id": $('#marksId'+count).val(), "reg_no": $('#regNo'+count).val(), "admission_id": $('#admissionId'+count).val(), "certificate_date":$('#certificateDt'+count).val(), "marksheet_date": $('#marksheetDt'+count).val()});
                         }
                    
                     }

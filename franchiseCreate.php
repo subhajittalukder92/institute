@@ -16,8 +16,8 @@
 		 $result = mysqli_query($conn, $query);
 		 $memberId = mysqli_insert_id($conn);
 		
-		 $sql="INSERT INTO `user_info`(`member_id`, `user_name`, `password`)
-		 VALUES ('$memberId', '$userName','$password')" ;
+		 $sql="INSERT INTO `user_info`(`role_id`,`member_id`, `user_name`, `password`)
+		 VALUES ('2', '$memberId', '$userName','$password')" ;
 		
 		 $res=mysqli_query($conn, $sql);
 

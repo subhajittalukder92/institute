@@ -20,12 +20,12 @@ if($_POST){
         }
         $fileName 		 = md5(uniqid(rand(), true)). $param['id'] . "." . "png";
         $target_dir      = 'qrcode/' . $fileName;
-        $qrCodeContent   = getBaseAddress() . "view-certificate.php?id=" . base64_encode($param['id']);
+        $qrCodeContent   = getBaseAddress() . "certificate-print.php?id=" . $param['reg_no'];
         QRcode::png($qrCodeContent, $target_dir) ;
         
         // Generate QRCode For Marksheet.
         $markSheetQr 	 = md5(uniqid(rand(), true)). $param['id'] . "." . "png";
-        $qrMarkContent   = getBaseAddress() . "view-marksheet.php?id=" . base64_encode($param['id']);
+        $qrMarkContent   = getBaseAddress() . "marksheet-print.php?id=" .  $param['reg_no'];
         $target_dir      = 'qrcode/' . $markSheetQr;
         QRcode::png($qrMarkContent, $target_dir) ;
        

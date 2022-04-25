@@ -2,7 +2,7 @@
 include('include/dbconfig.php');
 include('include/settings.php');
 include 'functions.php';
-$month = ["01" => "JAN", "02" => "FEB", "03" => "MAR",  "04" => "APR", "06" => "JUN",   "07" => "JUL", "08" => "AUG", "09" => "SEP", "10" => "OCT" ,"11" => "NOV" ,"12" => "DEC"];
+$month = ["01" => "JAN", "02" => "FEB", "03" => "MAR",  "04" => "APR", "05" => "MAY", "06" => "JUN",   "07" => "JUL", "08" => "AUG", "09" => "SEP", "10" => "OCT" ,"11" => "NOV" ,"12" => "DEC"];
     
 $regNo = htmlspecialchars($_GET['id'], ENT_QUOTES);
 $sql   = "SELECT `pursuing_course`.*,`student_info`.*, `marks`.`course_info`,`marks`.`marksheet_issue_date`,`marks`.`grades`,`marks`.`marksheet_qrcode`,`marks`.`id` AS `marks_id`,
@@ -265,7 +265,7 @@ if(mysqli_num_rows($ress) > 0){
                     <h6 class="practical-marks"><?php echo $marksDetail[0]['full_marks_theory']; ?></h6>
                 </div>
                 <div class="sem1-subjects-div">
-                    <h6 class="exam-name">Semester-I</h6>
+                    <h6 class="exam-name"><?php echo $marksDetail[0]['subject_name']; ?></h6>
                     <h6 class="sem1-subjects"><?php echo $marksDetail[0]['semester_subjects']; ?></h6>
                 </div>
             </div>
@@ -283,7 +283,7 @@ if(mysqli_num_rows($ress) > 0){
                     <h6 class="practical-marks"><?php echo $marksDetail[1]['full_marks_theory']; ?></h6>
                 </div>
                 <div class="sem1-subjects-div">
-                    <h6 class="exam-name">Semester-II</h6>
+                    <h6 class="exam-name"><?php echo $marksDetail[1]['subject_name']; ?></h6>
                     <h6 class="sem1-subjects"><?php echo $marksDetail[1]['semester_subjects']; ?></h6>
                 </div>
             </div>

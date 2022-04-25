@@ -1,86 +1,81 @@
 <?php
-
 include('include/check-login.php');
-
 ?>
 
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 	<meta charset="utf-8">
-
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<meta name="description" content="">
-
 	<meta name="author" content="">
-
 	<title>Niharika Software</title>
-
 	<!-- Bootstrap Core CSS -->
 
-
-
-
-
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css" />
-
 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/smoothness/jquery-ui.css">
-
 	<link rel="stylesheet" href="http://jquery.malsup.com/block/block.css?v3">
-
 	<!-- modal -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
 	<!-- MetisMenu CSS -->
-
 	<link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
 	<!-- DataTables CSS -->
-
 	<link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
 	<!-- DataTables Responsive CSS -->
-
 	<link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-
 	<!-- Custom CSS -->
-
 	<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
 	<!-- Custom Fonts -->
-
 	<link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
 	<!-- Datepick -->
-
 	<link href="../datepick_api/css_date/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-
 	<!--MultiSelect -->
-
 	<link rel="stylesheet" href="../docs/css/bootstrap-example.css" type="text/css">
-
 	<link rel="stylesheet" href="../docs/css/prettify.css" type="text/css">
-
 	<link rel="stylesheet" href="../dist/css/bootstrap-multiselect.css" type="text/css">
 
 </head>
-
-
-
+<style>
+#overlay{	
+  position: fixed;
+  z-index: 99999;
+  width: 100%;
+  height:100%;
+  display: none;
+  background: rgba(0,0,0,0.6);
+}
+.cv-spinner {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px #ddd solid;
+  border-top: 4px #2e93e6 solid;
+  border-radius: 50%;
+  animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+  100% { 
+    transform: rotate(360deg); 
+  }
+}
+.is-hide{
+  display:none;
+}
+</style>
 <body>
-
-
-
+<div id="overlay">
+	  <div class="cv-spinner">
+	    <span class="spinner"></span>
+	  </div>
+	</div>
 	<div id="wrapper">
-
 
 
 		<!-- Navigation -->

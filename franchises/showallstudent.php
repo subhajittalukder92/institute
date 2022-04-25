@@ -198,7 +198,12 @@ error_reporting(0);
 <!-- Page-Level Demo Scripts - Notifications - Use for reference -->
 <script type="text/javascript">
     $(document).ready(function() {
-
+        $(document).ajaxSend(function() {
+            $("#overlay").fadeIn(300);
+        });
+        $(document).ajaxComplete(function() {
+            $("#overlay").fadeOut(300);
+        });
 
         $('#updateMemberForm').on('submit', function(e) {
             e.preventDefault();

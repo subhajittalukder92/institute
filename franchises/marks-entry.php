@@ -230,29 +230,36 @@ function getObtainedMarks($marksId)
 <script type="text/javascript">
     $(document).ready(function() {
 
-        $('#course').on('change', function(e) {
-            var form = $('#myForm');
-            $.ajax({
-                url: "fetch-subjects.php",
-                type: 'POST',
-                data: {
-                    "course": $('#course').val()
-                },
-                dataType: 'json',
-                success: function(response) {
-                    let option = '<option value="">Select Subject</option>';
-                    if (response.success) {
-                        for (i = 0; i < response.records.length; i++) {
-                            option += '<option value="' + response.records[i].id + '">' + response.records[i].subject + '</option>';
-                        }
-                        $('#subject').html(option);
-                    }
-                }
-            });
+        // $('#course').on('change', function(e) {
+        //     var form = $('#myForm');
+        //     $.ajax({
+        //         url: "fetch-subjects.php",
+        //         type: 'POST',
+        //         data: {
+        //             "course": $('#course').val()
+        //         },
+        //         dataType: 'json',
+        //         success: function(response) {
+        //             let option = '<option value="">Select Subject</option>';
+        //             if (response.success) {
+        //                 for (i = 0; i < response.records.length; i++) {
+        //                     option += '<option value="' + response.records[i].id + '">' + response.records[i].subject + '</option>';
+        //                 }
+        //                 $('#subject').html(option);
+        //             }
+        //         }
+        //     });
 
-            return false;
+        //     return false;
 
 
+        // });
+        
+        $(document).ajaxSend(function() {
+            $("#overlay").fadeIn(300);
+        });
+        $(document).ajaxComplete(function() {
+            $("#overlay").fadeOut(300);
         });
 
         $('#search').on('click', function(e) {
