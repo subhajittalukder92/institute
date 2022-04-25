@@ -70,10 +70,47 @@ include('include/check-login.php');
 
 </head>
 
+<style>
 
+#overlay{	
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height:100%;
+  display: none;
+  background: rgba(0,0,0,0.6);
+}
+.cv-spinner {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px #ddd solid;
+  border-top: 4px #2e93e6 solid;
+  border-radius: 50%;
+  animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+  100% { 
+    transform: rotate(360deg); 
+  }
+}
+.is-hide{
+  display:none;
+}
+</style>
 
 <body>
-
+<div id="overlay">
+  <div class="cv-spinner">
+    <span class="spinner"></span>
+  </div>
+</div>
 
 
 	<div id="wrapper">
@@ -283,7 +320,6 @@ include('include/check-login.php');
 							</ul>
 
 						</li>
-
 						<li>
 
 							<a href="#"><i class="fa fa-th-list"></i> Subjects <span class="fa arrow"></span></a>
@@ -460,9 +496,7 @@ include('include/check-login.php');
 								</li>
 
 								<li>
-
 									<a href="sesionwiseAdmissionForm.php">New Admission Session wise</a>
-
 								</li>
 
 								<!--<li>
@@ -475,7 +509,20 @@ include('include/check-login.php');
 							</ul>
 
 						</li>
-
+						<li>
+							<a href="#"><i class="fa fa-th-list"></i> Certificates <span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li>
+									<a href="issue-certificate.php">Issue Certificates</a>
+								</li>
+								<li>
+									<a href="print-certificate.php">Print Certificates</a>
+								</li>
+								<li>
+									<a href="view-certificate.php">View Certificates</a>
+								</li>
+							</ul>
+						</li>
 						<!-- <li>
 
 							<a href="#"><i class="fa fa-graduation-cap"></i> I-Card<span class="fa arrow"></span></a>

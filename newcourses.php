@@ -38,7 +38,7 @@ include('include/menu.php'); ?>
 					<div class="form-group">
 						<label for="fname" class="col-sm-4 control-label">Course Code : </label>
 						<div class="col-sm-8">
-							<input type="text" required class="form-control" id="courseid" name="courseid" placeholder="Course Id" />
+							<input type="text" required class="form-control" id="courseid" name="courseid" placeholder="Course Code" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -50,7 +50,16 @@ include('include/menu.php'); ?>
 					<div class="form-group">
 						<label for="dob" class="col-sm-4 control-label">Duration: </label>
 						<div class="col-sm-8">
-							<input type="text" required class="form-control" id="cdescription" name="cdescription" placeholder="Duration" />
+							<input type="number" required class="form-control" id="cdescription" name="cdescription" placeholder="Duration" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="age" class="col-sm-4 control-label">Duration Unit: </label>
+						<div class="col-sm-8">
+							<select required class="form-control" id="unit" name="unit">
+								<option value="Month">Month</option>
+								<option value="Year">Year</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group">
@@ -59,12 +68,7 @@ include('include/menu.php'); ?>
 							<input type="text" required class="form-control" id="eligibility" name="eligibility" placeholder="Eligibility" />
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="age" class="col-sm-4 control-label">Duration Unit: </label>
-						<div class="col-sm-8">
-							<input type="text" required class="form-control" id="unit" name="unit" placeholder="Month/Year" />
-						</div>
-					</div>
+					
 					<div class="form-group">
 						<label for="contact" class="col-sm-4 control-label">Course Fee: </label>
 						<div class="col-sm-8">
