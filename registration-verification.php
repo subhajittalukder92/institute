@@ -63,7 +63,9 @@
         </div>
         <div class="col-lg-4"></div>
       </div>
-
+      <div align="center" id="message">
+        <h4 style="color: firebrick;"></h4>
+      </div>
       <div id="output" class="student-details-div" style="display: none;">
         <div align="center"><img src="images/passport.png" class="student-pic" id="student_pic"></div>
         <div class="row">
@@ -71,7 +73,7 @@
             <h4 class="titles">Student Name :</h4>
           </div>
           <div class="col-sm-7">
-            <h4 class="content" id="student_name">Malabika Chakrabarty</h4>
+            <h4 class="content" id="student_name"></h4>
           </div>
         </div>
         <div class="row">
@@ -79,7 +81,7 @@
             <h4 class="titles">Father Name :</h4>
           </div>
           <div class="col-sm-7">
-            <h4 class="content" id="father_name">Mainak Chakrabarty</h4>
+            <h4 class="content" id="father_name"></h4>
           </div>
         </div>
         <div class="row">
@@ -87,7 +89,7 @@
             <h4 class="titles">Course Name :</h4>
           </div>
           <div class="col-sm-7">
-            <h4 class="content" id="course_name">DCA</h4>
+            <h4 class="content" id="course_name"></h4>
           </div>
         </div>
         <div class="row">
@@ -95,7 +97,7 @@
             <h4 class="titles">Status :</h4>
           </div>
           <div class="col-sm-7">
-            <h4 class="content" id="status">Completed</h4>
+            <h4 class="content" id="status"></h4>
           </div>
         </div>
       </div>
@@ -106,6 +108,8 @@
 <script>
     $(document).ready(function(e){ 
       $('#search_btn').click(function(e){
+        $('#output').hide();
+        $('#message').hide();
         getStudents();
       });
     });
@@ -114,25 +118,46 @@
     }
     function getStudents(){
       var reg_no = $('#reg_no').val();
-
-        $.post('getStudents.php',{'reg_no':reg_no},function(response,status){
-          console.log(response);
-          console.log(status);
-        if(status=='success'){
-          var result=JSON.parse(response);
-          if(result.success){
-            $('#output').show();
-            $('#student_pic').html(result.data[0].image_name);
-            $('#student_name').html(result.data[0].St_Name);
-            $('#father_name').html(result.data[0].Fathers_Name);
-            $('#course_name').html(result.data[0].course_name);
-            $('#status').html(result.data[0].current_status);
+      $.ajax({
+          url:"getStudents.php",
+          type:"POST",
+          data:{'reg_no':reg_no},
+          dataType:"json",
+          success: function(response){
+            if(response.success){
+              let result = response;
+              $('#output').show();
+              $('#student_pic').attr('src', result.data[0].image_name);
+              $('#student_name').html(result.data[0].St_Name);
+              $('#father_name').html(result.data[0].Fathers_Name);
+              $('#course_name').html(result.data[0].course_name);
+              $('#status').html(result.data[0].current_status);
           }else{
-
+            $('#message').show();
+            $('#message h4').html(response.message);
           }
-        }
-      });
-      }
+          }
+});
+    }
+      //   $.post('getStudents.php',{'reg_no':reg_no},function(response,status){
+      //     console.log(response);
+      //     console.log(status);
+      //   if(status=='success'){
+      //     var result=JSON.parse(response);
+      //     if(result.success){
+      //       $('#output').show();
+      //       $('#student_pic').attr('src', result.data[0].image_name);
+      //       $('#student_name').html(result.data[0].St_Name);
+      //       $('#father_name').html(result.data[0].Fathers_Name);
+      //       $('#course_name').html(result.data[0].course_name);
+      //       $('#status').html(result.data[0].current_status);
+      //     }else{
+      //       alert(response.message);
+      //       $('#message').html(response.message);
+      //     }
+      //   }
+      // });
+      // }
 </script>
 <?php include "footer.php"; ?>	
 <?php include "footer-link.php"; ?>
