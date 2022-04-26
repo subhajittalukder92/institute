@@ -13,7 +13,7 @@ function fetchRecords()
 	while($row=mysqli_fetch_assoc($res))
 	{
 		echo '<tr>
-				<td>'.$row['code'].'</td>
+				<td>JYBCE-'.$row['code'].'</td>
 				<td>'.$row['franchise_name'].'</td>
 				<td>'.$row['director_name'].'</td>
 				<td>'.$row['address'].'</td>
@@ -25,25 +25,25 @@ function fetchRecords()
 ?>
 <script type="text/javascript">
 $(document).ready(function() {
-	$('#state').change(function() {
-	   var code = $('#state').val();
-		   if(code != "") {
-				$.post('http://www.jybce.org/districtList', {state_id: code}, function(data) {
-					 if(data == "") {
-						$("#dist_list").hide();
-						alert("No District Found. Please Select Another State");
-						return false;
-					} 
-					else {
-						  $("#dist_list").html(data);
-						  $("#dis_trict").show('slow');
-						}
-				});
-			}
-			else{
-				$("#dis_trict").hide('slow');
-			}
-	});
+	// $('#state').change(function() {
+	//    var code = $('#state').val();
+	// 	   if(code != "") {
+	// 			$.post('http://www.jybce.org/districtList', {state_id: code}, function(data) {
+	// 				 if(data == "") {
+	// 					$("#dist_list").hide();
+	// 					alert("No District Found. Please Select Another State");
+	// 					return false;
+	// 				} 
+	// 				else {
+	// 					  $("#dist_list").html(data);
+	// 					  $("#dis_trict").show('slow');
+	// 					}
+	// 			});
+	// 		}
+	// 		else{
+	// 			$("#dis_trict").hide('slow');
+	// 		}
+	// });
 });
 </script>
 <section id="inner-headline">

@@ -188,6 +188,12 @@ function fetchRecords()
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="col-sm-4 control-label">Franchise Code</label>
+					<div class="col-sm-6">
+						<input type="number" name="editCode" id="editCode" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-sm-4 control-label">Director Name</label>
 					<div class="col-sm-6">
 						<input type="text" name="editDirector" id="editDirector" class="form-control" required>
@@ -406,6 +412,7 @@ $('#editMessage').html("");
             success:function(response) {
                 $("#editUserId").val(response.description);
                 $("#editName").val(response.franchise_name);
+                $("#editCode").val(response.code);
                 $("#editUserName").val(response.user_name);
                 $("#editDirector").val(response.director_name);
                 $("#editState").val(response.state_id);
