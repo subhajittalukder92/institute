@@ -1,6 +1,10 @@
 <?php session_start();
 include "include/no-cache.php";
 include "include/check-login.php";
+include "functions.php";
+
+$states = getStates("35"); 
+$districts = getDistrictsByStateId("35"); 
 function fetchRecords()
 {
 	include   ('include/dbconfig.php');	
@@ -34,10 +38,13 @@ function fetchRecords()
 			  <p>&nbsp;</p>
 			  <div class="clearfix"></div>
 			  <div class="table-responsive">
-					<table id="example" class="table table-stripped">
+					<table id="example" class="table table-stripped table-condensed">
 						<thead>
 							<th >SL NO			        </th>
 							<th >Franchise Name	</th>
+							<th >Director Name	</th>
+							<th >Code	</th>
+							<th >Aaddress	</th>
 							<th >Contact	</th>
 							<th >User Id			</th>
 							<th >Password			</th>
@@ -79,9 +86,16 @@ function fetchRecords()
 				<div class="form-group">
 					<label class="col-sm-4 control-label">Franchise Code</label>
 					<div class="col-sm-6">
-						<input type="text" name="franchiseCode" id="franchiseCode" class="form-control" required>
+						<input type="number" name="franchiseCode" id="franchiseCode" class="form-control" required>
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label">Director Name</label>
+					<div class="col-sm-6">
+						<input type="text" name="director" id="director" class="form-control" required>
+					</div>
+				</div>
+				
 				<div class="form-group">
 					<label class="col-sm-4 control-label">Contact</label>
 					<div class="col-sm-6">
@@ -92,6 +106,42 @@ function fetchRecords()
 					<label class="col-sm-4 control-label">Address</label>
 					<div class="col-sm-6">
 						<input type="text" name="address" id="address" class="form-control" >
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label">State</label>
+					<div class="col-sm-6">
+						<select name="state" id="state" class="form-control" requiured>
+							<option value="">Select State</option>
+							<?php 
+							
+							if(count($states) > 0){
+								foreach ($states as $key => $state) {
+									echo '<option value="'.$state['id'].'">'.$state['state'].'</option>';
+								}
+								
+							}
+							
+							?>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label">District</label>
+					<div class="col-sm-6">
+						<select name="district" id="district" class="form-control" requiured>
+							<option value="">Select District</option>
+							<?php 
+							
+							if(count($districts) > 0){
+								foreach ($districts as $key => $district) {
+									echo '<option value="'.$district['id'].'">'.$district['district_name'].'</option>';
+								}
+								
+							}
+							
+							?>
+						</select>
 					</div>
 				</div>
 				<div class="form-group">
@@ -138,6 +188,12 @@ function fetchRecords()
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="col-sm-4 control-label">Director Name</label>
+					<div class="col-sm-6">
+						<input type="text" name="editDirector" id="editDirector" class="form-control" required>
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-sm-4 control-label">Contact</label>
 					<div class="col-sm-6">
 						<input type="text" name="editContact" id="editContact" class="form-control" required>
@@ -147,6 +203,43 @@ function fetchRecords()
 					<label class="col-sm-4 control-label">Address</label>
 					<div class="col-sm-6">
 						<input type="text" name="editAddress" id="editAddress" class="form-control" >
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label">State</label>
+					<div class="col-sm-6">
+						<select name="editState" id="editState" class="form-control" requiured>
+							<option value="">Select State</option>
+							<?php 
+							
+							if(count($states) > 0){
+								foreach ($states as $key => $state) {
+									echo '<option value="'.$state['id'].'">'.$state['state'].'</option>';
+								}
+								
+							}
+							
+							?>
+							
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label">District</label>
+					<div class="col-sm-6">
+						<select name="editDistrict" id="editDistrict" class="form-control" requiured>
+							<option value="">Select District</option>
+							<?php 
+							
+							if(count($districts) > 0){
+								foreach ($districts as $key => $district) {
+									echo '<option value="'.$district['id'].'">'.$district['district_name'].'</option>';
+								}
+								
+							}
+							
+							?>
+						</select>
 					</div>
 				</div>
 				<div class="form-group">
@@ -314,6 +407,9 @@ $('#editMessage').html("");
                 $("#editUserId").val(response.description);
                 $("#editName").val(response.franchise_name);
                 $("#editUserName").val(response.user_name);
+                $("#editDirector").val(response.director_name);
+                $("#editState").val(response.state_id);
+                $("#editDistrict").val(response.district_id);
                 $("#editUserId").val(response.user_id);
                 $("#editAddress").val(response.address);
                 $("#editContact").val(response.contact);

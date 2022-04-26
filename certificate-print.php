@@ -4,7 +4,7 @@ include('include/settings.php');
 include 'functions.php';
 $month = ["01" => "JAN", "02" => "FEB", "03" => "MAR",  "04" => "APR", "05" => "MAY", "06" => "JUN",   "07" => "JUL", "08" => "AUG", "09" => "SEP", "10" => "OCT" ,"11" => "NOV" ,"12" => "DEC"];
     
-$regNo = htmlspecialchars($_GET['id'], ENT_QUOTES);
+$regNo = mysqli_real_escape_string($conn, $_GET['id']);
 $sql   = "SELECT `pursuing_course`.*,`student_info`.*, `marks`.`course_info`,`marks`.`certificate_issue_date`,`marks`.`grades`,
         `marks`.`qrcode`, `franchises`.`franchise_name`,`franchises`.`address` FROM `pursuing_course`
         LEFT JOIN `student_info` ON `student_info`.`slno` = `pursuing_course`.`student_id`
@@ -258,15 +258,15 @@ if(mysqli_num_rows($ress) > 0){
             </div>
             <div class="pic-div-container">
                 <div class="student-pic-div">
-                    <img src="images/passport.png<?php //echo $data['image_name']; ?>" class="student-pic border">
+                    <img src="<?php echo $data['image_name']; ?>" class="student-pic border">
                 </div>
                 <div class="qrcode-pic-div">
-                    <img src="images/qrcode.png<?php //echo $data['qrcode']; ?>" class="qrcode-pic border">
+                    <img src="<?php echo $data['qrcode']; ?>" class="qrcode-pic border">
                 </div>
             </div>
             <div class="container">
                 <div class="clearfix mt-4">
-                  <p class="float-start issue-date"><?php echo date('d/m/Y', strtotime($data['certificate_issue_date'])); ?></p>
+                  <p class="float-start issue-date" ><?php echo date('d/m/Y', strtotime($data['certificate_issue_date'])); ?></p>
                 </div>
             </div>
         </div>

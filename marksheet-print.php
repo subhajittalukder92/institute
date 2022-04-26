@@ -300,8 +300,8 @@ if(mysqli_num_rows($ress) > 0){
             <div class="row last-div">
                 <div class="col-1"></div>
                 <div class="col-4">
-                    <h6 class="font-11 grade"><?php echo $data['grades']; ?></h6>
-                    <h6 class="font-11 pass">PASS</h6>
+                    <h6 class="font-11 grade"><b><?php echo $data['grades']; ?></b></h6>
+                    <h6 class="font-11 pass"><b>PASS</b></h6>
                     <h6 class="result-date" align="right">&nbsp;&nbsp;<?php echo date("d/m/Y", strtotime($data['marksheet_issue_date'])); ?></h6>
                 </div>
                 <div class="col-7">

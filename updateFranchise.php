@@ -7,6 +7,9 @@ if($_POST)
 	$userName  	  = trim(mysqli_real_escape_string($conn, $_POST['editUserName']));
 	$userId   	  = trim($_POST['editUserId']);
 	$franchiseName = trim($_POST['editName']);
+	$director      = trim($_POST['editDirector']);
+	$district      = trim($_POST['editDistrict']);
+	$state      = trim($_POST['editState']);
 	$memberId 	  = trim($_POST['editMemberId']);
 	$password 	  = trim(mysqli_real_escape_string($conn, $_POST['editPassword']));
 	$contact 	  = trim($_POST['editContact']);
@@ -21,7 +24,7 @@ if($_POST)
 		$validator['messages']= "This user name is already taken";
 	}else{
 		$sql		= "UPDATE `user_info` SET `user_name`='$userName',`password`='$password'  WHERE `user_id`='$userId'";
-		$franSql	= "UPDATE `franchises` SET `franchise_name`='$franchiseName', `address`='$address', `contact`='$contact'  WHERE `id`='$memberId'";
+		$franSql	= "UPDATE `franchises` SET `franchise_name`='$franchiseName', `director_name`='$director', `state_id`='$state', `district_id`='$district', `address`='$address', `contact`='$contact'  WHERE `id`='$memberId'";
 		
 		$result_sql		  = mysqli_query($conn, $sql);
 		$result_fran	  = mysqli_query($conn, $franSql);

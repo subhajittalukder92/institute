@@ -5,6 +5,9 @@
  {
 	 $userName    = trim($_POST['userName']);
 	 $name    	  = trim($_POST['franchiseName']);
+	 $director    = trim($_POST['director']);
+	 $state    	  = trim($_POST['state']);
+	 $district     = trim($_POST['district']);
 	 $contact 	  = trim($_POST['contact']);
 	 $address 	  = trim($_POST['address']);
 	 $code 	  	  = trim($_POST['franchiseCode']);
@@ -12,7 +15,7 @@
 	
 	 if(checkDuplicate($userName))
 	 {
-		 $query  = "INSERT INTO `franchises`(`franchise_name`, `code`, `address`, `contact`) VALUES ('$name', '$code', '$address', '$contact')";
+		 $query  = "INSERT INTO `franchises`(`franchise_name`,`director_name`,`state_id`,`district_id`, `code`, `address`, `contact`) VALUES ('$name', '$director', '$state', '$district','$code', '$address', '$contact')";
 		 $result = mysqli_query($conn, $query);
 		 $memberId = mysqli_insert_id($conn);
 		

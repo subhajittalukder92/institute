@@ -34,6 +34,9 @@ while($row=mysqli_fetch_assoc($res))
 	(
 		$x,
 		$row['franchise_name'],
+		$row['director_name'],
+		$row['code'],
+		$row['address'],
 		$row['contact'],
 		$row['user_name'],
 		$row['password'],

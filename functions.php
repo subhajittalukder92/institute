@@ -527,6 +527,54 @@ function getSubjectsByCourse($id = Null)
 	}
 	return $arr;
 }
+
+function getStates($id = Null)
+{
+	include "include/dbconfig.php" ;
+	if(!empty($id)){
+		$sql = "SELECT * FROM `states` WHERE `id`='$id'";
+	}else{
+		$sql = "SELECT * FROM `states`";
+	}
+	$result = mysqli_query($conn, $sql);
+	$arr = [];
+	if(mysqli_num_rows($result) > 0){
+		while($row = mysqli_fetch_assoc($result)){
+			$arr[] = $row;
+		}
+	}
+	return $arr;
+}
+function getDistricts($id = Null)
+{
+	include "include/dbconfig.php" ;
+	if(!empty($id)){
+		$sql = "SELECT * FROM `districts` WHERE `id`='$id'";
+	}else{
+		$sql = "SELECT * FROM `districts`";
+	}
+	$result = mysqli_query($conn, $sql);
+	$arr = [];
+	if(mysqli_num_rows($result) > 0){
+		while($row = mysqli_fetch_assoc($result)){
+			$arr[] = $row;
+		}
+	}
+	return $arr;
+}
+function getDistrictsByStateId($id = Null)
+{
+	include "include/dbconfig.php" ;
+	$sql = "SELECT * FROM `districts` WHERE `state_id`='$id' ORDER BY `district_name`";
+	$result = mysqli_query($conn, $sql);
+	$arr = [];
+	if(mysqli_num_rows($result) > 0){
+		while($row = mysqli_fetch_assoc($result)){
+			$arr[] = $row;
+		}
+	}
+	return $arr;
+}
 function getSessions($id = Null)
 {
 	include "include/dbconfig.php" ;

@@ -132,8 +132,8 @@ include "functions.php";
                             { 
                                 tr += '<tr id="'+response.records[i].id+'">'+ 
                                           '<td><input type="checkbox" class="checkBoxClass" id="check'+response.records[i].id+'"><input type="hidden" value="'+response.records[i].id+'" id="marksId'+response.records[i].id+'"</td>'+
-                                          '<td><input type="hidden" value="'+response.records[i].admission_id+'" id="admissionId'+response.records[i].id+'">'+response.records[i].St_Name+'</td>'+
                                           '<td><input type="hidden" value="'+response.records[i].regno+'" id="regNo'+response.records[i].id+'">'+response.records[i].regno+'</td>'+
+                                          '<td><input type="hidden" value="'+response.records[i].admission_id+'" id="admissionId'+response.records[i].id+'">'+response.records[i].St_Name+'</td>'+
                                           '<td>'+response.records[i].course_info.course_name+'</td>'+
                                           '<td><input type="date" class="form-control" id="certificateDt'+response.records[i].id+'" value="'+dt+'" required></td>'+
                                           '<td><input type="date" class="form-control" id="marksheetDt'+response.records[i].id+'" value="'+dt+'" required></td>'+
