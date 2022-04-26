@@ -107,7 +107,7 @@
               <li><a href="#">Job Consultancy Service</a></li>
             </ul>
           </li>
-          <li><a href="#">Download</a></li>
+          <!-- <li><a href="#">Download</a></li> -->
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-animations="zoomIn zoomIn zoomIn zoomIn" href="homepage#">
               Contact Us <span class="caret"></span>
@@ -115,6 +115,15 @@
             <ul class="dropdown-menu dropdown-menu1" role="menu">
               <li><a href="#">Contact Info</a></li>
               <li><a href="#">Bank Details</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-animations="zoomIn zoomIn zoomIn zoomIn" href="homepage#">
+              Login <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu1" role="menu">
+              <li><a href="signin.php">Admin Login</a></li>
+              <li><a href="franchises/signin.php">Centre Login</a></li>
             </ul>
           </li>
         </ul>

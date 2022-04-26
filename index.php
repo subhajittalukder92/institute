@@ -126,7 +126,7 @@
 
 
 <section id="content">
-<section class="student-sec">
+<!-- <section class="student-sec">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -264,7 +264,7 @@
       
     </div>
   </div>
-</section> 
+</section>  -->
   <section class="enquiry-sec">
   <div class="container">
     <div class="row">
@@ -341,23 +341,21 @@
 </div>
 </section>
   
-<section class="recent">
+<!-- <section class="recent">
   <div class="container">
-    <!-- Portfolio Projects -->
     <div class="row">
       <div class="col-lg-12">
         <h2 class="heading text-center">Recent Works</h2>
         <div class="solidline"></div>
           <div class="clients-carousel custom-carousel touch-carousel navigation-1 owl-carousel owl-theme" data-appeared-items="6" data-navigation="true" style="opacity: 1; display: block;"> 
             
-            <!-- Client 1 -->
                         <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 752px; left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(0px, 0px, 0px);"><div class="owl-item" style="width: 188px;"><div class="client-item item"> <a href="http://www.jybce.org/homepage#"><img src="files/1526242021portfolio-01.jpg" alt=""></a> </div></div><div class="owl-item" style="width: 188px;"><div class="client-item item"> <a href="http://www.jybce.org/homepage#"><img src="files/1526312303portfolio-03.jpg" alt=""></a> </div></div></div></div>
                         
                       <div class="owl-controls clickable" style="display: none;"><div class="owl-buttons"><div class="owl-prev"><i class="fa fa-angle-left"></i></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div></div></div>
       </div>
     </div>
   </div>
-</section>
+</section> -->
 </section>
 
 <?php include "footer.php"; ?>	

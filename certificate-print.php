@@ -55,6 +55,7 @@ if(mysqli_num_rows($ress) > 0){
     }
     h6{
         font-size: 11px;
+        font-weight: 700;
     }
     .reg-no{
         margin-left: 70px;
@@ -62,20 +63,14 @@ if(mysqli_num_rows($ress) > 0){
     }
     .name{
         margin-top:231px;
-        font-weight: 700;
         font-size: 12px;
     }
     .father-name{
         margin-top: 10px;
-        /*margin-left: 99px;*/
-        font-weight: 700;
         font-size: 12px;
     }
     .from-div{
         margin-top: 9px;
-    }
-    .from{
-        font-weight: 700;
     }
     .div1{
         width: 67px; 
@@ -98,20 +93,20 @@ if(mysqli_num_rows($ress) > 0){
         margin:auto; 
         margin-top: 20px;
     }
-    .pic-div-2{
+    .student-pic-div{
         width: 79px; 
         height: 80px; 
         float: right;
     }
-    .pic-div-1{
+    .qrcode-pic-div{
         width: 77px; 
         height: 80px;
     }
-    .pic-2{
+    .student-pic{
         width: 79px; 
         height: 80px;
     }
-    .pic-1{
+    .qrcode-pic{
         width: 77px; 
         height: 80px;
     }
@@ -119,10 +114,6 @@ if(mysqli_num_rows($ress) > 0){
         font-size: 11px; 
         font-weight: 500; 
         padding-left: 5px;
-    }
-    .chairman{
-        font-size: 11px; 
-        font-weight: 500;
     }
 
 @media print{
@@ -192,39 +183,35 @@ if(mysqli_num_rows($ress) > 0){
     .pic-div-container{
         width:644px; 
         margin:auto; 
-        margin-top: 33px;
+        margin-top: 34px;
     }
-    .pic-div-2{
-        width: 132px; 
-        height: 140px; 
-        float: right;
+    .student-pic-div{
+        width: 131px; 
+        height: 136px;
+        border:1px solid lightgray;
     }
-    .pic-div-1{
-        width: 130px; 
-        height: 140px;
+    .qrcode-pic-div{
+        width: 128px; 
+        height: 138px;
     }
-    .pic-2{
-        width: 132px; 
-        height: 140px;
+    .student-pic{
+        width: 131px; 
+        height: 136px;
+        margin-top: 2px;
     }
-    .pic-1{
-        width: 130px; 
-        height: 140px;
-    }
-    .bottom-div{
-        margin-top: 45px;
+    .qrcode-pic{
+        width: 127px; 
+        height: 138px;
+        margin-left: 1.5px;
     }
     .container{
         max-width: 97%;
+        margin-top: 45px;
     }
     .issue-date{
         font-size: 15px; 
         font-weight: 500; 
         padding-left: 20px;
-    }
-    .chairman{
-        font-size: 15px; 
-        font-weight: 500;
     }
 }
 </style>
@@ -249,11 +236,11 @@ if(mysqli_num_rows($ress) > 0){
             </div>
             <div class="div1"><h6 align="center"><?php echo $course['duration']; ?></h6></div>
             <div class="div2">&nbsp;</div>
-            <div class="div3"><h6><?php echo $course['course_name']; ?></h6></div>
+            <div class="div3" align="center"><h6><?php echo $course['course_name']; ?></h6></div>
             <div class="container-fluid ins-div" style="clear: both;">
                 <div class="row">
                     <div class="col-3"></div>
-                    <div class="col-9">
+                    <div class="col-9" align="center">
                         <h6 class="ins-name"><?php echo $data['franchise_name']; ?></h6>
                     </div>
                 </div>
@@ -264,23 +251,22 @@ if(mysqli_num_rows($ress) > 0){
                     <div class="col-2">
                         <h6><?php echo $data['grades']; ?></h6>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6" align="center">
                         <h6 class="at"><?php echo $data['address']; ?></h6>
                     </div>
                 </div>
             </div>
             <div class="pic-div-container">
-                <div class="pic-div-2">
-                    <img src="<?php echo $data['image_name']; ?>" class="pic-2">
+                <div class="student-pic-div">
+                    <img src="images/passport.png<?php //echo $data['image_name']; ?>" class="student-pic border">
                 </div>
-                <div class="pic-div-1">
-                    <img src="<?php echo $data['qrcode']; ?>" class="pic-1">
+                <div class="qrcode-pic-div">
+                    <img src="images/qrcode.png<?php //echo $data['qrcode']; ?>" class="qrcode-pic border">
                 </div>
             </div>
-            <div class="container bottom-div">
+            <div class="container">
                 <div class="clearfix mt-4">
                   <p class="float-start issue-date"><?php echo date('d/m/Y', strtotime($data['certificate_issue_date'])); ?></p>
-                  <p class="float-end chairman">Sri Biman Ghosh</p>
                 </div>
             </div>
         </div>

@@ -1,6 +1,28 @@
-<?php include "header-link.php"; ?>
-<?php include "header.php"; ?>
+<?php 
+include "header-link.php";
+include "header.php"; 
 
+function fetchRecords()
+{
+	include   ('include/dbconfig.php');	
+	
+	$sql	="SELECT * FROM `franchises`
+			  LEFT JOIN districts ON franchises.district_id=districts.id
+			  LEFT JOIN states ON franchises.state_id=states.id";
+	$res	= mysqli_query($conn,  $sql);
+	while($row=mysqli_fetch_assoc($res))
+	{
+		echo '<tr>
+				<td>'.$row['code'].'</td>
+				<td>'.$row['franchise_name'].'</td>
+				<td>'.$row['director_name'].'</td>
+				<td>'.$row['address'].'</td>
+				<td>'.$row['district_name'].'</td>
+				<td>'.$row['state'].'</td>
+			</tr>' ;
+	}
+}
+?>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('#state').change(function() {
@@ -41,7 +63,7 @@ $(document).ready(function() {
         <div class="container">
             <div class="row">
 				<div class="col-md-9">
-				  <div class="row">
+				  <!-- <div class="row">
 					<form action="http://www.jybce.org/study-centre" class="bs-example form-horizontal" id="search-form" method="get">
 						<input type="hidden" name="action" value="search">
 						<div class="col-md-5">
@@ -106,247 +128,23 @@ $(document).ready(function() {
 							</div>
 						</div>
 					</form>
-				  </div>
+				  </div> -->
 				  <!-- Some Text -->
 				  <table class="table rwd-table" style="margin-top:2%;">
 				  <thead>
 				  <tr>
-					<!--<th>Sl No</th>-->
-					<th>Center Code</th>
-					<th>Center Name</th>
-					<th>Director Name</th>
-					<th>Location</th>
-					<th>District</th>
-					<th>State</th>
+						<th>Center Code</th>
+						<th>Center Name</th>
+						<th>Director Name</th>
+						<th>Location</th>
+						<th>District</th>
+						<th>State</th>
 				  </tr>
 				  </thead>
-				  				  <tbody><tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0029</td>
-					<td>APOLLO COMPUTER CENTRE</td>
-					<td>ARPITA KUNDU</td>
-					<td>JALANNAGAR,MURSIDABAD</td>
-										<td>MURSHIDABAD</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0026</td>
-					<td>NYCE JATIYA YUVA COMPUTER CENTRE</td>
-					<td>RAJESH KHAN</td>
-					<td>BOLPUR</td>
-										<td>BIRBHUM</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0028</td>
-					<td>ALFA DIGITAL</td>
-					<td>AVIJIT MAHANTA</td>
-					<td>KUCHANPUR,NADIA</td>
-										<td>NADIA</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0027</td>
-					<td>JATIYA YUVA BOARD OF COMPUTER ACADEMY </td>
-					<td>SOMNATH CHATTERJEE</td>
-					<td>AMGHATA,NADIA</td>
-										<td>NADIA</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0025</td>
-					<td>DAYER BAZAR JATIYA YUVA BOARD OF COMPUTER EDUCATION</td>
-					<td>SUBRATA DAS</td>
-					<td>NEAR DAYER BAZAR VIDYAMANDIR</td>
-										<td>NADIA</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0031</td>
-					<td>GHURNI JATIYA YUVA BOARD OF COMPUTER EDUCATION</td>
-					<td>SANGITA MONDAL BHATTACHARYA</td>
-					<td>KRISHNAGAR</td>
-										<td>NADIA</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0030</td>
-					<td>RADHANAGAR JATIYA YUVA BOARD OF COMPUTER EDUCATION</td>
-					<td>TANMAY MONDAL</td>
-					<td>RADHANAGAR</td>
-										<td>NADIA</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0033</td>
-					<td>NATIONAL COMPUTER CENTRE</td>
-					<td>MD KHAIRUL SHAIKH &amp; HALIM SHAIKH</td>
-					<td>Sanmatinagar</td>
-										<td>MURSHIDABAD</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0032</td>
-					<td>DIAMOND HARBOUR JYBCE</td>
-					<td>SAPTAMI MAITY</td>
-					<td>Diamond Harbour</td>
-										<td>SOUTH 24 PARGANAS</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0033</td>
-					<td>Jatiyo Yubo Computer Centre</td>
-					<td>ABDUL MOIN</td>
-					<td>Dogachi</td>
-										<td>MURSHIDABAD</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0034</td>
-					<td>GOOGHLY JYBCE</td>
-					<td>RAJU SEN</td>
-					<td>HOOGHLY</td>
-										<td>HOOGHLY</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0035</td>
-					<td>JOYPUL JATIYA YUVA BOARD OF COMPUTER EDUCATION</td>
-					<td>KALYAN NAG</td>
-					<td>DATTAPUKUR</td>
-										<td>NORTH 24 PARGANAS</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0036</td>
-					<td>srirampur jybce</td>
-					<td>Suvojit Saha</td>
-					<td>Srirampur</td>
-										<td>HOOGHLY</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0037</td>
-					<td> A to Z Learning Center</td>
-					<td>Dinesh Roy</td>
-					<td>ballygunj</td>
-										<td>SOUTH 24 PARGANAS</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0038</td>
-					<td>S.S TECHNOLOGY</td>
-					<td>SHIBNATH DUTTA</td>
-					<td>KRISHNAGAR</td>
-										<td>NADIA</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0039</td>
-					<td>JYBCE JATIYA YUVA COMPUTER TRAINING CENTRE</td>
-					<td>SUBRATA KUMAR DAS</td>
-					<td>GOKULNAGAR,TEKHALI BAZAR,NANDIGRAM</td>
-										<td>PURBA MEDINIPUR</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0040</td>
-					<td>LEARNING COMPUTER ACADEMY</td>
-					<td>HARUN RASID SK</td>
-					<td>BISHNUPUR,</td>
-										<td>SOUTH 24 PARGANAS</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0041</td>
-					<td>NIAMATPUR  JYBCE</td>
-					<td>Pankaj Jha</td>
-					<td>Maldah</td>
-										<td>MALDAH</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0042</td>
-					<td>Bolpur Computer Center</td>
-					<td>Jhuma batabyal</td>
-					<td>Bolpur</td>
-										<td>BIRBHUM</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0043</td>
-					<td>JATIYA YUVA COMPUTER CENTER</td>
-					<td>Suman ghosh</td>
-					<td>BATUN</td>
-										<td>DAKSHIN DINAJPUR</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0044</td>
-					<td>LILUAH JATIYA YUVA</td>
-					<td>Surojit dey</td>
-					<td>Liluah</td>
-										<td>HOWRAH</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0045</td>
-					<td>MICROCHIP COMPUTER ACADEMY</td>
-					<td>ALOKE KUMAR NANDY</td>
-					<td>NISCHINDA</td>
-										<td>HOWRAH</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0046</td>
-					<td>SEEMANAGAR NATIONAL YOUTH COMPUTER CENTER</td>
-					<td>RAHUL GHOSH</td>
-					<td>SEEMANAGAR</td>
-										<td>NADIA</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0047</td>
-					<td>Bamunia Jatiya Yuva Academy</td>
-					<td>Ashim Koner </td>
-					<td>Purba Barddhaman,</td>
-										<td>BARDHAMAN</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  				  <tr>
-					<!--<td>1</td>-->
-					<td>JYBCE-0048</td>
-					<td>A TO Z COMPUTER TRAINING CENTRE</td>
-					<td>SUMITRA BANIK BHOWMICK</td>
-					<td>NABADWIP</td>
-										<td>NADIA</td>
-										<td>WEST BENGAL (WB)</td>
-				  </tr>
-				  					</tbody></table>
-				  
+				  <tbody>
+				  	<?php echo fetchRecords(); ?>
+				  	</tbody>
+				 </table>
 				</div>
 				<div class="col-lg-3">
 					<aside class="left-sidebar">

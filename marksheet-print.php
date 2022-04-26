@@ -70,10 +70,10 @@ if(mysqli_num_rows($ress) > 0){
     .info{
         margin-left: 152px;
         font-size: 12px;
+        font-weight: 600;
         font-family: 'Oswald', sans-serif;
     }
     .s-name{
-        font-weight: 600;
         padding-top: 2px;
     }
     .course-name{
@@ -98,6 +98,7 @@ if(mysqli_num_rows($ress) > 0){
     .practical-marks{
         font-size: 10px; 
         margin-top: 15px;
+        font-weight: 700;
     }
     .theory{
         width: 60px; 
@@ -209,6 +210,7 @@ if(mysqli_num_rows($ress) > 0){
         width: 295px;
         min-height: 90px; 
         max-height: 90px;
+        border:1px solid transparent;
     }
     .exam-name{
         font-size: 15px;
@@ -217,7 +219,7 @@ if(mysqli_num_rows($ress) > 0){
         font-size: 13px;
     }
     .grand-total-div{
-        margin-top: 16px;
+        margin-top: 6px;
     }
     .font-11{
         font-size: 17px;
@@ -244,7 +246,7 @@ if(mysqli_num_rows($ress) > 0){
 
     <div class="marksheet-bg">         
         <div class="content">
-            <div align="right"><img src="<?php echo $data['image_name'];?>" class="student-pic"></div>
+            <div align="right"><img src="<?php echo $data['image_name'];?>" class="student-pic border"></div>
             <h6 class="info"><?php echo $data[7];?></h6>
             <h6 class="info s-name"><?php echo $data['St_Name'];?></h6>
             <h6 class="info s-name"><?php echo $data['Fathers_Name'];?></h6>
@@ -303,7 +305,7 @@ if(mysqli_num_rows($ress) > 0){
                     <h6 class="result-date" align="right">&nbsp;&nbsp;<?php echo date("d/m/Y", strtotime($data['marksheet_issue_date'])); ?></h6>
                 </div>
                 <div class="col-7">
-                    <img src="<?php echo $data['marksheet_qrcode'];?>" class="qrcode">
+                    <img src="<?php echo $data['marksheet_qrcode'];?>" class="qrcode border">
                 </div>
             </div>
         </div>
