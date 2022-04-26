@@ -67,7 +67,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu1" role="menu">
               <li><a href="#">Download Your Marksheet</a></li>
-              <li><a href="#">Registration Verification</a></li>
+              <li><a href="registration-verification.php">Registration Verification</a></li>
               <li><a href="certificate-download.php">Download Your Certificate</a></li>
               <li><a href="#">Check Your Admit Card</a></li>
               <li><a href="#">Library</a></li>
