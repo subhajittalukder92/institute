@@ -23,7 +23,9 @@ if(mysqli_num_rows($ress) > 0){
     echo '<h2 align="center">No Records Found</h2>';
     exit;
 }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -241,7 +243,7 @@ if(mysqli_num_rows($ress) > 0){
             </div>
             <div class="div1"><h6 align="center"><?php echo $course['duration']; ?></h6></div>
             <div class="div2">&nbsp;</div>
-            <div class="div3" align="center"><h6><?php echo $course['course_name']; ?></h6></div>
+            <div class="div3" align="center"><h6><?php echo !empty($course['short_name']) ? $course['short_name'] : ""; ?></h6></div>
             <div class="container-fluid ins-div" style="clear: both;">
                 <div class="row">
                     <div class="col-3"></div>

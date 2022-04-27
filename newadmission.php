@@ -49,41 +49,31 @@ if (isset($_POST['formid']) && isset($_SESSION['formid']) && $_POST['formid'] ==
 
 	$stid			= findMaxID($session);
 	$value = '';
-	$courseday = array();
-	if (isset($_POST['courseday'])) {
+	$courseday = isset($_POST['courseday']) ? json_encode($_POST['courseday']) : "[]";
 
-		foreach ($_POST["courseday"] as $row) {
-			$value .= $row . ',';
-		}
-		$value = rtrim($value, ',');
-	}
 
-	if ($value != "") {
-		$courseday = explode(',', $value);
-	}
-
-	//$payby			= strtoupper(trim($_POST['payby']));
-	/* $frommonth		=trim($_POST['frommonth']);
-		$tomonth		=trim($_POST['tomonth']);
-		$toyear			=trim($_POST['toyear']); */
-	$session        = sessionById($_POST['sessionCode']);
-	$sessioncode	= $session['session_code'];
-	$sessionId	    = $session['slno'];
+	$sessionId	    = trim($_POST['sessionCode']);
+	$sessionData	= findSessionById($sessionId);
+	$sessioncode    = $sessionData['session_code'];
 	$coursecode		= $course;
+	$franchise		= $_POST['franchise'];
 	$serialno		= findSerialNo($sessioncode, $coursecode);
-	$regno			= findStudentRegistraionNo($sessioncode, $coursecode);
+	$regno			= getRegistraionNoByFranchise($franchise);
 	$particulars	= "ADMISSION TO " . findCourseName($course);
+	
+	$extension      = strtolower(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION));
 	$sourcePath 	= $_FILES['fileToUpload']['tmp_name'];
-	$imagename		= $_FILES['fileToUpload']['name'];
-	$targetPath 	= "Student_images/" . $_FILES['fileToUpload']['name'];
+	$imagename      = md5(uniqid(rand(), true)) . "." . $extension;
+	$targetPath 	= "Student_images/" . $imagename;
 	move_uploaded_file($sourcePath, $targetPath);
+	
 	$sql    		= "INSERT INTO `student_info`(franchise_id,`Student_Id`, `St_Name`, `Fathers_Name`, `DOB`, `Gender`, `Cust`, `Religion`, 
 				 `Mother_Trong`, `Session1`,`session_month`,`session_code`, `Roll`, `DOA`, `Mothers_Name`, `adminslno`, `Vill`, `Post`, `PS`, `Dist`, `Pin`, 
 				 `Contact_no`,`contact2`,`aadhar`, `qualification`,`image_name`,`previous_course`,`ref_name`,`admission_type`,`note`)
-				  VALUES ('{$_SESSION['franchise_id']}','$stid','$sname','$fname','$dob','$gender','$caste','$religion','','$session','','$sessioncode','',
+				  VALUES ('$franchise','$stid','$sname','$fname','$dob','$gender','$caste','$religion','','$session','','$sessioncode','',
 				 '$date','$mname','','$address','$po','$ps','$district','$pin','$contact','$contact1','$aadhar',
 				 '$qualification','$imagename','$prevcourse','$refname','$admissionType','$note')";
-
+ 
 	$res			= mysqli_query($conn,  $sql);
 	$std_id			= mysqli_insert_id($conn);
 	$slno			= mysqli_insert_id($conn);
@@ -102,6 +92,16 @@ if (isset($_POST['formid']) && isset($_SESSION['formid']) && $_POST['formid'] ==
 } else {
 
 	$_SESSION['formid'] = md5(rand(0, 10000000));
+}
+
+function findSessionById($code)
+{
+	include 'include/dbconfig.php';
+	$sql="SELECT * from `session` where `slno` ='$code'";
+	$res=mysqli_query($conn,$sql);
+	$row=mysqli_fetch_assoc($res);
+	return $row;
+
 }
 
 function findMaxID($session)
@@ -153,16 +153,19 @@ function addStudentToPursuingTable($course, $studentID, $session, $fees, $date, 
 {
 	include "include/dbconfig.php";
 
-	/* 	$frommonth		= trim($_POST['frommonth']);
-	$tomonth		= trim($_POST['tomonth']);
-	$toyear			= trim($_POST['toyear']); */
+	$frommonth		= trim($_POST['startingMonth']);
+	$tomonth		= trim($_POST['completionMonth']);
+	$fromyear		= trim($_POST['startingYear']); 
+	$toyear			= trim($_POST['completionYear']); 
+	$franchise		= trim($_POST['franchise']); 
 
 
+	$sql = "INSERT INTO `pursuing_course`(`session`,`date`,`student_id`, `course_id`,`course_code`, `session_code`, `serial_no`, `course_fee`, `course_days` ,`time`
+	,`starting_year`, `starting_month`, `complete_year`, `complete_month`,`mode_of_insertion`,`regno`,`franchise_id`,`session_id` )
+	 VALUES ('$session','$date','$studentID','$course','$coursecode','$sessioncode','$serialno','$fees','{$courseday}',
+	 '$time','$fromyear','$frommonth','$toyear','$tomonth','manual','$regno','{$_SESSION['franchise_id']}','$sessionId')";
 
-	$courseday		= implode(',', $courseday);
-	$sql = "INSERT INTO `pursuing_course`(`session`,`date`,`student_id`, `course_id`,`course_code`, `session_code`, `session_id`, `serial_no`, `course_fee`, `course_days` ,`time`
-		 ,`starting_year`, `starting_month`, `complete_year`, `complete_month`,regno )
-		  VALUES ('$session','$date','$studentID','$course','$coursecode','$sessioncode', '$sessionId', '$serialno','$fees','$courseday','$time','$session','','','','$regno')";
+
 	$res = mysqli_query($conn,  $sql);
 	$pursuing_id = mysqli_insert_id($conn);
 	if ($res) {
@@ -268,10 +271,8 @@ function findQuesryListStudents()
 					<label class="control-label col-md-1 col-sm-1 col-xs-12" for="customer">Address: <span class=""></span>
 					</label>
 					<div class="col-md-3 col-sm-3 col-xs-12 ">
-						<select id="address" name="address" class="form-control col-md-7 col-xs-12" required style="border-color:red">
-							<option value="">--Select--</option>
-							<?php getAddress(); ?>
-						</select>
+						<input type="text" id="address" name="address" class="form-control col-md-7 col-xs-12" required style="border-color:red">
+					
 					</div>
 					<label class="control-label col-md-1 col-sm-1 col-xs-12" for="po">P.O:<span class=""></span>
 					</label>
@@ -328,6 +329,21 @@ function findQuesryListStudents()
 					</label>
 					<div class="col-md-3 col-sm-3 col-xs-12">
 						<input type="text" id="nationality" name="nationality" value="INDIAN" class="form-control col-md-7 col-xs-12" />
+					</div>
+					<label class="control-label col-md-1 col-sm-1 col-xs-12" for="caddress">Franchise:<span class=""></span>
+					</label>
+					<div class="col-md-3 col-sm-3 col-xs-12">
+						<select id="franchise" name="franchise"  class="form-control" required>
+							<option value="">Select Franchie</option>
+							<?php 
+							$franchises = showFranchises();
+							if(count($franchises) > 0){
+								foreach ($franchises as $key => $franchise) {
+								 echo '<option value="'.$franchise['id'].'">'.$franchise['franchise_name'].'</option>' ;
+								}
+							}
+							?>
+						</select>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -470,6 +486,85 @@ function findQuesryListStudents()
 			<p></p>
 			<div class="row">
 				<div class="form-group">
+					<label class="control-label col-md-2 col-sm-2 col-xs-12" for="customer">Starting From <span class="required"></span>
+					</label>
+					<div class="col-md-2 col-sm-2 col-xs-12 required">
+						<select name="startingYear" id="startingYear" class="form-control" required>
+							<option value="">Starting Year</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+							<option value="2021">2021</option>
+							<option value="2022">2022</option>
+							<option value="2023">2023</option>
+							<option value="2024">2024</option>
+							<option value="2025">2025</option>
+						</select>
+					</div>
+					<div class="col-md-2 col-sm-2 col-xs-12 required">
+						<select name="startingMonth" id="startingMonth" class="form-control" required>
+							<option value="">Starting Month</option>
+							<option value="01">January</option>
+							<option value="02">February</option>
+							<option value="03">March</option>
+							<option value="04">April</option>
+							<option value="05">May</option>
+							<option value="06">June</option>
+							<option value="07">July</option>
+							<option value="08">August</option>
+							<option value="09">September</option>
+							<option value="10">October</option>
+							<option value="11">November</option>
+							<option value="12">December</option>
+						</select>
+					</div>
+					<label class="control-label col-md-2 col-sm-2 col-xs-12" for="customer">Completed To <span class="required"></span>
+					</label>
+					<div class="col-md-2 col-sm-2 col-xs-12">
+						<select name="completionYear" id="completionYear" class="form-control border-danger" required>
+							<option value="">Completion Year</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+							<option value="2021">2021</option>
+							<option value="2022">2022</option>
+							<option value="2023">2023</option>
+							<option value="2024">2024</option>
+							<option value="2025">2025</option>
+						</select>
+					</div>
+					<div class="col-md-2 col-sm-2 col-xs-12">
+						<select name="completionMonth" id="completionMonth" class="form-control border border-danger" required>
+							<option value="">Completion Month</option>
+							<option value="01">January</option>
+							<option value="02">February</option>
+							<option value="03">March</option>
+							<option value="04">April</option>
+							<option value="05">May</option>
+							<option value="06">June</option>
+							<option value="07">July</option>
+							<option value="08">August</option>
+							<option value="09">September</option>
+							<option value="10">October</option>
+							<option value="11">November</option>
+							<option value="12">December</option>
+						</select>
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<p></p>
+			<div class="row">
+				<div class="form-group">
 					<label class="control-label col-md-2 col-sm-2 col-xs-12" for="caddress">Course Time:<span class=""></span>
 					</label>
 					<div class="col-md-4 col-sm-4 col-xs-12">
@@ -583,14 +678,15 @@ function findQuesryListStudents()
 	$(document).ready(function() {
 		var datas = $("#admissionForm").serialize();
 
-		$('#sessionCode , #course').on('change', function() {
-			if ($('#sessionCode').val() != "" && $('#course').val() != "") {
+		$('#sessionCode , #course , #franchise').on('change', function() {
+			if ($('#sessionCode').val() != "" && $('#course').val() != "" && $('#franchise').val() != "" ) {
 				$.ajax({
-					url: "getRegistrationNo.php",
+					url: "getRegNo.php",
 					method: "post",
 					data: {
 						'sessionCode': $('#sessionCode').val(),
-						'course': $('#course').val()
+						'course': $('#course').val(),
+						'franchise': $('#franchise').val(),
 					},
 					success: function(data) {
 						$('#registrationNo').val(data);

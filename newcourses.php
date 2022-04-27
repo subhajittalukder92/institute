@@ -36,6 +36,12 @@ include('include/menu.php'); ?>
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="fname" class="col-sm-4 control-label">Short Name : </label>
+						<div class="col-sm-8">
+							<input type="text" required class="form-control" id="shortname" name="shortname" placeholder="Short Name" />
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="fname" class="col-sm-4 control-label">Course Code : </label>
 						<div class="col-sm-8">
 							<input type="text" required class="form-control" id="courseid" name="courseid" placeholder="Course Code" />
@@ -128,27 +134,35 @@ include('include/menu.php'); ?>
 <script>
 	$(document).ready(function() {
 		CKEDITOR.replace('description');
-		var table = $('#example').DataTable({
-			lengthChange: false,
-			buttons: ['copy', 'excel', 'pdf', 'colvis']
-		});
+		// var table = $('#example').DataTable({
+		// 	lengthChange: false,
+		// 	buttons: ['copy', 'excel', 'pdf', 'colvis']
+		// });
 
-		CourseTable = $("#manageCourseTable").DataTable({});
+		// CourseTable = $("#manageCourseTable").DataTable({});
 
-		table.buttons().container()
-			.appendTo('#example_wrapper .col-sm-6:eq(0)');
-
+		// table.buttons().container()
+		// 	.appendTo('#example_wrapper .col-sm-6:eq(0)');
+		 
+		//CKEDITOR.instances.description.updateElement();
+	
+		
 		$('form').on('submit', function(e) {
+			e.preventDefault();
+			CKEDITOR.instances['description'].updateElement();
+			let formData = $("#createTeacherForm").serialize();
+			// console.log(formData);
 			$.ajax({
 				url: "insertCourse.php",
 				method: "post",
-				data: $("#createTeacherForm").serialize(),
+				data: formData,
 				dataType: 'json',
 				success: function(data) {
 					if (data) {
 						$("#add-course-messages").html('<div class="alert alert-success alert-dismissible" role="alert">' +
 							'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Successfully Course Added</div>');
 						clearForm();
+						CKEDITOR.instances['description'].updateElement();
 
 					} else {
 						$("#add-course-messages").html('<div class="alert alert-danger alert-dismissible" role="alert">' +
@@ -165,7 +179,9 @@ include('include/menu.php'); ?>
 
 		function clearForm() {
 			$('input[type="text"]').val('');
+			$('input[type="number"]').val('');
 			$('select').val('');
+			CKEDITOR.instances['description'].setData('');
 
 		}
 	});
