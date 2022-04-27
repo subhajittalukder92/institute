@@ -53,6 +53,12 @@ include('include/menu.php'); ?>
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="fname" class="col-sm-4 control-label">Short Name : </label>
+						<div class="col-sm-8">
+							<input type="text" required class="form-control" id="shortname" name="shortname" placeholder="Short Name" value="<?php echo $row['short_name'];?>" />
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="fname" class="col-sm-4 control-label">Course Code : </label>
 						<div class="col-sm-8">
 							<input type="text" readonly class="form-control" id="courseid" name="courseid" placeholder="Course Id" value="<?php echo $row['course_id'];?>" />
@@ -67,7 +73,7 @@ include('include/menu.php'); ?>
 					<div class="form-group">
 						<label for="dob" class="col-sm-4 control-label">Duration: </label>
 						<div class="col-sm-8">
-							<input type="text" required class="form-control" id="cdescription" name="cdescription" placeholder="Duration" value="<?php echo $row['duration'];?>" />
+							<input type="number" required class="form-control" id="cdescription" name="cdescription" placeholder="Duration" value="<?php echo $row['duration'];?>" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -79,7 +85,10 @@ include('include/menu.php'); ?>
 					<div class="form-group">
 						<label for="age" class="col-sm-4 control-label">Duration Unit: </label>
 						<div class="col-sm-8">
-							<input type="text" readonly class="form-control" id="unit" name="unit" placeholder="Month/Year" value="<?php echo $row['unit'];?>" />
+							<select required class="form-control" id="unit" name="unit">
+								<option value="Month" <?php echo ($row['unit'] == "Month" ? "selected" : "") ;?>>Month</option>
+								<option value="Year" <?php echo ($row['unit'] == "Year" ? "selected" : "") ;?>>Year</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group">
@@ -152,10 +161,12 @@ include('include/menu.php'); ?>
 			.appendTo('#example_wrapper .col-sm-6:eq(0)');
 
 		$('form').on('submit', function(e) {
+			CKEDITOR.instances['description'].updateElement();
+			let formData = $("#createTeacherForm").serialize();
 			$.ajax({
 				url: "updateCourse.php",
 				method: "post",
-				data: $("#createTeacherForm").serialize(),
+				data: formData,
 				dataType: 'json',
 				success: function(data) {
 					if (data) {

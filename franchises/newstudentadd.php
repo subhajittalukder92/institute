@@ -54,7 +54,7 @@ if (isset($_POST['formid']) && isset($_SESSION['formid']) && $_POST['formid'] ==
 		$toyear			=trim($_POST['toyear']); 
 	*/
 	$sessioncode	= trim($_POST['sessionCode']);
-	$sessionId		=findSessionId($sessioncode);
+	$sessionId		= findSessionId($sessioncode);
 	$coursecode		= $course;
 	$serialno		= findSerialNo($sessioncode, $coursecode);
 	$regno			= findStudentRegistraionNo($sessionId, $coursecode);
@@ -467,6 +467,12 @@ function findQuesryListStudents()
 					<div class="col-md-2 col-sm-2 col-xs-12 required">
 						<select name="startingYear" id="startingYear" class="form-control" required>
 							<option value="">Starting Year</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
 							<option value="2021">2021</option>
 							<option value="2022">2022</option>
 							<option value="2023">2023</option>
@@ -496,6 +502,12 @@ function findQuesryListStudents()
 					<div class="col-md-2 col-sm-2 col-xs-12">
 						<select name="completionYear" id="completionYear" class="form-control border-danger" required>
 							<option value="">Completion Year</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
 							<option value="2021">2021</option>
 							<option value="2022">2022</option>
 							<option value="2023">2023</option>

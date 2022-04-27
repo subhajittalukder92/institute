@@ -103,6 +103,30 @@ function findStudentRegistraionNo($sessioncode,$coursecode)
 	}
 	
 }
+function getRegistraionNoByFranchise($franchise)
+{
+	include "include/dbconfig.php" ;
+
+	$sql3="SELECT * FROM franchises WHERE id='{$franchise}'  ";
+	$res3=mysqli_query($conn,$sql3);
+	$row3=mysqli_fetch_assoc($res3);
+	$institutecode =$row3['code'];
+
+	$sql 		= "SELECT COUNT(*) AS `slno` FROM `pursuing_course` WHERE `mode_of_insertion` = 'manual'";
+	$res 		= mysqli_query($conn,  $sql);
+	$row 		= mysqli_fetch_assoc($res);
+	if($row['slno']!= null)
+	{
+		 $settings = getSettings();
+		 $regno = "JYBCE-" . $institutecode . "-" . str_pad(($settings['base_regno'] + $row['slno'] + 1), 5, "0", STR_PAD_LEFT);
+		 return $regno;
+	}
+	else{
+		$regno = "JYBCE-" . $institutecode . "-" . str_pad(($settings['base_regno'] + 1), 5, "0", STR_PAD_LEFT);
+		return $regno;
+	}
+	
+}
 function getSettings()
 {
 	include "include/dbconfig.php" ;

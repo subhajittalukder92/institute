@@ -216,7 +216,7 @@ include('include/check-login.php');
 
 								<li>
 
-									<a href="showallstudent.php"> Show All Student</a>
+									<a href="showallstudent.php">Tabulation</a>
 
 								</li>
 
