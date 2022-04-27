@@ -77,11 +77,10 @@ if(mysqli_num_rows($ress) > 0){
         padding-top: 2px;
     }
     .course-name{
-        font-size: 10px;
         padding-top: 4px;
     }
     .duration{
-        padding-top: 5px;
+        padding-top: 3px;
     }
     .course-code{
         padding-top: 3px;
@@ -173,18 +172,17 @@ if(mysqli_num_rows($ress) > 0){
     .info{
         margin-left: 260px;
         font-size: 22px;
+        font-weight: 500;
         font-family: 'Oswald', sans-serif;
     }
     .s-name{
-        font-weight: 600;
         padding-top: 7px;
     }
     .course-name{
-        font-size: 17px;
-        padding-top: 14px;
+        padding-top: 11px;
     }
     .duration{
-        padding-top: 11px;
+        padding-top: 8px;
     }
     .course-code{
         padding-top: 11px;

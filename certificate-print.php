@@ -72,6 +72,10 @@ if(mysqli_num_rows($ress) > 0){
     .from-div{
         margin-top: 9px;
     }
+    .at{
+        font-size: 8.5px;
+        margin-top: 2px;
+    }
     .div1{
         width: 67px; 
         float: right;
@@ -91,7 +95,7 @@ if(mysqli_num_rows($ress) > 0){
     .pic-div-container{
         width:377px; 
         margin:auto; 
-        margin-top: 20px;
+        margin-top: 19px;
     }
     .student-pic-div{
         width: 79px; 
@@ -179,6 +183,7 @@ if(mysqli_num_rows($ress) > 0){
     }
     .at{
         padding-left: 5px;
+        font-size: 15px;
     }
     .pic-div-container{
         width:644px; 
@@ -251,7 +256,7 @@ if(mysqli_num_rows($ress) > 0){
                     <div class="col-2">
                         <h6><?php echo $data['grades']; ?></h6>
                     </div>
-                    <div class="col-6" align="center">
+                    <div class="col-6">
                         <h6 class="at"><?php echo $data['address']; ?></h6>
                     </div>
                 </div>
