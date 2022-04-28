@@ -1,12 +1,13 @@
 <?php
 session_start();
+// print_r($_SESSION);
 include('include/no-cache.php');
 include('include/dbconfig.php');
 include('include/check-login.php');
 include "../functions.php";
 $success_msg = null;
 $error_msg = null;
-if (isset($_POST['formid']) && isset($_SESSION['formid']) && $_POST['formid'] == $_SESSION['formid']) {
+if (isset($_SESSION['franchise_id']) && isset($_POST['formid']) && isset($_SESSION['formid']) && $_POST['formid'] == $_SESSION['formid']) {
 	$sname			= strtoupper(trim($_POST['sname']));
 	$fname			= strtoupper(trim($_POST['fname']));
 	$mname			= strtoupper(trim($_POST['mname']));

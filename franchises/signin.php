@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if(isset($_SESSION['franchise_session_id']) && isset($_SESSION['franchise_id'])){
+		
+    header("Location: home.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

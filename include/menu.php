@@ -1,4 +1,6 @@
-<?php include('include/check-login.php'); ?>
+<?php include('include/check-login.php'); 
+// print_r($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

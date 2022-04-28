@@ -3,8 +3,9 @@ session_start();
 include "include/dbconfig.php";
 $output = array('data' => array());
 
-$sql="SELECT student_info.*,pursuing_course.regno as reg_no  FROM `student_info` INNER JOIN pursuing_course ON pursuing_course.student_id=student_info.slno where student_info.franchise_id='{$_SESSION['franchise_id']}' ";
-	
+$sql="SELECT student_info.*,pursuing_course.regno as reg_no  FROM `student_info` 
+	INNER JOIN pursuing_course ON pursuing_course.student_id = student_info.slno 
+	where student_info.franchise_id='{$_SESSION['franchise_id']}' ";
 	
 $res=mysqli_query($conn, $sql);
 $x=1;
