@@ -76,6 +76,7 @@
             </ul>
           </li>
           <li><a href="study-centre.php">Training Centre</a></li>
+          <li><a href="download.php">Download</a></li>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-animations="zoomIn zoomIn zoomIn zoomIn" href="homepage#">
               Online Application <span class="caret"></span>

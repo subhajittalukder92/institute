@@ -172,6 +172,7 @@
 							<a href="#"><i class="fa fa-th-list"></i> Website <span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="about-us.php">About Us</a></li>
+								<li><a href="downloads.php">Download</a></li>
 							</ul>
 						</li>
 					</ul>
