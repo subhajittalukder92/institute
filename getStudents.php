@@ -14,11 +14,16 @@
 
     while($rows = $res->fetch_assoc())
     {
-        if (file_exists("Student_images/".$rows['image_name'])) {
+        if(!empty($rows['image_name'])){
+             if (file_exists("Student_images/".$rows['image_name'])) {
              $rows['image_name']="Student_images/".$rows['image_name'];
         }else{
              $rows['image_name']="images/blank-student.jpg";
         }
+        }else{
+             $rows['image_name']="images/blank-student.jpg";
+        }
+       
      
         array_push($result,$rows);
      } 
