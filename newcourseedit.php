@@ -86,6 +86,7 @@ include('include/menu.php'); ?>
 						<label for="age" class="col-sm-4 control-label">Duration Unit: </label>
 						<div class="col-sm-8">
 							<select required class="form-control" id="unit" name="unit">
+								<option value="">Select Unit</option>
 								<option value="Month" <?php echo ($row['unit'] == "Month" ? "selected" : "") ;?>>Month</option>
 								<option value="Year" <?php echo ($row['unit'] == "Year" ? "selected" : "") ;?>>Year</option>
 							</select>
