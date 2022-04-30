@@ -3,6 +3,7 @@ Notice
 images
 qrcode
 downloads
+excel_file
 include/dbconfig.php
 include/settings.php
 franchises/include/dbconfig.php
