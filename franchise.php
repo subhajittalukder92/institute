@@ -86,7 +86,7 @@ function fetchRecords()
 				<div class="form-group">
 					<label class="col-sm-4 control-label">Franchise Code</label>
 					<div class="col-sm-6">
-						<input type="number" name="franchiseCode" id="franchiseCode" class="form-control" required>
+						<input type="text" name="franchiseCode" id="franchiseCode" class="form-control" required>
 					</div>
 				</div>
 				<div class="form-group">
@@ -190,7 +190,7 @@ function fetchRecords()
 				<div class="form-group">
 					<label class="col-sm-4 control-label">Franchise Code</label>
 					<div class="col-sm-6">
-						<input type="number" name="editCode" id="editCode" class="form-control" required>
+						<input type="text" name="editCode" id="editCode" class="form-control" required>
 					</div>
 				</div>
 				<div class="form-group">
@@ -202,7 +202,7 @@ function fetchRecords()
 				<div class="form-group">
 					<label class="col-sm-4 control-label">Contact</label>
 					<div class="col-sm-6">
-						<input type="text" name="editContact" id="editContact" class="form-control" required>
+						<input type="text" name="editContact" id="editContact" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
@@ -403,7 +403,7 @@ function editMember(id = null)
 
 $('#editMessage').html("");
     if(id) {
-
+	$('.editMessage').html("");
         $.ajax({
             url: 'getSelectedFranchise.php',
             type: 'post',
