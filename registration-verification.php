@@ -2,7 +2,7 @@
 <?php include "header.php"; ?>
 <style type="text/css">
   .student-details-div{
-    width: 55%; 
+    width: 57%; 
     box-shadow: 5px 5px 5px #ccc; 
     margin: auto; 
     padding: 30px; 
@@ -17,10 +17,6 @@
   }
   .titles{
     color: black; 
-    line-height: 5px;
-  }
-  .content{
-    line-height: 5px;
   }
   @media (max-width: 1000px){
     .student-details-div{
@@ -139,25 +135,6 @@
           }
 });
     }
-      //   $.post('getStudents.php',{'reg_no':reg_no},function(response,status){
-      //     console.log(response);
-      //     console.log(status);
-      //   if(status=='success'){
-      //     var result=JSON.parse(response);
-      //     if(result.success){
-      //       $('#output').show();
-      //       $('#student_pic').attr('src', result.data[0].image_name);
-      //       $('#student_name').html(result.data[0].St_Name);
-      //       $('#father_name').html(result.data[0].Fathers_Name);
-      //       $('#course_name').html(result.data[0].course_name);
-      //       $('#status').html(result.data[0].current_status);
-      //     }else{
-      //       alert(response.message);
-      //       $('#message').html(response.message);
-      //     }
-      //   }
-      // });
-      // }
 </script>
 <?php include "footer.php"; ?>	
 <?php include "footer-link.php"; ?>

@@ -17,7 +17,7 @@
         if (file_exists("Student_images/".$rows['image_name'])) {
              $rows['image_name']="Student_images/".$rows['image_name'];
         }else{
-             $rows['image_name']="images/passport.png";
+             $rows['image_name']="images/blank-student.jpg";
         }
      
         array_push($result,$rows);
