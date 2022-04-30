@@ -90,7 +90,7 @@ function findStudentRegistraionNo($sessioncode,$coursecode)
 	{
 		// $regno=$institutecode.$sessioncode.$course_code.sprintf('%0' . 4 . 's',($row['slno']+1));
 		 $settings = getSettings();
-		 $regno = "JYBCE-" . $institutecode . "-" . str_pad(($settings['base_regno'] + $row['slno'] + 1), 5, "0", STR_PAD_LEFT);
+		 $regno = $institutecode . "-" . str_pad(($settings['base_regno'] + $row['slno'] + 1), 5, "0", STR_PAD_LEFT);
 		 
 		 
 		return $regno;
@@ -98,7 +98,7 @@ function findStudentRegistraionNo($sessioncode,$coursecode)
 	else{
 		// $regno=$institutecode.$sessioncode.$course_code."0001";
 
-		$regno = "JYBCE-" . $institutecode . "-" . str_pad(($settings['base_regno'] + 1), 5, "0", STR_PAD_LEFT);
+		$regno = $institutecode . "-" . str_pad(($settings['base_regno'] + 1), 5, "0", STR_PAD_LEFT);
 		return $regno;
 	}
 	
@@ -118,11 +118,11 @@ function getRegistraionNoByFranchise($franchise)
 	if($row['slno']!= null)
 	{
 		 $settings = getSettings();
-		 $regno = "JYBCE-" . $institutecode . "-" . str_pad(($settings['base_regno'] + $row['slno'] + 1), 5, "0", STR_PAD_LEFT);
+		 $regno = $institutecode . "-" . str_pad(($settings['base_regno'] + $row['slno'] + 1), 5, "0", STR_PAD_LEFT);
 		 return $regno;
 	}
 	else{
-		$regno = "JYBCE-" . $institutecode . "-" . str_pad(($settings['base_regno'] + 1), 5, "0", STR_PAD_LEFT);
+		$regno = $institutecode . "-" . str_pad(($settings['base_regno'] + 1), 5, "0", STR_PAD_LEFT);
 		return $regno;
 	}
 	

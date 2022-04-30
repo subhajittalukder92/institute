@@ -8,6 +8,9 @@
     $extension = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
     $file = md5(uniqid(rand(), true)) . "." . $extension; 
     $path = 'downloads/' . $file;
+	if (!is_dir('downloads')) {
+		mkdir('downloads', 0777, true);
+	}
     move_uploaded_file( $_FILES['file'] ['tmp_name'], $path);
 	 
 	 $sql="INSERT INTO download(title,file)VALUES ('$title','$file')" ;
