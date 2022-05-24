@@ -248,7 +248,7 @@ if(mysqli_num_rows($ress) > 0){
             <h6 class="info"><?php echo $data[7];?></h6>
             <h6 class="info s-name"><?php echo $data['St_Name'];?></h6>
             <h6 class="info s-name"><?php echo $data['Fathers_Name'];?></h6>
-            <h6 class="info course-name" <?php if(strlen($course['course_name']) > 50) { echo 'style="font-size:20px !important;"'}?>><?php echo $course['course_name']; ?></h6>
+            <h6 class="info course-name" <?php if(strlen($course['course_name']) > 50) { echo 'style="font-size:20px !important;"'; }?>><?php echo $course['course_name']; ?></h6>
             <h6 class="info duration"><?php echo $course['duration']." ".$course['unit']; ?></h6>
             <h6 class="info course-code"><?php echo $data['code']; ?></h6>
             <div class="sem1">
