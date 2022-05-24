@@ -122,7 +122,7 @@ if(mysqli_num_rows($ress) > 0){
         color: #1a2477;
     }
     .sem1-subjects{
-        font-size: 8px;
+        font-size: 7px;
         margin-top: -9px;
     }
     .font-11{
@@ -226,7 +226,7 @@ if(mysqli_num_rows($ress) > 0){
         font-size: 15px;
     }
     .sem1-subjects{
-        font-size: 13px;
+        font-size: 12px;
     }
     .grand-total-div{
         margin-top: 6px;
