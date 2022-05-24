@@ -74,7 +74,7 @@ if(mysqli_num_rows($ress) > 0){
         font-family: 'Oswald', sans-serif;
     }
     .info-long{
-        margin-left: 260px;
+        margin-left: 152px;
         font-size: 10px;
         font-weight: 500;
         font-family: 'Oswald', sans-serif;
@@ -183,7 +183,7 @@ if(mysqli_num_rows($ress) > 0){
     }
     .info-long{
         margin-left: 260px;
-        font-size: 15px;
+        font-size: 18px;
         font-weight: 500;
         font-family: 'Oswald', sans-serif;
     }
