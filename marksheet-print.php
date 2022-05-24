@@ -171,8 +171,7 @@ if(mysqli_num_rows($ress) > 0){
     }
     .info{
         margin-left: 260px;
-        <?php if(strlen($course['course_name']) > 50) { echo 'font-size: 12px;'; } else{ echo 'font-size: 22px;';}?>
-       
+        font-size: 22px;
         font-weight: 500;
         font-family: 'Oswald', sans-serif;
     }
