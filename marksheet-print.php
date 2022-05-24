@@ -73,6 +73,12 @@ if(mysqli_num_rows($ress) > 0){
         font-weight: 600;
         font-family: 'Oswald', sans-serif;
     }
+    .info-long{
+        margin-left: 260px;
+        font-size: 10px;
+        font-weight: 500;
+        font-family: 'Oswald', sans-serif;
+    }
     .s-name{
         padding-top: 2px;
     }
@@ -175,6 +181,12 @@ if(mysqli_num_rows($ress) > 0){
         font-weight: 500;
         font-family: 'Oswald', sans-serif;
     }
+    .info-long{
+        margin-left: 260px;
+        font-size: 15px;
+        font-weight: 500;
+        font-family: 'Oswald', sans-serif;
+    }
     .s-name{
         padding-top: 7px;
     }
@@ -248,7 +260,7 @@ if(mysqli_num_rows($ress) > 0){
             <h6 class="info"><?php echo $data[7];?></h6>
             <h6 class="info s-name"><?php echo $data['St_Name'];?></h6>
             <h6 class="info s-name"><?php echo $data['Fathers_Name'];?></h6>
-            <h6 class="info course-name" <?php if(strlen($course['course_name']) > 50) { echo 'style="font-size:10px;"'; }?>><?php echo $course['course_name']; ?></h6>
+            <h6 class="<?php if(strlen($course['course_name']) > 50) { echo 'info-long'; }else{ echo 'info';}?> course-name" ><?php echo $course['course_name']; ?></h6>
             <h6 class="info duration"><?php echo $course['duration']." ".$course['unit']; ?></h6>
             <h6 class="info course-code"><?php echo $data['code']; ?></h6>
             <div class="sem1">
